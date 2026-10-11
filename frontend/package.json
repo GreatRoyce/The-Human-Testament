@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.mjs",
+    "check:home": "node scripts/check-home-ui.mjs",
+    "check:content": "node scripts/check-content-ui.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

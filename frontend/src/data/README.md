@@ -9,14 +9,8 @@ This is the website content layer.
 Canonical text must remain exact.
 Editorial prompts must never be presented as Testament verses.
 
-As the site expands, add:
-- chapters.js
-- verses.js
-- definitions.js
-- clarifications.js
-- contexts.js
-- reflections.js
-- crossReferences.js
-- glossary.js
-- themes.js
-- media.js
+Testament fixtures now live in `mock/testament/`. The mock provider adapts the preserved book summaries and supplied excerpts to the public content contracts. It does not contain the full corpus.
+
+Reader components consume feature hooks and services rather than importing fixtures. New canonical content should come through the Testament domain provider. Other files here remain editorial/home copy; do not automatically treat their prompts as canonical verses.
+
+See `../../docs/FRONTEND_ARCHITECTURE.md` for domain ownership, API configuration, routes, and the backend handoff.

@@ -2,6 +2,7 @@ import Logo from "../branding/Logo";
 import Button from "../ui/Button";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { MdArrowForwardIos, MdMenu } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const navigationItems = [
   { label: "The Testament", href: "/#books" },
@@ -22,6 +23,7 @@ const closeMenu = (event) => {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div className="fixed inset-x-0 top-0 z-10">
 
@@ -43,7 +45,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden items-center gap-2 xl:flex">
-          <Button variant="icon" size="icon" className="h-11 w-11" aria-label="Search (coming soon)" title="Search is coming soon">
+          <Button variant="icon" size="icon" className="h-11 w-11" aria-label="Search" title="Search the Testament" onClick={() => navigate('/search')}>
             <PiMagnifyingGlass size={24} aria-hidden="true" />
           </Button>
           <span className="mx-2 h-6 border-l border-forest" aria-hidden="true" />
@@ -79,7 +81,7 @@ const Navbar = () => {
               ))}
             </ul>
             <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-border pt-4">
-              <Button variant="ghost" className="h-11" disabled title="Search is coming soon" leftIcon={<PiMagnifyingGlass aria-hidden="true" />}>
+              <Button variant="ghost" className="h-11" title="Search the Testament" onClick={(event) => { closeMenu(event); navigate('/search'); }} leftIcon={<PiMagnifyingGlass aria-hidden="true" />}>
                 Search
               </Button>
               <Button variant="ghost" className="h-11" disabled title="Sign in is coming soon">Sign In</Button>

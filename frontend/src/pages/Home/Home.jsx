@@ -1,15 +1,15 @@
-import Hero from '../../components/home/Hero';
-import InquiryPaths from '../../components/home/InquiryPaths';
-import Dialogue from '../../components/home/Dialogue';
-import BookCollection from '../../components/home/BookCollection';
-import FeaturedVerse from '../../components/home/FeaturedVerse';
-import LivingInquiry from '../../components/home/LivingInquiry';
-import PathOfInquiry from '../../components/home/PathOfInquiry';
-import Sanctuary from '../../components/home/Sanctuary';
-import EssayReflections from '../../components/home/EssayReflections';
-import CommunitySection from '../../components/home/CommunitySection';
-import PhysicalBookSection from '../../components/home/PhysicalBookSection';
-import Footer from '../../components/home/Footer';
+import Hero from '../../features/home/components/Hero';
+import InquiryPaths from '../../features/home/components/InquiryPaths';
+import Dialogue from '../../features/home/components/Dialogue';
+import BookCollection from '../../features/home/components/BookCollection';
+import FeaturedVerse from '../../features/home/components/FeaturedVerse';
+import LivingInquiry from '../../features/home/components/LivingInquiry';
+import PathOfInquiry from '../../features/home/components/PathOfInquiry';
+import Sanctuary from '../../features/home/components/Sanctuary';
+import EssayReflections from '../../features/home/components/EssayReflections';
+import CommunitySection from '../../features/home/components/CommunitySection';
+import PhysicalBookSection from '../../features/home/components/PhysicalBookSection';
+import Footer from '../../components/layout/Footer';
 const Home = () => {
   return (
     <main id="main-content" tabIndex={-1} className="bg-ivory">

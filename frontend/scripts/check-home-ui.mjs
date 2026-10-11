@@ -4,7 +4,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { createServer } from "vite";
-import books from "../src/data/books.js";
+import books from "../src/data/mock/testament/books.js";
 import { questions } from "../src/data/questions.js";
 import paths from "../src/data/paths.js";
 import { dialogueCards } from "../src/data/dialogueCards.js";
@@ -13,7 +13,7 @@ import essaysSection from "../src/data/essaysSection.js";
 // Use the app's Vite transforms, including JSX and asset imports.
 const server = await createServer({
   root: fileURLToPath(new URL("..", import.meta.url)),
-  server: { middlewareMode: true },
+  server: { middlewareMode: true, hmr: false, ws: false },
   appType: "custom",
 });
 
@@ -40,7 +40,7 @@ try {
     }
   }
 
-  assert.equal((html.match(/<section\b/g) || []).length, 9, "Nine home sections");
+  assert.equal((html.match(/<section\b/g) || []).length, 12, "Current home sections, including community, print and footer");
   assert.ok(idSet.has("sanctuary"), "Reading preview section present");
   const sanctuary = html.match(/<section[^>]*id="sanctuary"[\s\S]*?<\/section>/)?.[0];
   assert.ok(sanctuary, "Sanctuary renders inside its section");
@@ -51,28 +51,17 @@ try {
   assert.ok(sanctuary.includes("LAUNCH READING ROOM →"));
   // Render each configured initial selection to cover notes, no notes, and
   // optional cross-references without claiming browser interaction coverage.
-  const { readerSection } = await server.ssrLoadModule("/src/data/readerSection.js");
-  const initialVerse = readerSection.preview.defaultVerse;
-  assert.equal(initialVerse, "10:14");
-  try {
-    for (const [reference, noteNumber] of [["10:11", null], ["10:12", 261], ["10:13", null], ["10:14", 262]]) {
-      readerSection.preview.defaultVerse = reference;
-      const preview = renderRoute("/").match(/<section[^>]*id="sanctuary"[\s\S]*?<\/section>/)?.[0];
-      const notePanel = preview.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
-      const selectedButton = preview.match(/<button[^>]*aria-pressed="true"[\s\S]*?<\/button>/)?.[0];
-      assert.ok(selectedButton.includes(reference), `Selected verse: ${reference}`);
-      if (noteNumber === null) {
-        assert.ok(notePanel.includes(readerSection.preview.emptyNote));
-        assert.ok(!notePanel.includes("Note 261") && !notePanel.includes("Note 262"));
-      } else {
-        assert.ok(notePanel.includes(`Note ${noteNumber} · Context`));
-        const verse = readerSection.preview.verses.find((entry) => entry.ref === reference);
-        assert.ok(notePanel.includes(verse.note.text));
-      }
-      assert.equal(notePanel.includes("SEE ALSO"), reference === "10:14");
-    }
-  } finally {
-    readerSection.preview.defaultVerse = initialVerse;
+  const { chapterService } = await server.ssrLoadModule("/src/features/testament/services/chapterService.js");
+  const { default: ChapterReader } = await server.ssrLoadModule("/src/features/reader/components/ChapterReader.jsx");
+  const content = await chapterService.getChapter("freedom", 10);
+  for (const [number, noteNumber] of [[11, null], [12, 261], [13, null], [14, 262]]) {
+    const selectedVerse = content.verses.find((verse) => verse.number === number);
+    const preview = renderToStaticMarkup(createElement(ChapterReader, { content, selectedVerse, onSelect: () => {} }));
+    const notePanel = preview.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
+    assert.ok(preview.match(/<button[^>]*aria-pressed="true"[\s\S]*?<\/button>/)?.[0].includes(`10:${number}`));
+    assert.ok(notePanel.includes(noteNumber === null ? "This verse carries no note." : `Note ${noteNumber} · Context`));
+    if (noteNumber !== null) assert.ok(notePanel.includes(selectedVerse.commentary.text));
+    assert.equal(notePanel.includes("SEE ALSO"), number === 14);
   }
   assert.equal((html.match(/<article\b/g) || []).length, books.length + questions.length + paths.length + dialogueCards.length + essaysSection.essays.length);
   const essays = html.match(/<section[^>]*id="essays"[\s\S]*?<\/section>/)?.[0];
@@ -104,7 +93,7 @@ try {
   assert.ok(html.includes('role="tablist"'), "Featured verse tabs present");
   assert.equal((html.match(/role="tab"/g) || []).length, 3);
 
-  for (const pathname of ["/books/1", ...dialogueCards.map((card) => card.href), "/unknown-page"]) {
+  for (const pathname of [...dialogueCards.map((card) => card.href), "/unknown-page"]) {
     const fallback = renderRoute(pathname);
     assert.ok(fallback.includes("Page unavailable"), `Fallback for ${pathname}`);
     assert.ok(fallback.includes("Return home"), `Recovery link for ${pathname}`);

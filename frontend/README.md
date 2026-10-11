@@ -14,3 +14,17 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# The Human Testament frontend
+
+React / Vite / Tailwind frontend. The Node.js backend is a separate project.
+
+```sh
+npm install
+npm run dev
+```
+
+Content defaults to supplied mock excerpts. See `.env.example` for `VITE_CONTENT_SOURCE` and `VITE_API_URL`; API mode does not assume an existing backend or fall back to mock content.
+
+Validation: `npm run lint`, `npm run build`, `npm test`, `npm run check:home`, `npm run check:content`.
+
+See [frontend architecture and backend handoff](docs/FRONTEND_ARCHITECTURE.md) and [migration file inventory](docs/MIGRATION_FILES.md).
