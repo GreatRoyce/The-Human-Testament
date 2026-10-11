@@ -2,6 +2,8 @@
 
 Generated 2026-10-11. Source: `The-Human-Testament--Complete-Manuscript.pdf` (550 pages, LibreOffice 24.2 export, SHA-256 `bbdd152c8b870862b44214dbd56059fa2a85146e6f1ad1e4d48f1d5c7fa34c76`). The original file was only read, never modified; its hash after processing is identical to the hash before.
 
+Report correction (2026-10-11): In section 6.2, the description of Relationships chapter 1 was corrected from 15 to 14 verse references after checking the original PDF: references 1:1 through 1:13 appear on page 369, reference 1:14 appears on page 370, and chapter 2 begins on page 371. This agrees with the chapter table in section 4. The manuscript is unchanged; the target Relationships 1:16 remains invalid and open for review.
+
 ## 1. Summary
 
 | Item | Count |
@@ -146,7 +148,7 @@ Each of these appears both in the note and in the Cross-Reference Index. They ar
 |---|---|---|---|
 | 104 | Inquiry 26:12 | See also: 1:13 (index: Inquiry 1:13) | Inquiry chapter 1 has only 12 verses |
 | 490 | Power 4:13 | See also: Inquiry 4:13 | Inquiry chapter 4 has only 12 verses |
-| 1191 | Relationships 39:15 | See also: 1:16 (index: Relationships 1:16) | Relationships chapter 1 has only 15 verses |
+| 1191 | Relationships 39:15 | See also: 1:16 (index: Relationships 1:16) | Relationships chapter 1 has only 14 verses |
 
 ### 6.3 Repeated passages in the source (kept, not removed)
 

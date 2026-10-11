@@ -28,8 +28,8 @@ test('reconciles the full manuscript against the Markdown report while retaining
   assert.equal(report.databaseModified, false);
   assert.deepEqual(report.errors, []);
   assert.equal(report.sourceIssues.length, 206);
-  assert.equal(report.reportIssues.length, 1);
-  assert.equal(report.warnings.length, 207);
+  assert.equal(report.reportIssues.length, 0);
+  assert.equal(report.warnings.length, 206);
   assert.ok(report.warnings.every((warning) => ['source', 'validation_report'].includes(warning.category) && warning.reviewRequired));
   assert.ok(report.comparisons.every((comparison) => comparison.passed));
   assert.equal(report.validationReportFindings.independentPdfComparison.reportedWordTokens, 92156);
@@ -119,8 +119,23 @@ test('only actual old-title citations count as legacy notes; ordinary Responsibi
   assert.equal(report.sourceIssues.filter((issue) => issue.code === 'INFERRED_SOURCE_LINE_JOIN').length, 49);
   assert.equal(supporting.notes.find((note) => note.noteNumber === 1314).reviewRequired, true);
   assert.equal(supporting.notes.find((note) => note.noteNumber === 1314).anchor.status, 'explicit');
-  assert.equal(report.reportIssues[0].code, 'REPORT_INTERNAL_INCONSISTENCY');
-  assert.equal(report.reportIssues[0].detail.chapterTableCount, 14);
+});
+
+test('Relationships chapter 1 stays at 14 authored references; a report contradiction remains detectable', () => {
+  const chapter = canonical.books.find((book) => book.slug === 'relationships').chapters.find((entry) => entry.number === 1);
+  assert.equal(chapter.referenceCount, 14);
+  assert.deepEqual(chapter.verses.map((verse) => verse.number), Array.from({ length: 14 }, (_, index) => index + 1));
+  assert.ok(!canonical.unresolvedReferences.some((ref) => ref.bookSlug === 'relationships' && ref.chapter === 1));
+  assert.ok(validationText.includes('Relationships chapter 1 has only 14 verses'));
+  const inconsistentText = validationText.replace('Relationships chapter 1 has only 14 verses', 'Relationships chapter 1 has only 15 verses');
+  const inconsistent = buildDrafts({ rawText, validationText: inconsistentText });
+  assert.equal(inconsistent.report.reportIssues.length, 1);
+  assert.equal(inconsistent.report.reportIssues[0].code, 'REPORT_INTERNAL_INCONSISTENCY');
+  assert.equal(inconsistent.report.reportIssues[0].detail.chapterTableCount, 14);
+  assert.equal(inconsistent.report.status, 'REVIEW_REQUIRED');
+  assert.equal(inconsistent.report.importApproved, false);
+  assert.deepEqual(inconsistent.report.errors, []);
+  assert.deepEqual(inconsistent.canonical.books, canonical.books);
 });
 
 test('editorial flags and other bracketed markers cannot become canonical verse text', () => {

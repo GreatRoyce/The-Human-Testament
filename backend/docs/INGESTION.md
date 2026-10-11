@@ -60,7 +60,7 @@ The reconciled snapshot contains 206 source-review findings:
 - one consolidated punctuation-review finding containing the report's original observations;
 - 49 inferred em-dash joins documented in the clean-edition report.
 
-There is also one validation-report issue: section 6.2 describes Relationships chapter 1 as having 15 verses, while section 4 and the clean TXT have 14. The cited `Relationships 1:16` remains invalid either way. The Markdown report is unchanged. This gives 207 warnings in total, separately categorized as source or validation-report findings, with zero ingestion errors. Warning totals represent findings/groups, not a count of every possible punctuation occurrence.
+Section 6.2 originally described Relationships chapter 1 as having 15 verses, contradicting section 4 and the clean TXT. On 2026-10-11 the original PDF was checked directly: page 369 contains references 1:1 through 1:13, page 370 contains 1:14, and chapter 2 begins on page 371. Section 6.2 was corrected to 14, with a correction note in the report. No manuscript text or reference was changed. The cited `Relationships 1:16` remains invalid and flagged. The regenerated snapshot has 206 source warnings, zero validation-report issues, and zero ingestion errors. Contradiction detection remains covered by a regression test. Warning totals represent findings/groups, not a count of every possible punctuation occurrence.
 
 ## File safety
 
@@ -72,7 +72,7 @@ All ten existing `data/` files remain at their current paths. No originals or ba
 - `canonical-content.json`;
 - Both `manuscript-extracted*.txt` backups.
 
-The importer still reads `canonical-content.json`, which remains the original empty scaffold. The existing extraction scripts, importer, models, routes, and frontend are unchanged by this ingestion repair. Directory reorganization is deferred until all dependent paths are deliberately migrated.
+The importer still reads `canonical-content.json`, which remains the original empty scaffold. The existing extraction scripts, importer, models, routes, and frontend are unchanged by this ingestion repair. The only deliberate source-document change is the documented count correction in the Markdown validation report; its updated hash is recorded in regenerated drafts. Directory reorganization is deferred until all dependent paths are deliberately migrated.
 
 ## Implementation and verification
 

@@ -6,7 +6,7 @@
   "inputFile": "The-Human-Testament-Clean-Ingestion-Edition.txt",
   "inputSha256": "5471d6e58948a2427cac6ca2f5f1288422f0b6f5be15b429007653ef415460c8",
   "validationReport": "The-Human-Testament-Ingestion-Validation-Report.md",
-  "validationReportSha256": "8223cddb26752fff47aeef2e0cab2d272e483ab15b26a24660010e959f73a623",
+  "validationReportSha256": "a67e078b8f477e7ad95c1f263cb34bafe8975a02384c2b52766f60f4c15fa7ed",
   "sourceManifest": [
     {
       "file": "The-Human-Testament-Clean-Ingestion-Edition.txt",
@@ -14,7 +14,7 @@
     },
     {
       "file": "The-Human-Testament-Ingestion-Validation-Report.md",
-      "sha256": "8223cddb26752fff47aeef2e0cab2d272e483ab15b26a24660010e959f73a623"
+      "sha256": "a67e078b8f477e7ad95c1f263cb34bafe8975a02384c2b52766f60f4c15fa7ed"
     },
     {
       "file": "The-Human-Testament--Complete-Manuscript.pdf",
@@ -14916,17 +14916,6 @@
       }
     },
     {
-      "category": "validation_report",
-      "code": "REPORT_INTERNAL_INCONSISTENCY",
-      "reviewRequired": true,
-      "message": "Report section 6.2 describes Relationships 1 as 15 verses; section 4 lists 14.",
-      "detail": {
-        "noteNumber": 1191,
-        "rawExplanation": "Relationships chapter 1 has only 15 verses",
-        "chapterTableCount": 14
-      }
-    },
-    {
       "category": "source",
       "code": "REPEATED_SOURCE_PASSAGE",
       "message": "Identical authored passages retained at distinct source addresses.",
@@ -19177,19 +19166,7 @@
       }
     }
   ],
-  "reportIssues": [
-    {
-      "category": "validation_report",
-      "code": "REPORT_INTERNAL_INCONSISTENCY",
-      "reviewRequired": true,
-      "message": "Report section 6.2 describes Relationships 1 as 15 verses; section 4 lists 14.",
-      "detail": {
-        "noteNumber": 1191,
-        "rawExplanation": "Relationships chapter 1 has only 15 verses",
-        "chapterTableCount": 14
-      }
-    }
-  ],
+  "reportIssues": [],
   "repeatedPassages": [
     {
       "text": "Many defend the ways of their fathers; few ask whether their fathers were correct.",
