@@ -7,6 +7,8 @@
     "import:check": "node scripts/import-canonical.js",
     "ingestion:check": "node scripts/parse-clean-manuscript.js --check",
     "ingestion:draft": "node scripts/parse-clean-manuscript.js",
+    "api:check": "node scripts/check-read-api.js",
+    "source:review": "node scripts/review-source-warnings.js",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node --test"
