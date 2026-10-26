@@ -11,27 +11,27 @@ import { createContentApi } from '../src/services/api/contentApi.js';
 test('book hierarchy retains all ten supplied books; returned data cannot mutate fixtures', async () => {
   const books = await bookService.getBooks();
   assert.equal(books.length, 10);
-  assert.equal(books.reduce((sum, book) => sum + book.chapterCount, 0), 231);
+  assert.equal(books.reduce((sum, book) => sum + book.chapterCount, 0), 230);
   books[0].title = 'changed';
   assert.equal((await bookService.getBook('inquiry')).title, 'Inquiry');
   await assert.rejects(bookService.getBook('unknown'), { code: 'NOT_FOUND', status: 404 });
   await assert.rejects(bookService.getBook('../inquiry'), { code: 'INVALID_INPUT' });
 });
 
-test('chapters contain only supplied verses, preserve exact notes, and declare excerpts', async () => {
+test('chapters contain every PDF reference and preserve the original notes', async () => {
   const content = await chapterService.getChapter('freedom', 10);
-  assert.equal(content.chapter.completeness, 'excerpt');
-  assert.deepEqual(content.verses.map((verse) => verse.number), [11, 12, 13, 14]);
-  assert.equal(content.verses[1].text, 'Freedom is not the absence of consequences. It is the privilege of selecting them.');
-  assert.equal(content.verses[1].commentary.number, 261);
-  assert.equal(content.verses[3].commentary.number, 262);
-  assert.equal(content.verses[3].commentary.seeAlso.label, 'Inquiry 16:9');
-  assert.equal(content.verses[0].commentary, null);
-  assert.deepEqual(await chapterService.getChapters('existence'), []);
-  await assert.rejects(chapterService.getChapter('freedom', 2), { code: 'NOT_FOUND' });
+  assert.equal(content.chapter.completeness, 'complete');
+  assert.deepEqual(content.verses.map((verse) => verse.number), Array.from({ length: 18 }, (_, i) => i + 1));
+  assert.equal(content.verses[11].text, 'Freedom is not the absence of consequences. It is the privilege of selecting them.');
+  assert.equal(content.verses[11].notes[0].noteNumber, 261);
+  assert.equal(content.verses[13].notes[0].noteNumber, 262);
+  assert.equal(content.verses[13].crossReferences[0].targets[0].raw, 'Inquiry 16:9');
+  assert.equal(content.verses[10].notes.length, 0);
+  assert.equal((await chapterService.getChapters('existence')).length, 4);
+  assert.ok((await chapterService.getChapter('freedom', 2)).verses.length > 0);
   await assert.rejects(chapterService.getChapter('freedom', 0), { code: 'INVALID_INPUT' });
   await assert.rejects(chapterService.getChapter('freedom', NaN), { code: 'INVALID_INPUT' });
-  await assert.rejects(verseService.getVerse('freedom', 10, 1), { code: 'NOT_FOUND' });
+  await assert.rejects(verseService.getVerse('freedom', 10, 999), { code: 'NOT_FOUND' });
   assert.equal((await verseService.getVerse('freedom', 10, 14)).number, 14);
 });
 

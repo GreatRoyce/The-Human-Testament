@@ -1,37 +1,22 @@
-
 const mongoose = require("mongoose");
-
-const bookSchema = new mongoose.Schema(
+const {
+  exactString,
+  editionFields,
+  options,
+  positiveInteger,
+} = require("./contentFields");
+const schema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    order: {
-      type: Number,
-      required: true,
-      min: 1,
-      unique: true,
-    },
-    description: {
-      type: String,
-      default: "",
-      trim: true,
-    },
-    isPublished: {
-      type: Boolean,
-      default: false,
-    },
+    ...editionFields,
+    title: exactString({ required: true }),
+    slug: exactString({ required: true, match: /^[a-z0-9]+(?:-[a-z0-9]+)*$/ }),
+    order: positiveInteger,
+    chapterCount: positiveInteger,
+    subtitle: exactString({ default: "" }),
+    description: exactString({ default: "" }),
   },
-  { timestamps: true }
+  options,
 );
-
-module.exports = mongoose.model("Book", bookSchema);
+schema.index({ editionId: 1, slug: 1 }, { unique: true });
+schema.index({ editionId: 1, order: 1 }, { unique: true });
+module.exports = mongoose.model("Book", schema);

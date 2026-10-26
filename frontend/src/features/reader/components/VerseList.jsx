@@ -11,7 +11,9 @@ export default function VerseList({ content, selectedVerse, onSelect, readerId }
               <span className="whitespace-nowrap font-mono text-xs text-bronze-ink">
                 <span className="sr-only">{content.book.title} </span>{verse.chapterNumber}:{verse.number}
               </span>
-              <span className="min-w-0 font-serif text-lg leading-relaxed text-charcoal sm:text-xl">{verse.text}</span>
+              <span className="min-w-0 whitespace-pre-wrap font-serif text-lg leading-relaxed text-charcoal sm:text-xl">
+                {verse.status === 'missing_source_text' ? <span className="text-sm text-muted">Source text is missing. This reference remains under review.</span> : verse.text}
+              </span>
             </button>
           </li>
         );

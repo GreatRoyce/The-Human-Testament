@@ -1,10 +1,12 @@
+import { manuscriptVerse } from '../services/manuscriptContent.js';
+
 export const questions = [
   {
     id: 1,
     tag: "doubt",
     question: "Why do I believe?",
     premise:
-      "Wisdom is born when habit is examined; every belief should ask itself this question. What was unquestionable yesterday often becomes laughable tomorrow.",
+      [manuscriptVerse('inquiry', 40, 9), manuscriptVerse('inquiry', 31, 6)].join(' '),
     ref: "BOOK I (INQUIRY) 40:9 · 31:6",
     Link: `ENTER THROUGH THIS QUESTION`,
   },
@@ -13,7 +15,7 @@ export const questions = [
     tag: "self",
     question: "What am I becoming?",
     premise:
-      "Ask yourself each day not what others think of you, but what you are becoming. Ancestry, nation, tribe, and religion describe origins more than outcomes, beginnings more than becoming.",
+      [manuscriptVerse('identity', 14, 29), manuscriptVerse('identity', 7, 1)].join(' '),
     ref: "BOOK V (IDENTITY) 14:29 · 7:1",
     Link: `ENTER THROUGH THIS QUESTION`,
   },
@@ -22,7 +24,7 @@ export const questions = [
     tag: "authority",
     question: "Does age, popularity, or tradition guarantee truth?",
     premise:
-      "The thoughtful person asks how authority is established. A falsehood may be ancient and powerful, yet it remains a falsehood.",
+      manuscriptVerse('belief', 1, 6),
     ref: "BOOK IX (BELIEF) 1:6",
     Link: `ENTER THROUGH THIS QUESTION`,
   },
@@ -31,7 +33,7 @@ export const questions = [
     tag: "MORTALITY",
     question: "Does anything of the person remain?",
     premise:
-      "What happens afterward? Does consciousness continue, or does identity dissolve like breath in winter air? The book asks, and does not pretend to know.",
+      manuscriptVerse('existence', 1, 5),
     ref: "BOOK VIII (EXISTENCE) 1:5",
     Link: "ENTER THROUGH THIS QUESTION",
   },

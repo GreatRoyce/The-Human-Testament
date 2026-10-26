@@ -1,5 +1,7 @@
 # Source warning review
 
+Current per-finding author decisions are recorded separately in [AUTHOR_DECISIONS.json](AUTHOR_DECISIONS.json) and reflected in [EDITORIAL_REVIEW.md](EDITORIAL_REVIEW.md). Pending labels in the original evidence packet below describe its original evidence-review state; they do not overwrite subsequent explicit author decisions.
+
 The passing ingestion state was preserved in commit `afc4409`. The parser was not changed during this review. The remaining 206 warnings describe manuscript or clean-edition uncertainty; they do not imply a failing ingestion pipeline.
 
 Every warning now has an evidence record in [SOURCE_WARNING_REVIEW.json](SOURCE_WARNING_REVIEW.json), including original-PDF page numbers, source fragments or reference inventories, the reason it remains open, and `editorialDecision: PENDING_AUTHOR_REVIEW`. Zero manuscript corrections were justified by this inspection, so none were applied. No approved import artifact was created.
@@ -27,5 +29,7 @@ Notes 104, 490, and 1191 still cite the nonexistent targets `Inquiry 1:13`, `Inq
 From `backend/`, run `npm run source:review`. This reads the existing ten data files and writes only `docs/SOURCE_WARNING_REVIEW.json`. It rechecks every input hash before writing. The packet is regenerable evidence; put approved human decisions in a separate durable editorial decision record so regeneration cannot overwrite them. If the PDF layout or source hashes change, review the inspection rules and discrepancies before trusting a new packet.
 
 ## Approval remains separate
+
+For the subsequent per-finding classification, complete side-by-side repeated passages, invalid-reference investigations, and durable author decision record, see [EDITORIAL_WORKFLOW.md](EDITORIAL_WORKFLOW.md). The regenerable evidence packet above is distinct from human editorial decisions. Original source warnings remain intact.
 
 The evidence pass is complete; editorial decisions remain open. Matching the source does not resolve missing content, intended citations, repeated passages, anchors, or punctuation. Record an author's decision and its evidence for every open finding, including explicit acceptance when source uncertainty will remain. Only after that review and an explicit approval should a versioned approved import artifact be created and a controlled importer enabled. `canonical-content.json` remains the empty scaffold, both drafts remain `REVIEW_REQUIRED`, and database writes remain disabled in the verification workflow.

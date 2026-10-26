@@ -20,7 +20,7 @@ function sourceLines(parts) {
   return lines;
 }
 
-async function run() {
+async function run({ write = true, quiet = false } = {}) {
   const files = [...PROTECTED_FILES, ...Object.values(OUTPUT_FILES)];
   const manifest = files.map(file => ({ file, sha256: sha256(fs.readFileSync(path.join(dataDir, file))) }));
   const read = file => fs.readFileSync(path.join(dataDir, file), 'utf8');
@@ -159,9 +159,10 @@ async function run() {
   assert.equal(review.checks.originalFootnoteMarkers, report.counts.explicitAnchors);
   for (const entry of manifest) assert.equal(sha256(fs.readFileSync(path.join(dataDir, entry.file))), entry.sha256, `Input changed during review: ${entry.file}`);
   // Regenerable evidence packet only; approved editorial decisions belong elsewhere.
-  fs.writeFileSync(output, JSON.stringify(review, null, 2) + '\n', 'utf8');
-  console.log(JSON.stringify({ status: review.status, checks: review.checks, correctionsApplied: 0,
-    importApproved: false, dataFilesUnchanged: manifest.length, output: 'docs/SOURCE_WARNING_REVIEW.json' }, null, 2));
+  if (write) fs.writeFileSync(output, JSON.stringify(review, null, 2) + '\n', 'utf8');
+  if (!quiet) console.log(JSON.stringify({ status: review.status, checks: review.checks, correctionsApplied: 0,
+    importApproved: false, dataFilesUnchanged: manifest.length, output: write ? 'docs/SOURCE_WARNING_REVIEW.json' : null }, null, 2));
+  return review;
 }
 
 if (require.main === module) run().catch(error => { console.error(error.message); process.exitCode = 1; });

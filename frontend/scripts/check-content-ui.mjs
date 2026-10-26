@@ -33,19 +33,25 @@ try {
     checkRoute(`/testament/${book.slug}`, book.description);
     for (const chapter of await chapterService.getChapters(book.slug)) {
       const content = await chapterService.getChapter(book.slug, chapter.number);
-      checkRoute(`/testament/${book.slug}/${chapter.number}`, 'This is an excerpt.');
-      for (const verse of content.verses) {
-        const html = checkRoute(`/testament/${book.slug}/${chapter.number}/${verse.number}`, verse.text);
+      checkRoute(`/testament/${book.slug}/${chapter.number}`, `CHAPTER ${chapter.number}`);
+      // Full corpus data is checked separately; render first/last verse routes in
+      // every chapter and every blank source reference to exercise the UI states.
+      const selectedVerses = [...new Map([content.verses[0], content.verses.at(-1), ...content.verses.filter(verse => verse.status === 'missing_source_text')].map(verse => [verse.number, verse])).values()];
+      for (const verse of selectedVerses) {
+        const expected = verse.text ? renderToStaticMarkup(createElement('span', null, verse.text)).slice(6, -7) : 'Source text is missing';
+        const html = checkRoute(`/testament/${book.slug}/${chapter.number}/${verse.number}`, expected);
         const selected = html.match(/<button[^>]*aria-pressed="true"[\s\S]*?<\/button>/)?.[0];
         assert.ok(selected?.includes(`${chapter.number}:${verse.number}`));
       }
     }
   }
-  checkRoute('/testament/existence', 'No chapter text is available');
+  checkRoute('/testament/existence', 'Chapter 4');
+  checkRoute('/testament/materials', 'Self-Worth');
   checkRoute('/testament/freedom/10/999', 'This verse is not available');
-  checkRoute('/search', 'Enter a word or verse reference');
+  const emptySearch = checkRoute('/search', 'Enter a word, phrase, term or verse reference to search the manuscript.');
+  for (const field of ['q', 'type', 'book', 'chapter', 'limit']) assert.ok(emptySearch.includes(`name="${field}"`), `Search filter ${field} is available`);
   checkRoute('/search?q=responsibility', 'Freedom 10:14');
-  checkRoute('/search?q=unfindable-phrase-987654', 'No verses match');
+  checkRoute('/search?q=unfindable-phrase-987654', 'No manuscript results on this page. Try another query, filter or page.');
   for (const route of ['/contact', '/privacy', '/terms']) checkRoute(route, 'Return to the home page');
   checkRoute('/unknown', 'Page unavailable');
   // Unknown mock addresses settle to NOT_FOUND asynchronously in the hook.
@@ -87,7 +93,7 @@ try {
     assert.equal(response.status, 200, `Vite transforms ${path}`);
     assert.ok((await response.text()).includes('import'));
   }
-  console.log(`Content UI checks passed: ${routeCount} route renders; ${importCount} relative source imports; verse selection, excerpt labels, empty states, legal routes, and fallback.`);
+  console.log(`Content UI checks passed: ${routeCount} route renders; ${importCount} relative source imports; all chapters, sampled verse selections, missing source text, manuscript materials, legal routes, and fallback.`);
   console.log('Running Vite server checks passed: 9 direct URL requests and 3 transformed JavaScript modules.');
   console.log('Server-render checks do not verify effects, redirects, viewport layout, or browser keyboard interactions.');
 } finally { await server.close(); }

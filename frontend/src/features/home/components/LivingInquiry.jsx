@@ -2,6 +2,7 @@ import PageContainer from "../../../components/layout/PageContainer";
 import { GoDash } from "react-icons/go";
 import { questions } from "../../../data/questions";
 import { FaArrowRight } from "react-icons/fa";
+import { manuscriptVerse } from '../../../services/manuscriptContent.js';
 
 const LivingInquiry = () => {
   return (
@@ -13,7 +14,7 @@ const LivingInquiry = () => {
       <h2 id="questions-heading" className="text-3xl sm:text-5xl my-2 font-serif">Questions worth living with.</h2>
       <div className="flex flex-wrap gap-2 justify-start items-center my-4">
         <blockquote className="text-base font-medium text-charcoal italic pr-2 font-serif">
-          “Every meaningful discovery required someone willing to ask why.”
+          “{manuscriptVerse('freedom', 28, 7)}”
         </blockquote>
         <p className="text-xs text-muted items-start textshade font-mono ">
           FREEDOM 28:7

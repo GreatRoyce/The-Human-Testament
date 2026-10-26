@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "node ../backend/scripts/sync-pdf-content.js --check",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -27,6 +28,9 @@
     "react-router-dom": "^7.18.4",
     "tailwind-merge": "^3.7.0",
     "zod": "^4.6.5"
+  },
+  "overrides": {
+    "postcss-selector-parser": "7.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -1,20 +1,12 @@
-// Exact content extracted from the existing FeaturedVerse presentation.
+import { manuscriptContentProvider } from '../../../services/manuscriptContent.js';
+
+const verse = manuscriptContentProvider.getVerse('freedom', 9, 7);
+const note = verse.notes[0];
+const target = verse.crossReferences[0].targets[0];
 export const verseApparatus = {
-  bookSlug: 'freedom',
-  chapterNumber: 9,
-  verseNumber: 7,
-  text: 'Freedom begins when self-worth no longer depends upon the opinions of others.',
-  commentary: {
-    number: 257,
-    type: 'Context',
-    text: 'Connects freedom directly to independence from external opinion, a theme echoed earlier.',
-    seeAlso: {
-      bookSlug: 'inquiry', chapterNumber: 14, verseNumber: 5,
-      label: 'Inquiry 14:5', text: 'Authenticity is worth more than approval.',
-    },
-  },
-  glossary: {
-    term: 'Self-Worth',
-    definition: 'A sense of value that does not depend on the opinions or presence of witnesses.',
-  },
+  bookSlug: verse.bookSlug, chapterNumber: verse.chapterNumber, verseNumber: verse.number, text: verse.text,
+  commentary: { number: note.noteNumber, type: note.type, text: note.text,
+    seeAlso: { bookSlug: target.bookSlug, chapterNumber: target.chapter, verseNumber: target.verse,
+      label: target.raw, text: manuscriptContentProvider.getVerse(target.bookSlug, target.chapter, target.verse).text } },
+  glossary: manuscriptContentProvider.getGlossary().find(entry => entry.term === 'Self-Worth'),
 };

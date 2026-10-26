@@ -40,7 +40,7 @@ test('API mode exercises the same services, rejects bad responses, and never see
     await assert.rejects(bookService.getBook('freedom'), { code: 'INVALID_RESPONSE' });
     payload = mockContentProvider.getVerses('freedom', 10);
     assert.equal((await verseService.getVerse('freedom', 10, 14)).number, 14);
-    await assert.rejects(verseService.getVerse('freedom', 10, 1), { code: 'NOT_FOUND' });
+    await assert.rejects(verseService.getVerse('freedom', 10, 999), { code: 'NOT_FOUND' });
     payload = { data: [] };
     await assert.rejects(verseService.getVerse('freedom', 10, 1), { code: 'INVALID_RESPONSE' });
     payload = mockContentProvider.search('responsibility');

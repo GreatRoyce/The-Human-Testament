@@ -1,11 +1,12 @@
 import { GoDotFill } from "react-icons/go";
+import { manuscriptCounts, manuscriptSource, manuscriptVerse } from '../../../services/manuscriptContent.js';
 
 const HeroFooter = [
-  "10 books",
-  "231 chapters",
-  "3,906 verses",
-  "1,470 footnotes",
-  "550 pages",
+  `${manuscriptCounts.books} books`,
+  `${manuscriptCounts.chapters} chapters`,
+  `${manuscriptCounts.references.toLocaleString('en-US')} verse references`,
+  `${manuscriptCounts.notes.toLocaleString('en-US')} footnotes`,
+  `${manuscriptSource.pages} pages`,
 ];
 
 const Hero = () => {
@@ -42,8 +43,7 @@ const Hero = () => {
         </a>
       </div>
       <blockquote className="max-w-2xl text-center text-charcoal text-base italic font-serif">
-        "Many seek freedom from others; few seek freedom from fear; and fewer
-        still seek freedom from themselves." - Freedom 18:15
+        “{manuscriptVerse('freedom', 18, 15)}” - Freedom 18:15
       </blockquote>
       <hr className="w-5/6 border-b border-muted/30 " />
       <ul aria-label="The Testament in numbers" className="w-full flex flex-wrap gap-x-8 gap-y-3 uppercase mx-auto justify-center items-center">

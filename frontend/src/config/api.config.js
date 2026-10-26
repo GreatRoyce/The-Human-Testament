@@ -2,6 +2,6 @@
 const env = import.meta.env ?? {};
 
 export const apiConfig = Object.freeze({
-  source: env.VITE_CONTENT_SOURCE || 'mock',
+  source: env.VITE_CONTENT_SOURCE || 'pdf',
   baseUrl: env.VITE_API_URL || '',
 });

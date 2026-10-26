@@ -1,0 +1,33 @@
+const express = require('express');
+const { authReady, authenticate, protectMutation, requireVerifiedEmail, createAuthRateLimiter } = require('../middleware/auth.middleware');
+const posting = require('../middleware/communityPosting.middleware');
+const { assertArticleStorage } = require('../services/articleStorage');
+const { assertCommunityStorage } = require('../services/communityStorage');
+const service = require('../services/article.service');
+const router = express.Router();
+router.use(async (req, res, next) => {
+  res.set('Cache-Control', 'no-store');
+  try { await assertArticleStorage(); if (req.method !== 'GET') await assertCommunityStorage(); next(); } catch (error) { next(error); }
+});
+router.use(createAuthRateLimiter({ limit: 180 }));
+const required = (req, res, next) => req.auth ? next() : authReady(req, res, error => error ? next(error) : authenticate(req, res, next));
+router.use((req, res, next) => req.method !== 'GET' || req.get('Authorization') !== undefined ? required(req, res, next) : next());
+const noQuery = (req, res, next) => Object.keys(req.query).length ? next(Object.assign(new Error('Invalid article input.'), { status: 400 })) : next();
+const secured = [required, protectMutation, requireVerifiedEmail, noQuery];
+const limits = limit => [createAuthRateLimiter({ limit: limit * 3 }), createAuthRateLimiter({ limit, key: req => String(req.auth.user._id) })];
+const route = (work, status = 200) => async (req, res, next) => { try { res.status(status).json({ success: true, data: await work(req) }); } catch (error) { next(error); } };
+const actor = req => req.auth?.user;
+router.get('/', route(req => service.published(req.query)));
+router.post('/', ...secured, posting, ...limits(10), route(async req => ({ item: await service.createDraft(req.body, actor(req)) }), 201));
+router.get('/mine', required, route(req => service.mine(req.query, actor(req))));
+router.get('/mine/:id', required, route(async req => ({ item: await service.ownArticle(req.params.id, actor(req), req.query) })));
+router.get('/mine/:id/publications', required, route(req => service.publications(req.params.id, req.query, actor(req))));
+router.get('/moderation', required, requireVerifiedEmail, route(req => service.queue(req.query, actor(req))));
+router.get('/moderation/:id', required, requireVerifiedEmail, route(async req => ({ item: await service.reviewArticle(req.params.id, actor(req), req.query) })));
+router.get('/moderation/:id/publications', required, requireVerifiedEmail, route(req => service.publications(req.params.id, req.query, actor(req), true)));
+router.patch('/:id', ...secured, posting, ...limits(40), route(async req => ({ item: await service.edit(req.params.id, req.body, actor(req)) })));
+router.delete('/:id', ...secured, ...limits(30), route(req => service.archive(req.params.id, req.body, actor(req))));
+router.post('/:id/submit', ...secured, posting, ...limits(10), route(async req => ({ item: await service.submit(req.params.id, req.body, actor(req)) })));
+router.post('/:id/review', ...secured, (req, res, next) => req.body?.action === 'approve' ? posting(req, res, next) : next(), ...limits(60), route(async req => ({ item: await service.review(req.params.id, req.body, actor(req)) })));
+router.get('/:slug', route(async req => ({ item: await service.publicArticle(req.params.slug, req.query) })));
+module.exports = router;

@@ -1,21 +1,25 @@
+import { manuscriptSection, manuscriptVerse } from '../services/manuscriptContent.js';
+
+const reader = manuscriptSection('TO THE READER');
+const ending = manuscriptSection('CLOSING TEXT');
 export const home = {
   hero: {
     title: "THE HUMAN TESTAMENT",
     question: "What does it mean to be human?",
-    canonicalText: "Beneath them all lay one question: what does it mean to be human? No single answer contains it.",
+    canonicalText: ending[0],
     primaryAction: "Enter the Testament",
     secondaryAction: "Explore the Questions",
   },
   introduction: {
     label: "THE TESTAMENT",
-    title: "Many books tell men what to believe. This one asks what they should examine.",
-    text: "It is not a history, nor a revelation, nor a doctrine owed obedience. It is a testament of inquiry: an examination of the life we inherit, the customs we preserve, the beliefs we defend, and the meanings we give to existence.",
+    title: reader[1],
+    text: reader[2],
   },
   corpus: { label: "THE CORPUS", title: "Ten Books" },
   featuredVerse: {
     label: "ENTER A VERSE",
     reference: "Inquiry 1:1",
-    text: "Let no belief be exempt from examination.",
+    text: manuscriptVerse('inquiry', 1, 1),
   },
   questions: {
     label: "QUESTIONS",
@@ -55,6 +59,6 @@ export const home = {
     description: "The physical book remains part of the wider reading experience.",
   },
   closing: {
-    canonicalText: "The book ends. The question remains.",
+    canonicalText: ending.at(-1),
   },
 };

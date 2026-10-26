@@ -49,7 +49,7 @@ const Navbar = () => {
             <PiMagnifyingGlass size={24} aria-hidden="true" />
           </Button>
           <span className="mx-2 h-6 border-l border-forest" aria-hidden="true" />
-          <Button className="h-11 font-serif uppercase text-xs" variant="ghost"  title="Sign in is coming soon">
+          <Button className="h-11 font-serif uppercase text-xs" variant="ghost" title="Sign in" onClick={() => navigate('/login')}>
             Sign In
           </Button>
           <a href="/#books" className={enterStyles}>
@@ -84,7 +84,7 @@ const Navbar = () => {
               <Button variant="ghost" className="h-11" title="Search the Testament" onClick={(event) => { closeMenu(event); navigate('/search'); }} leftIcon={<PiMagnifyingGlass aria-hidden="true" />}>
                 Search
               </Button>
-              <Button variant="ghost" className="h-11" disabled title="Sign in is coming soon">Sign In</Button>
+              <Button variant="ghost" className="h-11" title="Sign in" onClick={(event) => { closeMenu(event); navigate('/login'); }}>Sign In</Button>
               <a href="/#books" onClick={closeMenu} className={enterStyles}>
                 Enter the Testament
                 <MdArrowForwardIos size={16} aria-hidden="true" />

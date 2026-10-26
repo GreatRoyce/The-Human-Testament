@@ -58,3 +58,4 @@ extractManuscript().catch((error) => {
   console.error("Extraction failed:", error.message);
   process.exitCode = 1;
 });
+ 

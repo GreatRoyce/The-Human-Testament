@@ -14,6 +14,7 @@ export default function ChapterReader({ content, selectedVerse, onSelect, labels
         </ChapterHeading>
         {content.chapter.completeness === 'excerpt' && <span className="rounded-sm border border-bronze/20 bg-ivory/70 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-bronze-ink">{labels.badge ?? 'Chapter excerpt'}</span>}
       </div>
+      {content.chapter.completeness === 'source_incomplete' && <p className="border-b border-border px-4 py-3 text-sm text-muted sm:px-6">This chapter includes references with missing source text. Their notes and review status remain available.</p>}
       <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <VerseList content={content} selectedVerse={selectedVerse} onSelect={onSelect} readerId={readerId} />
         <MarginNotes bookTitle={content.book.title} selectedVerse={selectedVerse} readerId={readerId}

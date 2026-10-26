@@ -2,6 +2,9 @@
 const path = require('node:path');
 require('dotenv').config({ path: path.join(__dirname, '../.env'), quiet: true });
 process.env.NODE_ENV = 'production';
+// This diagnostic specifically audits database publication. The complete PDF
+// read source is exercised without a database by tests/pdf-content-api.test.js.
+process.env.CONTENT_SOURCE = 'database';
 const mongoose = require('mongoose');
 // Model initialization must not create collections or indexes during this check.
 mongoose.set('autoCreate', false);
@@ -29,10 +32,6 @@ async function run() {
   try {
     await get('/api/health', 200, body => body.success === true && Number.isFinite(Date.parse(body.timestamp)));
     await get('/api/books/inquiry/chapters/0', 400, body => body.success === false);
-    // This route is absent in the current router; record that as a capability gap.
-    await get('/api/books/inquiry/chapters/1/verses', 404, body => body.message === 'API endpoint not found.');
-    await get('/api/books/inquiry/chapters/1/verses/1', 404, body => body.message === 'API endpoint not found.');
-    result.limitations.push('Dedicated verse-list and single-verse endpoints are not implemented; chapter responses include verses.');
     if (result.database.configured) {
       // The existing helper logs raw driver errors; suppress them so credentials
       // or connection strings cannot be exposed by this diagnostic script.
@@ -51,21 +50,27 @@ async function run() {
         Array.isArray(body.data) && body.count === body.data.length &&
         body.data.every((book, index, entries) => typeof book.slug === 'string' &&
           (index === 0 || entries[index - 1].order <= book.order)));
-      const missing = '__read_only_check_missing_book__';
+      const missing = 'read-only-check-missing-book';
       await get(`/api/books/${missing}`, 404, body => body.message === 'Book not found.');
       await get(`/api/books/${missing}/chapters/1`, 404, body => body.message === 'Book not found.');
+      for (const suffix of ['/chapters', '/chapters/1/verses', '/chapters/1/verses/1', '/chapters/1/verses/1/supporting-material'])
+        await get(`/api/books/${missing}${suffix}`, 404, body => body.message === 'Book not found.');
+      for (const route of ['/api/glossary', '/api/cross-references', '/api/cross-references/index', '/api/sections'])
+        await get(route, 200, body => body.success === true && Array.isArray(body.data));
       if (books.data.length) {
         const slug = books.data[0].slug;
-        await get(`/api/books/${encodeURIComponent(slug)}`, 200, body => body.success === true && body.data.slug === slug);
+        await get(`/api/books/${encodeURIComponent(slug)}`, 200, body => body.success === true && body.data.slug === slug && Array.isArray(body.data.chapters));
         result.positivePublishedReads.book = result.checks.at(-1).passed;
         // Select existing published chapters without creating test fixtures.
-        const book = await mongoose.model('Book').findOne({ slug, isPublished: true }).select('_id').lean();
-        const chapter = await mongoose.model('Chapter').findOne({ book: book._id, isPublished: true }).sort({ number: 1 }).lean();
+        const editionId = books.data[0].editionId;
+        const book = await mongoose.model('Book').findOne({ slug, editionId, isPublished: true }).select('_id').lean();
+        const chapter = await mongoose.model('Chapter').findOne({ book: book._id, editionId, isPublished: true }).sort({ number: 1 }).lean();
         if (chapter) {
           const body = await get(`/api/books/${encodeURIComponent(slug)}/chapters/${chapter.number}`, 200,
             body => body.success === true && body.data.book.slug === slug && body.data.chapter.number === chapter.number &&
               Array.isArray(body.data.verses) && body.data.verses.every((verse, index, entries) =>
-                typeof verse.text === 'string' && (index === 0 || entries[index - 1].number < verse.number)));
+                (verse.status === 'missing_source_text' ? verse.text === undefined : typeof verse.text === 'string') &&
+                (index === 0 || entries[index - 1].number < verse.number)));
           result.publishedVerseCountInCheckedChapter = body.data?.verses?.length ?? 0;
           result.positivePublishedReads.chapter = result.checks.at(-1).passed;
           result.positivePublishedReads.verse = result.positivePublishedReads.chapter && result.publishedVerseCountInCheckedChapter > 0;

@@ -47,14 +47,14 @@ src/
       types/                       search.d.ts, contracts.js
   hooks/useResource.js             Abortable asynchronous resource lifecycle
   services/
-    contentSource.js               Explicit mock/API provider selection
+    contentSource.js               Explicit PDF/API provider selection
     api/
       client.js                    Only HTTP transport implementation
       ApiError.js                  Normalized frontend errors
       contentApi.js                Proposed REST paths and response adaptation
   config/api.config.js             Public Vite environment values
   data/
-    mock/testament/                Preserved source fixtures and domain adapter
+    mock/testament/                Compatibility exports and editorial summaries
     ...                            Unchanged home/editorial data
   types/api.d.ts                   Error and request contracts
   assets/                          Existing assets, unchanged
@@ -103,13 +103,13 @@ These endpoints do not exist as part of this frontend work. `contentApi.js` curr
 ## Mock and API configuration
 
 ```dotenv
-VITE_CONTENT_SOURCE=mock
+VITE_CONTENT_SOURCE=pdf
 VITE_API_URL=
 ```
 
-Mock mode is the default and uses only supplied excerpts. The original three fixtures were moved without text changes. `verseApparatus.js` preserves the exact verse, note, cross-reference, and glossary text extracted from JSX. The adapter normalizes legacy field names, gathers supplied addressed quotations, marks all mock chapters as excerpts, and returns defensive copies. It does not generate the remaining 231 chapters or infer canonical verses from editorial prompts. Empty chapter lists are allowed; unsupplied addresses return NOT_FOUND.
+PDF mode is the default. The complete verified transcription lives in `shared/manuscript.json`, with a shared reader in `shared/manuscript.mjs`. It supplies all 230 chapters and 3,905 references, the original notes/citations, and the opening/closing material, index and glossary. The legacy `mock` setting and fixture exports now resolve to the same manuscript. Homepage quotations resolve by verse address rather than copied strings. Blank source references remain explicitly missing; invalid addresses return NOT_FOUND. See `shared/README.md` for generation, verification, and PDF whitespace limits.
 
-Services provide synchronous initial snapshots only in mock mode so the existing home preview still renders immediately. The subsequent asynchronous hook uses the same service method. API mode supplies no mock snapshots and never falls back to fixtures after a failed request.
+Services provide synchronous initial snapshots in PDF mode (and its legacy mock alias), so the existing home preview still renders immediately. The subsequent asynchronous hook uses the same service method. API mode supplies no local snapshots and never falls back to bundled data after a failed request. `/testament/materials` exposes the manuscript front/back material.
 
 To connect a backend, set `VITE_CONTENT_SOURCE=api` and `VITE_API_URL` to its origin or deployment prefix, **without `/api`**, then restart Vite/rebuild. URL values are public; credentials do not belong in frontend environment variables. No component contains a backend host. Vite environment values are fixed at build time.
 
@@ -140,12 +140,16 @@ The service tests cover mocks, exact note mappings, address validation, missing 
 
 The pre-migration home check was already stale (9 sections expected, 12 rendered); it now checks the existing full page. No in-app browser was available. Server rendering does not verify client effect timing, redirect execution, real focus movement, mobile viewport layout, zoom, or screen-reader behavior. The future backend has not been contacted. Windows sandbox spawn restrictions may require approval to run Vite-based checks outside the sandbox.
 
+## Canonical-content integration update (2026-10-11)
+
+The backend now exposes edition-scoped book/chapter/verse and supporting-material reads. The REST adapter accepts its success/data envelopes without changing authored strings, and the reader contracts support multiple notes, missing references, and explicit anchor/citation uncertainty. Nine frontend tests, lint/build, home checks, 63 route renders, 163 relative imports, and direct local URL/module checks pass. Synthetic real-database → HTTP → frontend validation also passes. No approved manuscript was imported; backend search and real-browser verification remain outstanding. See [the backend fidelity handoff](../../backend/docs/CANONICAL_CONTENT_PIPELINE.md) for the current API/approval contract. Earlier migration results above describe that earlier stage.
+
 ## Remaining work and backend handoff
 
 1. Agree an OpenAPI/JSON contract with the separate Node.js backend, especially ChapterContent, excerpt/completeness semantics, search results, error statuses, pagination, and canonical slugs/order. The proposed REST adapter is the adjustment point.
 2. Confirm the backend permits the frontend's origin through CORS, then run API mode against it. Authentication/cookies need an explicit agreement when user features are built; this read-only client does not assume a session mechanism.
 3. Verify loading/retry/cancellation, URL navigation, legacy redirects, verse selection, and responsive appearance in a real browser. Configure SPA fallback on the production host so direct reader URLs work there too; Vite's local fallback does not configure production hosting.
-4. Import the full approved corpus; keep exact text and distinguish sections/commentary/editorial material. The fixtures are excerpts, not a source for fabricated missing content.
+4. The full selected PDF corpus now runs through the shared read-only dataset. Database import/publication remains a separate workflow; preserve exact text and section/commentary boundaries if that path is used later.
 5. Build user/community/commerce capabilities incrementally in their domains. Unrelated old empty scaffolds remain technical debt and can be removed when their domains are migrated.
 6. The existing large logo assets and some home marketing/status copy still need a separate product/performance review. Runtime validation adds bundle weight; consider route splitting and lazy mock loading as content grows. No caching/state library is required for the current read-only scope.
 

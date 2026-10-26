@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "editionId": "human-testament-0.1.0-rc.1",
+  "version": "0.1.0-rc.1",
+  "kind": "FROZEN_CANDIDATE",
+  "frozenAt": "2026-10-11T21:33:48.537Z",
+  "calendarDate": "2026-10-11",
+  "timeZone": "Africa/Lagos",
+  "approvalStatus": "CANDIDATE_REVIEW_REQUIRED",
+  "importApproved": false,
+  "published": false,
+  "identity": {
+    "authority": "manifest.json and its independently recorded SHA-256",
+    "distinction": "A versioned snapshot derived from working drafts, not the master PDF or a verified historical edition. Content bytes are unchanged; the manifest assigns candidate identity.",
+    "inheritedSourceVersion": "2024-07-09",
+    "inheritedSourceVersionVerified": false,
+    "changePolicy": "Never edit or regenerate this directory. Any content, evidence or decision change requires a new candidate version."
+  },
+  "master": {
+    "path": "data/The-Human-Testament--Complete-Manuscript.pdf",
+    "sha256": "bbdd152c8b870862b44214dbd56059fa2a85146e6f1ad1e4d48f1d5c7fa34c76",
+    "bytes": 7644435
+  },
+  "sourceFiles": [
+    {
+      "path": "data/The-Human-Testament-Clean-Ingestion-Edition.txt",
+      "sha256": "5471d6e58948a2427cac6ca2f5f1288422f0b6f5be15b429007653ef415460c8",
+      "bytes": 685498,
+      "role": "working_ingestion_edition"
+    },
+    {
+      "path": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "sha256": "a67e078b8f477e7ad95c1f263cb34bafe8975a02384c2b52766f60f4c15fa7ed",
+      "bytes": 25207,
+      "role": "validation_evidence"
+    },
+    {
+      "path": "data/The-Human-Testament--Complete-Manuscript.pdf",
+      "sha256": "bbdd152c8b870862b44214dbd56059fa2a85146e6f1ad1e4d48f1d5c7fa34c76",
+      "bytes": 7644435,
+      "role": "authoritative_manuscript"
+    },
+    {
+      "path": "data/The-Human-Testament-Clean-Ingestion-Edition.docx",
+      "sha256": "b594c94c58ceb040bdddb9f5c7f8303a3fa53d172b6d6897642d846d007d6cf2",
+      "bytes": 297062,
+      "role": "working_ingestion_edition"
+    },
+    {
+      "path": "data/canonical-content.json",
+      "sha256": "44c73a7421cf082ce50ee9d1df972167d8e67cb6f5b82c3a929afed73671a746",
+      "bytes": 53,
+      "role": "unapproved_import_scaffold"
+    },
+    {
+      "path": "data/manuscript-extracted-original-pdf.txt",
+      "sha256": "9d696769b8fedafe23159de927c2f7b5f3a83c4f42c4b3db25ed3156e1986af0",
+      "bytes": 685010,
+      "role": "historical_extraction_backup"
+    },
+    {
+      "path": "data/manuscript-extracted.txt",
+      "sha256": "1840376156b697eb940377bc171642609820debd646145eb02b5885b429abe20",
+      "bytes": 696525,
+      "role": "historical_working_extraction"
+    },
+    {
+      "path": "data/canonical-content.draft.json",
+      "sha256": "3e1b9620ce9f3fca9a7c6ecef9baa06f497465eaaa1631a94d28184e2af39bb1",
+      "bytes": 1433615,
+      "role": "unapproved_canonical_draft"
+    },
+    {
+      "path": "data/supporting-material.draft.json",
+      "sha256": "1e57d015b16a0c8502cae6666b1909b268aec85dac4745df268807044968cb3f",
+      "bytes": 2009918,
+      "role": "unapproved_supporting_draft"
+    },
+    {
+      "path": "data/ingestion-report.json",
+      "sha256": "f0e93310e1a446888ee10427ef759f72665e033bc88ee7b6c4fc48012b80dc00",
+      "bytes": 1374817,
+      "role": "generated_validation_evidence"
+    }
+  ],
+  "validationTools": [
+    {
+      "path": "package.json",
+      "sha256": "872ce3984d7b38ed1f263e8c1d07541d52e7df359d41775648727fba02ecd968"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "a4b51259c3be5ddd92e9ec637f13b606be3c6a90fed1740f6dc7d1c6bd529d99"
+    },
+    {
+      "path": "scripts/freeze-candidate-edition.js",
+      "sha256": "1472118f6948bb1d620a7e4f2837e530bbbb8844eb2b5c4ae25f883382032a22"
+    },
+    {
+      "path": "scripts/parse-clean-manuscript.js",
+      "sha256": "2384a225725d6be8f8f5f2db256671367dda28788151d8705464cf1fa04cfdfa"
+    },
+    {
+      "path": "scripts/review-source-warnings.js",
+      "sha256": "e0be945dad9cee1cb402dec2fcb146b4fe01e4afca5410d0b090db9a919edea9"
+    },
+    {
+      "path": "scripts/prepare-editorial-review.js",
+      "sha256": "57dc4248cd57d674f1fbfc864c29ba9b4a19fc07afd5eff92a2524d3b2ea5370"
+    },
+    {
+      "path": "scripts/verify-content-fidelity.js",
+      "sha256": "53170c02a7b01fd6810217595ce31f529a895e858e5a20241cc8c9d415a3a59e"
+    },
+    {
+      "path": "scripts/ingestion/compare-pdf-supporting.js",
+      "sha256": "8fcc2f455e79c32cd7a33444ddac7f0cf5301a39faa3361b25e5a49be94ea697"
+    },
+    {
+      "path": "scripts/ingestion/parse-manuscript.js",
+      "sha256": "09b544879a308b91039aeab3911bd4653cf04b354f7d33d3f4acf906e8cb8833"
+    },
+    {
+      "path": "scripts/ingestion/read-validation-report.js",
+      "sha256": "b61071927b7d837b28911b00ed3a7b839a818c29bae7bbe59d257afb109c6173"
+    },
+    {
+      "path": "scripts/ingestion/validate-manuscript.js",
+      "sha256": "d8f28f6f4dbb495e838f027f22201f02ce18238c94391f3132617b69d1c7686b"
+    },
+    {
+      "path": "tests/ingestion.test.js",
+      "sha256": "091cbaaf0c8b9b852c4479ec3201b3c30cff7ed6b5871b963f20843f25371f9b"
+    },
+    {
+      "path": "tests/editorial-review.test.js",
+      "sha256": "78bd9e29fd4fea247d552cc03c10bde8661b6d7aeea355d781302f7ea70ff455"
+    },
+    {
+      "path": "tests/fidelity.test.js",
+      "sha256": "67226adbaa740f1245fd58a250063af825aa9f365e6d7e8bd2bde89deba4916e"
+    },
+    {
+      "path": "tests/candidate-edition.test.js",
+      "sha256": "a87f3aba25502c7df4b4aba14664b60af2e8c914200bde68138e09b98f923ec9"
+    }
+  ],
+  "counts": {
+    "books": 10,
+    "chapters": 230,
+    "references": 3905,
+    "authoredVerses": 3874,
+    "unresolvedReferences": 31,
+    "notes": 1470,
+    "explicitAnchors": 1439,
+    "inferredAnchors": 31,
+    "noteCrossReferences": 72,
+    "indexEntries": 72,
+    "glossaryEntries": 38
+  },
+  "validation": {
+    "passed": true,
+    "verifiedAt": "2026-10-11T21:33:48.537Z",
+    "runtime": {
+      "node": "v22.16.0",
+      "platform": "win32",
+      "arch": "x64"
+    },
+    "ingestion": {
+      "command": "npm run ingestion:check",
+      "status": "REVIEW_REQUIRED",
+      "reconciliationPassed": true,
+      "comparisons": 524,
+      "errors": 0,
+      "validationReportIssues": 0,
+      "sourceWarnings": 206
+    },
+    "fidelity": {
+      "command": "npm run fidelity:check",
+      "passed": true,
+      "checks": 32,
+      "limitations": [
+        "Original PDF comparison removes whitespace; intended dash spacing remains unverified.",
+        "PDF character-layer checks cover verses, notes, book titles/subtitles, and preserved front/back sections including glossary and index. They exclude running headers, layout whitespace, and table-of-contents dot leaders; no page-image review or independent second extractor was available.",
+        "No approved Human Testament edition or signed editorial acceptance record is present."
+      ]
+    },
+    "editorial": {
+      "command": "npm run editorial:check",
+      "status": "AUTHOR_FINDINGS_REVIEWED",
+      "decisions": {
+        "pending": 0,
+        "accepted": 206,
+        "correction_requested": 0,
+        "deferred": 0
+      },
+      "classifications": {
+        "MISSING_SOURCE_TEXT": 31,
+        "INFERRED_NOTE_ANCHOR": 31,
+        "INVALID_CROSS_REFERENCE_TARGET": 3,
+        "REPEATED_SOURCE_PASSAGE": 67,
+        "LEGACY_BOOK_NAME": 24,
+        "PUNCTUATION_REVIEW": 1,
+        "INFERRED_SOURCE_LINE_JOIN": 49
+      }
+    },
+    "tests": {
+      "command": "node --test tests/ingestion.test.js tests/editorial-review.test.js tests/fidelity.test.js tests/candidate-edition.test.js",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "validation/regression-tests.tap"
+    },
+    "databaseModified": false
+  },
+  "editorial": {
+    "authorDecisionStatus": "AUTHOR_FINDINGS_REVIEWED",
+    "decisions": {
+      "pending": 0,
+      "accepted": 206,
+      "correction_requested": 0,
+      "deferred": 0
+    },
+    "pendingFindingDecisions": [],
+    "retainedFindings": {
+      "MISSING_SOURCE_TEXT": 31,
+      "INFERRED_NOTE_ANCHOR": 31,
+      "INVALID_CROSS_REFERENCE_TARGET": 3,
+      "REPEATED_SOURCE_PASSAGE": 67,
+      "LEGACY_BOOK_NAME": 24,
+      "PUNCTUATION_REVIEW": 1,
+      "INFERRED_SOURCE_LINE_JOIN": 49
+    },
+    "retainedUncertainties": [
+      "31 references have no authored text; omissions are not confirmed intentional.",
+      "31 probable note anchors remain inferred, with original source marker absence retained.",
+      "Inquiry 1:13, Inquiry 4:13 and Relationships 1:16 remain absent targets; their citations are accepted as printed.",
+      "24 legacy citation mappings remain unverified, including topical questions for notes 1314 and 1367.",
+      "49 dash joins and punctuation observations are accepted for preservation; PDF whitespace and paragraph layout are not certified."
+    ],
+    "intentionalRepetition": {
+      "pairs": 67,
+      "occurrencesPreserved": 134,
+      "authorConfirmed": true
+    },
+    "outstandingEditionDecisions": [
+      {
+        "decision": "Explicit canonical/import approval of this exact candidate manifest hash",
+        "status": "NOT_GRANTED"
+      }
+    ],
+    "outstandingVerification": [
+      "PDF page-image/meaningful whitespace review and an independent second extraction have not been performed."
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "content/canonical-content.candidate.json",
+      "role": "candidate_canonical_content",
+      "originalPath": "data/canonical-content.draft.json",
+      "bytes": 1433615,
+      "sha256": "3e1b9620ce9f3fca9a7c6ecef9baa06f497465eaaa1631a94d28184e2af39bb1"
+    },
+    {
+      "path": "content/supporting-material.candidate.json",
+      "role": "candidate_supporting_content",
+      "originalPath": "data/supporting-material.draft.json",
+      "bytes": 2009918,
+      "sha256": "1e57d015b16a0c8502cae6666b1909b268aec85dac4745df268807044968cb3f"
+    },
+    {
+      "path": "validation/ingestion-report.json",
+      "role": "ingestion_validation",
+      "originalPath": "data/ingestion-report.json",
+      "bytes": 1374817,
+      "sha256": "f0e93310e1a446888ee10427ef759f72665e033bc88ee7b6c4fc48012b80dc00"
+    },
+    {
+      "path": "validation/source-validation-report.md",
+      "role": "source_validation_report",
+      "originalPath": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "bytes": 25207,
+      "sha256": "a67e078b8f477e7ad95c1f263cb34bafe8975a02384c2b52766f60f4c15fa7ed"
+    },
+    {
+      "path": "editorial/AUTHOR_DECISIONS.json",
+      "role": "durable_author_decisions",
+      "originalPath": "docs/AUTHOR_DECISIONS.json",
+      "bytes": 140179,
+      "sha256": "26c5639dc015f31fbeedb28ed9e17e3f17586da28cf003a6b6de648468b67149"
+    },
+    {
+      "path": "editorial/EDITORIAL_REVIEW.json",
+      "role": "classified_findings",
+      "originalPath": "docs/EDITORIAL_REVIEW.json",
+      "bytes": 844197,
+      "sha256": "21028dfd4af9ea69b908178893176e3f5fc5b7064740076f44578c95c52bc0ee"
+    },
+    {
+      "path": "editorial/EDITORIAL_REVIEW.md",
+      "role": "human_review",
+      "originalPath": "docs/EDITORIAL_REVIEW.md",
+      "bytes": 46997,
+      "sha256": "ac0d064f65ae5f9fe390d90c1dfe8a3d0a1e0322d6117216f7b799b2a6111ab6"
+    },
+    {
+      "path": "editorial/REPEATED_PASSAGES.md",
+      "role": "intentional_repetitions",
+      "originalPath": "docs/REPEATED_PASSAGES.md",
+      "bytes": 26138,
+      "sha256": "4dc802e08082b1717935640e4ca2aee4c4fc06cc456009ae77767c3315b7949c"
+    },
+    {
+      "path": "editorial/SOURCE_WARNING_REVIEW.json",
+      "role": "original_pdf_evidence",
+      "originalPath": "docs/SOURCE_WARNING_REVIEW.json",
+      "bytes": 400608,
+      "sha256": "764e6a0da466b6011ccc68f65f1ec3f3bbe40d81dc0040679d938d891b1101cd"
+    },
+    {
+      "path": "validation/fidelity-results.json",
+      "role": "fresh_fidelity_results",
+      "bytes": 89242,
+      "sha256": "9b4f18c90f3e430ecdeeb383c488504588facf8b72a10fb3661d0741d765cc1a"
+    },
+    {
+      "path": "validation/regression-tests.tap",
+      "role": "executed_regression_results",
+      "bytes": 8380,
+      "sha256": "55cbdfe33688df9211c66ac0df42056ca7d61fa84e3fd708dddf161e20ff0b9f"
+    },
+    {
+      "path": "README.md",
+      "role": "candidate_identification",
+      "bytes": 3044,
+      "sha256": "19d8c0e9aa2eb64aa781edc313c27e409ab11a01a05c8af47c345f2f9220bea7"
+    }
+  ]
+}

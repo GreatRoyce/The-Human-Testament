@@ -1,0 +1,299 @@
+{
+  "auditDate": "2026-10-26",
+  "recordedAt": "2026-10-26T16:47:54.039Z",
+  "releaseRecommendation": "NOT_READY",
+  "runtime": {
+    "tested": "v22.16.0",
+    "minimumProductionNode22": "22.23.4",
+    "patchedRuntimeRevalidation": false
+  },
+  "backendTests": {
+    "command": "npm.cmd test -- --test-concurrency=1",
+    "exitCode": 0,
+    "tests": 275,
+    "pass": 275,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "frontendTests": {
+    "command": "npm.cmd test -- --test-concurrency=1",
+    "exitCode": 0,
+    "tests": 82,
+    "pass": 82,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "frontendLint": {
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "exitCode": 0,
+    "vite": "8.3.5",
+    "modules": 302,
+    "minifiedJsBytesApprox": 2924240,
+    "gzipJsBytesApprox": 582980,
+    "warnings": [
+      "large chunk",
+      "plugin timings"
+    ],
+    "css": {
+      "bytes": 26887,
+      "sha256": "1ca8f85c135b0bf6c1583e1b69186c81933f7ba80b12937b280898d5ace679a0",
+      "identicalToBeforeDependencyUpdate": true
+    }
+  },
+  "routes": {
+    "exitCode": 0,
+    "rendered": 745,
+    "relativeImports": 502,
+    "loopbackDirectUrls": 9,
+    "transformedModules": 3,
+    "homepagePassed": true,
+    "browserLayoutVerified": false
+  },
+  "dependencyAudits": {
+    "backend": {
+      "before": {
+        "counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "high": 1,
+          "critical": 0,
+          "total": 1
+        },
+        "packages": [
+          {
+            "name": "body-parser",
+            "severity": "high",
+            "advisories": [
+              {
+                "title": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
+                "url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
+                "severity": "high",
+                "range": ">=2.0.0 <2.4.0"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0
+        },
+        "packages": []
+      }
+    },
+    "frontend": {
+      "before": {
+        "counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 3,
+          "high": 3,
+          "critical": 0,
+          "total": 6
+        },
+        "packages": [
+          {
+            "name": "postcss-nested",
+            "severity": "moderate",
+            "advisories": []
+          },
+          {
+            "name": "postcss-selector-parser",
+            "severity": "moderate",
+            "advisories": [
+              {
+                "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+                "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+                "severity": "moderate",
+                "range": "<7.1.6"
+              }
+            ]
+          },
+          {
+            "name": "source-map-js",
+            "severity": "high",
+            "advisories": [
+              {
+                "title": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
+                "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+                "severity": "high",
+                "range": ">=1.0.0 <1.2.2"
+              }
+            ]
+          },
+          {
+            "name": "tailwindcss",
+            "severity": "moderate",
+            "advisories": []
+          },
+          {
+            "name": "vite",
+            "severity": "high",
+            "advisories": [
+              {
+                "title": "launch-editor: escapeCmdArgs() omits % escaping on Windows",
+                "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
+                "severity": "moderate",
+                "range": ">=8.3.0 <=8.3.2"
+              },
+              {
+                "title": "launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for some editors",
+                "url": "https://github.com/advisories/GHSA-r825-w8mm-5pxw",
+                "severity": "moderate",
+                "range": ">=8.3.0 <=8.3.2"
+              },
+              {
+                "title": "launch-editor: `fs.existsSync()` existence check can be bypassed on Windows",
+                "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+                "severity": "high",
+                "range": ">=8.3.0 <=8.3.2"
+              },
+              {
+                "title": "Vite: Cross origin script execution through Vite custom middleware",
+                "url": "https://github.com/advisories/GHSA-9jrq-w75r-8gcw",
+                "severity": "low",
+                "range": ">=8.3.0 <=8.3.2"
+              },
+              {
+                "title": "Vite: Files outside `server.fs.allow` could be served when project paths match system paths on non-Windows machine",
+                "url": "https://github.com/advisories/GHSA-rq7h-c2jc-7f22",
+                "severity": "moderate",
+                "range": ">=8.3.0 <=8.3.2"
+              },
+              {
+                "title": "Vite: First 4 bytes of files outside of `server.fs` setting is exposed by `?vite-wasm-instance`",
+                "url": "https://github.com/advisories/GHSA-vfpm-58rq-9qcg",
+                "severity": "moderate",
+                "range": ">=8.3.0 <=8.3.2"
+              }
+            ]
+          },
+          {
+            "name": "zod",
+            "severity": "high",
+            "advisories": [
+              {
+                "title": "Zod can exhaust memory while validating oversized constrained collections",
+                "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+                "severity": "high",
+                "range": "<4.6.6"
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "counts": {
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "high": 0,
+          "critical": 0,
+          "total": 0
+        },
+        "packages": []
+      }
+    }
+  },
+  "installedSecurityPatchVersions": {
+    "bodyParser": "2.4.0",
+    "vite": "8.3.5",
+    "zod": "4.6.7",
+    "sourceMapJs": "1.2.2",
+    "selectorParser": "7.1.6",
+    "tailwind": "3.4.19"
+  },
+  "manuscript": {
+    "pdfSha256": "bbdd152c8b870862b44214dbd56059fa2a85146e6f1ad1e4d48f1d5c7fa34c76",
+    "fidelity": {
+      "passed": true,
+      "checks": 32,
+      "counts": {
+        "books": 10,
+        "chapters": 230,
+        "references": 3905,
+        "authoredVerses": 3874,
+        "unresolvedReferences": 31,
+        "notes": 1470,
+        "explicitAnchors": 1439,
+        "inferredAnchors": 31,
+        "noteCrossReferences": 72,
+        "indexEntries": 72,
+        "glossaryEntries": 38
+      },
+      "warnings": 206,
+      "dataFilesUnchanged": 10,
+      "importApproved": false,
+      "databaseModified": false
+    },
+    "ingestion": {
+      "exitCode": 0,
+      "sourceIssues": 206,
+      "ingestionErrors": 0,
+      "invalidCrossReferenceTargets": 3,
+      "repeatedPassageGroups": 67
+    },
+    "editorial": {
+      "exitCode": 0,
+      "decisions": {
+        "pending": 0,
+        "accepted": 206,
+        "correction_requested": 0,
+        "deferred": 0
+      },
+      "importApproved": false
+    },
+    "candidate": {
+      "editionId": "human-testament-0.1.0-rc.1",
+      "manifestSha256": "b8207096f76054487efa620b308b4a37ef799597c6a89b90aeb3b97f5ec9d308",
+      "artifactsVerified": 12,
+      "importApproved": false
+    },
+    "legacyImportDryRun": {
+      "exitCode": 0,
+      "books": 0,
+      "chapters": 0,
+      "verses": 0,
+      "writeModeDisabled": true
+    }
+  },
+  "secrets": {
+    "localEnvFilesPreserved": true,
+    "envFilesRemovedFromGitIndex": true,
+    "historyRemediated": false,
+    "databaseCredentialRotationVerified": false,
+    "builtTextArtifactsScanned": 3,
+    "exactBackendSecretMatches": 0,
+    "scope": "Exact current backend sensitive env values only; not a comprehensive secret scanner."
+  },
+  "accessibility": {
+    "ivoryContrast": {
+      "forest": 8.74,
+      "muted": 5.47,
+      "bronzeInk": 5.57
+    },
+    "interactiveBrowserVerified": false
+  },
+  "notVerified": [
+    "patched-runtime clean install",
+    "live Atlas indexes and network",
+    "production HTTPS domains, CORS and cookies",
+    "external sender and inbox delivery",
+    "browser layout and interactive keyboard behavior",
+    "backup and isolated restore",
+    "load test and query plans",
+    "platform logging, alerts and rollback rehearsal"
+  ],
+  "noProductionDeployment": true,
+  "noCanonicalImportOrApproval": true
+}

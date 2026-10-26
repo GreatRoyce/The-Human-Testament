@@ -1,7 +1,8 @@
 const assert = require('node:assert/strict');
-const { test, before, after } = require('node:test');
+const { test, before, after, beforeEach } = require('node:test');
 const mongoose = require('mongoose');
 process.env.NODE_ENV = 'production';
+process.env.CONTENT_SOURCE = 'database';
 mongoose.set('autoCreate', false);
 mongoose.set('autoIndex', false);
 mongoose.set('bufferCommands', false);
@@ -9,6 +10,16 @@ const app = require('../src/app');
 const Book = require('../src/models/Book');
 const Chapter = require('../src/models/Chapter');
 const Verse = require('../src/models/Verse');
+const Edition = require('../src/models/Edition');
+const Note = require('../src/models/Note');
+const CrossReference = require('../src/models/CrossReference');
+const ContentSection = require('../src/models/ContentSection');
+const { fixture } = require('../test-fixtures/canonical');
+const editionId = fixture().edition.editionId;
+const bookProjection = 'title slug order description subtitle chapterCount sourceVersion editionId';
+const publicBook = book => ({ slug: book.slug, title: book.title, order: book.order,
+  numberLabel: 'I', subtitle: book.subtitle ?? '', description: book.description ?? '',
+  ...(book.chapterCount ? { chapterCount: book.chapterCount } : {}) });
 let server, baseUrl;
 
 before(async () => {
@@ -19,6 +30,10 @@ before(async () => {
 });
 after(async () => {
   await new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
+});
+beforeEach(t => {
+  stubQuery(t, Edition, 'findOne', fixture().edition);
+  for (const model of [Note, CrossReference, ContentSection, Chapter]) stubQuery(t, model, 'find', []);
 });
 
 async function get(route) {
@@ -54,8 +69,8 @@ test('health is reachable without database access and unknown routes return JSON
 test('book list reads only published books, requests stable ordering, and handles an empty result', async t => {
   const books = [{ title: 'Inquiry', slug: 'inquiry', order: 1, description: '' }];
   const calls = stubQuery(t, Book, 'find', books);
-  assert.deepEqual(await get('/api/books'), { status: 200, body: { success: true, count: 1, data: books } });
-  assert.deepEqual(calls, [{ filter: { isPublished: true }, projection: 'title slug order description', order: { order: 1 } }]);
+  assert.deepEqual(await get('/api/books'), { status: 200, body: { success: true, count: 1, data: books.map(publicBook) } });
+  assert.deepEqual(calls, [{ filter: { editionId, isPublished: true }, projection: bookProjection, order: { order: 1 } }]);
   books.length = 0;
   assert.deepEqual(await get('/api/books'), { status: 200, body: { success: true, count: 0, data: [] } });
 });
@@ -63,26 +78,27 @@ test('book list reads only published books, requests stable ordering, and handle
 test('book detail enforces publication and missing books return 404', async t => {
   const book = { title: 'Inquiry', slug: 'inquiry', order: 1, description: '' };
   const calls = stubQuery(t, Book, 'findOne', book);
-  assert.deepEqual(await get('/api/books/inquiry'), { status: 200, body: { success: true, data: book } });
-  assert.deepEqual(calls[0], { filter: { slug: 'inquiry', isPublished: true }, projection: 'title slug order description' });
+  assert.deepEqual(await get('/api/books/inquiry'), { status: 200, body: { success: true, data: { ...publicBook(book), chapters: [] } } });
+  assert.deepEqual(calls[0], { filter: { editionId, slug: 'inquiry', isPublished: true }, projection: '_id ' + bookProjection });
   stubQuery(t, Book, 'findOne', null);
   assert.deepEqual(await get('/api/books/missing'), { status: 404, body: { success: false, message: 'Book not found.' } });
 });
 
 test('chapter responses include only queries for published content and preserve verse text', async t => {
-  const book = { _id: 'book-id', title: 'Inquiry', slug: 'inquiry' };
-  const chapter = { _id: 'chapter-id', number: 1, title: '' };
-  const verses = [{ canonicalId: 'inquiry:1:1', number: 1, text: 'Preserve ?; and original punctuation.', sourceVersion: 'test-only' }];
+  const book = { _id: 'book-id', title: 'Inquiry', slug: 'inquiry', order: 1, chapterCount: 1 };
+  const chapter = { _id: 'chapter-id', bookSlug: 'inquiry', number: 1, title: '', referenceCount: 1 };
+  const verses = [{ canonicalId: 'inquiry:1:1', bookSlug: 'inquiry', chapterNumber: 1, number: 1, text: 'Preserve ?; and original punctuation.', sourceVersion: 'test-only' }];
   const bookCalls = stubQuery(t, Book, 'findOne', book);
   const chapterCalls = stubQuery(t, Chapter, 'findOne', chapter);
   const verseCalls = stubQuery(t, Verse, 'find', verses);
   assert.deepEqual(await get('/api/books/inquiry/chapters/1'), { status: 200, body: {
-    success: true, data: { book, chapter: { number: 1, title: '' }, verses },
+    success: true, data: { book: publicBook(book), chapter: { bookSlug: 'inquiry', number: 1, title: '', referenceCount: 1, completeness: 'complete' },
+      verses: verses.map(verse => ({ ...verse, status: 'authored', notes: [], crossReferences: [] })), notes: [], crossReferences: [], sections: [] },
   } });
-  assert.deepEqual(bookCalls[0], { filter: { slug: 'inquiry', isPublished: true }, projection: '_id title slug' });
-  assert.deepEqual(chapterCalls[0].filter, { book: 'book-id', number: 1, isPublished: true });
-  assert.deepEqual(verseCalls[0], { filter: { chapter: 'chapter-id', book: 'book-id', isPublished: true },
-    projection: 'canonicalId number text sourceVersion', order: { number: 1 } });
+  assert.deepEqual(bookCalls[0], { filter: { editionId, slug: 'inquiry', isPublished: true }, projection: '_id ' + bookProjection });
+  assert.deepEqual(chapterCalls[0].filter, { editionId, book: 'book-id', number: 1, isPublished: true });
+  assert.deepEqual(verseCalls[0], { filter: { editionId, chapter: 'chapter-id', book: 'book-id', isPublished: true },
+    projection: 'canonicalId bookSlug chapterNumber number text status unresolved source sourceVersion editionId', order: { number: 1 } });
 });
 
 test('invalid chapter numbers fail before querying the database', async t => {

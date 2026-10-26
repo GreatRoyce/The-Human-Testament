@@ -1,0 +1,13 @@
+const { Router } = require('express');
+const { authReady, authenticate, protectMutation, createAuthRateLimiter } = require('../middleware/auth.middleware');
+const { readingReady } = require('../services/readingStorage');
+const controller = require('../controllers/reading.controller');
+const progress = Router();
+progress.use(authReady, authenticate, readingReady);
+progress.get('/', controller.listProgress);
+progress.get('/:bookId', controller.getProgress);
+progress.put('/:bookId', protectMutation, createAuthRateLimiter({ limit: 300 }), controller.saveProgress);
+const history = Router();
+history.use(authReady, authenticate, readingReady);
+history.get('/', controller.listHistory);
+module.exports = { progress, history };

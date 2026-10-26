@@ -1,5 +1,7 @@
 # Manuscript ingestion and review
 
+The following describes the original ingestion stage. For the subsequent storage/API schemas, direct PDF fidelity checks, disabled-write importer, and current test results, see [Canonical content fidelity handoff](CANONICAL_CONTENT_PIPELINE.md). Manuscript/data files and the parser remain unchanged in that subsequent stage.
+
 The clean TXT is the parser input. The Markdown validation report supplies the expected counts, missing-reference identities, probable note anchors, repeated passages, and other documented review findings. Parsing reconciles these sources; it does not approve the manuscript or import it into a database.
 
 ## Commands

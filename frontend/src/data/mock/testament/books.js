@@ -75,7 +75,7 @@ const books = [
     id: 10,
     number: "x",
     title: "Purpose",
-    subtitle: "4 Chapters",
+    subtitle: "3 Chapters",
     subtopic: "Ambition, Contentment, and a Meaningful Life.",
     desc: "Dream greatly, work diligently, and adapt continuously; enjoy what you possess, but do not let possessions possess you."
   }

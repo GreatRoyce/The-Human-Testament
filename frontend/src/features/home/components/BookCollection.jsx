@@ -3,6 +3,7 @@ import BookGrid from "../../testament/components/BookGrid.jsx";
 import { useBooks } from "../../testament/hooks/useBooks.js";
 import ResourceState from "../../../components/shared/ResourceState.jsx";
 import { GoDash } from "react-icons/go";
+import { manuscriptCounts } from '../../../services/manuscriptContent.js';
 
 const BookCollection = () => {
   const books = useBooks();
@@ -20,7 +21,7 @@ const BookCollection = () => {
           to existence.
         </p>
         <p className="text-xs text-muted items-start textshade ">
-         231 CHAPTERS · 3,906 VERSES
+         {manuscriptCounts.chapters} CHAPTERS · {manuscriptCounts.references.toLocaleString('en-US')} VERSE REFERENCES
         </p>
       </div>
         <hr className="w-full border-t border-muted/30" />

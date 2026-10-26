@@ -1,0 +1,2956 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-11T21:33:36.614Z",
+  "approvalStatus": "DRAFT_REVIEW_REQUIRED",
+  "importApproved": false,
+  "editionIdentifier": "2024-07-09",
+  "editionIdentifierVerified": false,
+  "editionIdentifierOrigin": "Inherited from the existing canonical-content.json scaffold; not a new approval or verified manuscript date.",
+  "checks": [
+    {
+      "name": "books, chapters, verses and provenance",
+      "passed": true
+    },
+    {
+      "name": "unresolved references",
+      "passed": true
+    },
+    {
+      "name": "notes",
+      "passed": true
+    },
+    {
+      "name": "crossReferences",
+      "passed": true
+    },
+    {
+      "name": "crossReferenceIndex",
+      "passed": true
+    },
+    {
+      "name": "glossary",
+      "passed": true
+    },
+    {
+      "name": "sections",
+      "passed": true
+    },
+    {
+      "name": "editorialApparatus",
+      "passed": true
+    },
+    {
+      "name": "canonical complete artifact, provenance and draft approval",
+      "passed": true
+    },
+    {
+      "name": "supporting complete artifact, provenance and draft approval",
+      "passed": true
+    },
+    {
+      "name": "report complete artifact, provenance and draft approval",
+      "passed": true
+    },
+    {
+      "name": "DOCX to TXT exact nonblank lines",
+      "passed": true,
+      "comparedLines": 11618,
+      "extractionMessages": []
+    },
+    {
+      "name": "Master PDF verses and notes, ignoring layout whitespace",
+      "passed": true,
+      "checks": {
+        "pdfPages": 550,
+        "references": 3905,
+        "authoredVersesCompared": 3874,
+        "notesCompared": 1470,
+        "warningRecordsReviewed": 206,
+        "originalFootnoteMarkers": 1439
+      },
+      "limitations": [
+        "Whitespace normalization cannot resolve the 49 inferred dash spacings.",
+        "Matching source characters does not certify editorial correctness, intended anchors, intended references, or truth of manuscript statements."
+      ]
+    },
+    {
+      "name": "Master PDF [[FRONT MATTER: HALF-TITLE PAGE · source p. 1]]",
+      "sourcePages": [
+        1,
+        1
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[FRONT MATTER: TITLE PAGE · source p. 2]]",
+      "sourcePages": [
+        2,
+        2
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[FRONT MATTER: DEDICATION · untitled in source · source p. 3]]",
+      "sourcePages": [
+        3,
+        3
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[FRONT MATTER: TO THE READER · source p. 4]]",
+      "sourcePages": [
+        4,
+        4
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[FRONT MATTER: TABLE OF CONTENTS · page numbers refer to the original manuscript PDF · source p. 5]]",
+      "sourcePages": [
+        5,
+        5
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace and table-of-contents dot leaders."
+    },
+    {
+      "name": "Master PDF [[BACK MATTER: CLOSING TEXT · untitled in source · source p. 544]]",
+      "sourcePages": [
+        544,
+        544
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[BACK MATTER: CROSS-REFERENCE INDEX · source pp. 545–547]]",
+      "sourcePages": [
+        545,
+        547
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF [[BACK MATTER: GLOSSARY · source pp. 548–550]]",
+      "sourcePages": [
+        548,
+        550
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: inquiry",
+      "sourcePages": [
+        6,
+        6
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: freedom",
+      "sourcePages": [
+        67,
+        67
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: power",
+      "sourcePages": [
+        163,
+        163
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: society",
+      "sourcePages": [
+        201,
+        201
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: identity",
+      "sourcePages": [
+        319,
+        319
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: relationships",
+      "sourcePages": [
+        368,
+        368
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: humanity",
+      "sourcePages": [
+        448,
+        448
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: existence",
+      "sourcePages": [
+        481,
+        481
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: belief",
+      "sourcePages": [
+        496,
+        496
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Master PDF book title/subtitle: purpose",
+      "sourcePages": [
+        532,
+        532
+      ],
+      "passed": true,
+      "comparison": "Characters excluding whitespace."
+    },
+    {
+      "name": "Structural reconciliation",
+      "passed": true,
+      "comparisons": 524
+    }
+  ],
+  "counts": {
+    "books": 10,
+    "chapters": 230,
+    "references": 3905,
+    "authoredVerses": 3874,
+    "unresolvedReferences": 31,
+    "notes": 1470,
+    "explicitAnchors": 1439,
+    "inferredAnchors": 31,
+    "noteCrossReferences": 72,
+    "indexEntries": 72,
+    "glossaryEntries": 38
+  },
+  "sourceWarnings": 206,
+  "outstandingDiscrepancies": {
+    "sourceIssues": [
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at inquiry:31:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "inquiry:31:4",
+          "sourceLine": 1103,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 43,
+            "probableNoteNumber": 131
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:19:13.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:19:13",
+          "sourceLine": 2571,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 102,
+            "probableNoteNumber": 317
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:20:12.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:20:12",
+          "sourceLine": 2643,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 106,
+            "probableNoteNumber": 324
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:22:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:22:5",
+          "sourceLine": 2772,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 113,
+            "probableNoteNumber": 342
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:23:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:23:4",
+          "sourceLine": 2856,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 117,
+            "probableNoteNumber": 352
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:26:9.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:26:9",
+          "sourceLine": 3072,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 128,
+            "probableNoteNumber": 385
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:28:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:28:5",
+          "sourceLine": 3204,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 135,
+            "probableNoteNumber": 401
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:28:11.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:28:11",
+          "sourceLine": 3216,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 136,
+            "probableNoteNumber": 404
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:30:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:30:4",
+          "sourceLine": 3343,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 144,
+            "probableNoteNumber": 421
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:30:12.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:30:12",
+          "sourceLine": 3359,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 145,
+            "probableNoteNumber": 424
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:31:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:31:4",
+          "sourceLine": 3418,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 148,
+            "probableNoteNumber": 431
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at freedom:32:3.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "freedom:32:3",
+          "sourceLine": 3495,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 152,
+            "probableNoteNumber": 441
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at power:1:12.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "power:1:12",
+          "sourceLine": 3743,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 164,
+            "probableNoteNumber": 472
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:27:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:27:5",
+          "sourceLine": 5858,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 260,
+            "probableNoteNumber": 735
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:28:11.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:28:11",
+          "sourceLine": 5930,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 264,
+            "probableNoteNumber": 745
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:32:14.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:32:14",
+          "sourceLine": 6186,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 279,
+            "probableNoteNumber": 778
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:33:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:33:5",
+          "sourceLine": 6240,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 281,
+            "probableNoteNumber": 783
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:34:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:34:5",
+          "sourceLine": 6312,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 285,
+            "probableNoteNumber": 791
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:39:13.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:39:13",
+          "sourceLine": 6686,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 303,
+            "probableNoteNumber": 835
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at society:42:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "society:42:4",
+          "sourceLine": 6842,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 311,
+            "probableNoteNumber": 853
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:1:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:1:4",
+          "sourceLine": 7005,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 320,
+            "probableNoteNumber": 869
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:4:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:4:5",
+          "sourceLine": 7165,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 327,
+            "probableNoteNumber": 890
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:5:3.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:5:3",
+          "sourceLine": 7229,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 330,
+            "probableNoteNumber": 898
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:6:3.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:6:3",
+          "sourceLine": 7309,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 335,
+            "probableNoteNumber": 906
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:8:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:8:5",
+          "sourceLine": 7473,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 345,
+            "probableNoteNumber": 922
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:10:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:10:5",
+          "sourceLine": 7601,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 351,
+            "probableNoteNumber": 938
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at identity:13:4.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "identity:13:4",
+          "sourceLine": 7803,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 360,
+            "probableNoteNumber": 962
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at relationships:33:26.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "relationships:33:26",
+          "sourceLine": 9225,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 422,
+            "probableNoteNumber": 1144
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at humanity:14:5.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "humanity:14:5",
+          "sourceLine": 10484,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 477,
+            "probableNoteNumber": 1300
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at belief:4:12.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "belief:4:12",
+          "sourceLine": 10997,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 504,
+            "probableNoteNumber": 1366
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "MISSING_SOURCE_TEXT",
+        "message": "No authored text at purpose:3:16.",
+        "reviewRequired": true,
+        "detail": {
+          "reference": "purpose:3:16",
+          "sourceLine": 11778,
+          "report": {
+            "section": "6.1",
+            "sourcePage": 542,
+            "probableNoteNumber": 1467
+          }
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 131 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 131,
+          "anchor": "inquiry:31:4",
+          "sourceLine": 1151
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 317 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 317,
+          "anchor": "freedom:19:13",
+          "sourceLine": 2610
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 324 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 324,
+          "anchor": "freedom:20:12",
+          "sourceLine": 2670
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 342 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 342,
+          "anchor": "freedom:22:5",
+          "sourceLine": 2828
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 352 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 352,
+          "anchor": "freedom:23:4",
+          "sourceLine": 2894
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 385 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 385,
+          "anchor": "freedom:26:9",
+          "sourceLine": 3110
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 401 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 401,
+          "anchor": "freedom:28:5",
+          "sourceLine": 3256
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 404 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 404,
+          "anchor": "freedom:28:11",
+          "sourceLine": 3262
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 421 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 421,
+          "anchor": "freedom:30:4",
+          "sourceLine": 3391
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 424 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 424,
+          "anchor": "freedom:30:12",
+          "sourceLine": 3397
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 431 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 431,
+          "anchor": "freedom:31:4",
+          "sourceLine": 3470
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 441 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 441,
+          "anchor": "freedom:32:3",
+          "sourceLine": 3541
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 472 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 472,
+          "anchor": "power:1:12",
+          "sourceLine": 3759
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 735 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 735,
+          "anchor": "society:27:5",
+          "sourceLine": 5894
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 745 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 745,
+          "anchor": "society:28:11",
+          "sourceLine": 5954
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 778 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 778,
+          "anchor": "society:32:14",
+          "sourceLine": 6222
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 783 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 783,
+          "anchor": "society:33:5",
+          "sourceLine": 6288
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 791 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 791,
+          "anchor": "society:34:5",
+          "sourceLine": 6360
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 835 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 835,
+          "anchor": "society:39:13",
+          "sourceLine": 6708
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 853 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 853,
+          "anchor": "society:42:4",
+          "sourceLine": 6900
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 869 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 869,
+          "anchor": "identity:1:4",
+          "sourceLine": 7037
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 890 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 890,
+          "anchor": "identity:4:5",
+          "sourceLine": 7209
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 898 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 898,
+          "anchor": "identity:5:3",
+          "sourceLine": 7289
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 906 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 906,
+          "anchor": "identity:6:3",
+          "sourceLine": 7369
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 922 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 922,
+          "anchor": "identity:8:5",
+          "sourceLine": 7515
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 938 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 938,
+          "anchor": "identity:10:5",
+          "sourceLine": 7651
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 962 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 962,
+          "anchor": "identity:13:4",
+          "sourceLine": 7861
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 1144 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1144,
+          "anchor": "relationships:33:26",
+          "sourceLine": 9249
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 1300 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1300,
+          "anchor": "humanity:14:5",
+          "sourceLine": 10512
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 1366 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1366,
+          "anchor": "belief:4:12",
+          "sourceLine": 11015
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_NOTE_ANCHOR",
+        "message": "Note 1467 has no original footnote marker; its anchor still requires review.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1467,
+          "anchor": "purpose:3:16",
+          "sourceLine": 11816
+        }
+      },
+      {
+        "category": "source",
+        "code": "INVALID_CROSS_REFERENCE_TARGET",
+        "message": "Note 104 cites a nonexistent or malformed target.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 104,
+          "raw": "See also: 1:13",
+          "target": {
+            "bookSlug": "inquiry",
+            "chapter": 1,
+            "verse": 13,
+            "raw": "1:13",
+            "referenceExists": false,
+            "authoredTextExists": false,
+            "status": "missing_reference"
+          },
+          "sourceLine": 910
+        }
+      },
+      {
+        "category": "source",
+        "code": "INVALID_CROSS_REFERENCE_TARGET",
+        "message": "Note 490 cites a nonexistent or malformed target.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 490,
+          "raw": "See also: Inquiry 4:13",
+          "target": {
+            "bookSlug": "inquiry",
+            "chapter": 4,
+            "verse": 13,
+            "raw": "Inquiry 4:13",
+            "referenceExists": false,
+            "authoredTextExists": false,
+            "status": "missing_reference"
+          },
+          "sourceLine": 3890
+        }
+      },
+      {
+        "category": "source",
+        "code": "INVALID_CROSS_REFERENCE_TARGET",
+        "message": "Note 1191 cites a nonexistent or malformed target.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1191,
+          "raw": "See also: 1:16",
+          "target": {
+            "bookSlug": "relationships",
+            "chapter": 1,
+            "verse": 16,
+            "raw": "1:16",
+            "referenceExists": false,
+            "authoredTextExists": false,
+            "status": "missing_reference"
+          },
+          "sourceLine": 9678
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "inquiry:41:3",
+            "society:41:2"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "inquiry:41:6",
+            "society:41:4"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:23",
+            "society:41:23"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:24",
+            "society:41:24"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:25",
+            "society:41:25"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:26",
+            "society:41:26"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:27",
+            "society:41:27"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:28",
+            "society:41:28"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:29",
+            "society:41:29"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "freedom:34:30",
+            "society:41:30"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:1",
+            "society:43:1"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:2",
+            "society:43:2"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:3",
+            "society:43:3"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:5",
+            "society:43:5"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:6",
+            "society:43:6"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:7",
+            "society:43:7"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:8",
+            "society:43:8"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:9",
+            "society:43:9"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:10",
+            "society:43:10"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:11",
+            "society:43:11"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:12",
+            "society:43:12"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:13",
+            "society:43:13"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:14",
+            "society:43:14"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:15",
+            "society:43:15"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:16",
+            "society:43:16"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:17",
+            "society:43:17"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:18",
+            "society:43:18"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:19",
+            "society:43:19"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:20",
+            "society:43:20"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:21",
+            "society:43:21"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:22",
+            "society:43:22"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:23",
+            "society:43:23"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:24",
+            "society:43:24"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:25",
+            "society:43:25"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:26",
+            "society:43:26"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:27",
+            "society:43:27"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:28",
+            "society:43:28"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:29",
+            "society:43:29"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "society:42:30",
+            "society:43:30"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:1",
+            "identity:14:1"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:2",
+            "identity:14:2"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:3",
+            "identity:14:3"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:5",
+            "identity:14:5"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:6",
+            "identity:14:6"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:7",
+            "identity:14:7"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:8",
+            "identity:14:8"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:9",
+            "identity:14:9"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:10",
+            "identity:14:10"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:11",
+            "identity:14:11"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:12",
+            "identity:14:12"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:13",
+            "identity:14:13"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:14",
+            "identity:14:14"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:15",
+            "identity:14:15"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:16",
+            "identity:14:16"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:17",
+            "identity:14:17"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:18",
+            "identity:14:18"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:19",
+            "identity:14:19"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:20",
+            "identity:14:20"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:21",
+            "identity:14:21"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:22",
+            "identity:14:22"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:23",
+            "identity:14:23"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:24",
+            "identity:14:24"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:26",
+            "identity:14:26"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:27",
+            "identity:14:27"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:28",
+            "identity:14:28"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:29",
+            "identity:14:29"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "REPEATED_SOURCE_PASSAGE",
+        "message": "Identical authored passages retained at distinct source addresses.",
+        "reviewRequired": true,
+        "detail": {
+          "references": [
+            "identity:13:30",
+            "identity:14:30"
+          ]
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 315 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 315,
+          "sourceLine": 2605
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 320 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 320,
+          "sourceLine": 2616
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 322 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 322,
+          "sourceLine": 2665
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 345 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 345,
+          "sourceLine": 2834
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 349 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 349,
+          "sourceLine": 2843
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 404 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 404,
+          "sourceLine": 3262
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 431 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 431,
+          "sourceLine": 3470
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 444 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 444,
+          "sourceLine": 3547
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 490 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 490,
+          "sourceLine": 3888
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 496 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 496,
+          "sourceLine": 3931
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 509 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 509,
+          "sourceLine": 4034
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 586 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 586,
+          "sourceLine": 4645
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 590 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 590,
+          "sourceLine": 4682
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 612 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 612,
+          "sourceLine": 4845
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 621 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 621,
+          "sourceLine": 4912
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1002 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1002,
+          "sourceLine": 8162
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1139 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1139,
+          "sourceLine": 9237
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1145 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1145,
+          "sourceLine": 9251
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1149 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1149,
+          "sourceLine": 9323
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1206 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1206,
+          "sourceLine": 9792
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1314 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1314,
+          "sourceLine": 10627
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1349 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1349,
+          "sourceLine": 10893
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1355 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1355,
+          "sourceLine": 10936
+        }
+      },
+      {
+        "category": "source",
+        "code": "LEGACY_BOOK_NAME",
+        "message": "Note 1367 retains a legacy book name in its authored prose.",
+        "reviewRequired": true,
+        "detail": {
+          "noteNumber": 1367,
+          "sourceLine": 11017
+        }
+      },
+      {
+        "category": "source",
+        "code": "PUNCTUATION_REVIEW",
+        "message": "Punctuation inconsistencies were preserved without correction.",
+        "reviewRequired": true,
+        "detail": {
+          "reportSection": "6.4",
+          "rawReportText": "Punctuation kept exactly as printed (possible typos, not corrected)\n\n- `?;` in Inquiry 31:6 (\"a life?; every\"), Freedom 28:7 (\"collapse?; these\"), Identity 7:1 (\"they are?; many\")\n- `.\".` (full stop after a closing quotation) in Inquiry 32:3, 34:4, 39:13, Freedom 34:2, Society 41:12, and `?\"; … ?\".` in Identity 13:29/14:29\n- Quotation marks and apostrophes are mixed: straight `'` and `\"` alongside curly `’ “ ”`. Each is kept as printed.\n- Dashes: verses mostly use an unspaced em dash (`word—word`). Notes mostly use a spaced one (`word — word`). Both are kept."
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "inquiry",
+          "chapter": 29,
+          "verse": 16,
+          "joinedText": "is—not",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "inquiry",
+          "chapter": 30,
+          "verse": 5,
+          "joinedText": "both—and",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "inquiry",
+          "chapter": 31,
+          "verse": 7,
+          "joinedText": "throne—examine",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "inquiry",
+          "chapter": 31,
+          "verse": 12,
+          "joinedText": "permitted—ask",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "freedom",
+          "chapter": 18,
+          "verse": 15,
+          "joinedText": "power—wisdom",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "freedom",
+          "chapter": 18,
+          "verse": 19,
+          "joinedText": "limits—wisdom",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "power",
+          "chapter": 20,
+          "verse": 11,
+          "joinedText": "it—legitimacy",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 20,
+          "verse": 15,
+          "joinedText": "works—wisdom",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 22,
+          "verse": 9,
+          "joinedText": "verification—the",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 22,
+          "verse": 12,
+          "joinedText": "true—the",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 22,
+          "verse": 14,
+          "joinedText": "forgotten—selection",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 22,
+          "verse": 18,
+          "joinedText": "achievable—is",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 23,
+          "verse": 3,
+          "joinedText": "imagined—stories",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 23,
+          "verse": 6,
+          "joinedText": "narratives—some",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 23,
+          "verse": 15,
+          "joinedText": "awareness—awareness",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 23,
+          "verse": 19,
+          "joinedText": "generations—a",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 25,
+          "verse": 13,
+          "joinedText": "broken—this",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 27,
+          "verse": 3,
+          "joinedText": "awareness—awareness",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 27,
+          "verse": 8,
+          "joinedText": "beginning—the",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 31,
+          "verse": 8,
+          "joinedText": "reliably—the",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 31,
+          "verse": 12,
+          "joinedText": "these—changing",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 31,
+          "verse": 12,
+          "joinedText": "mind—is",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 32,
+          "verse": 13,
+          "joinedText": "memorisation—students",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 32,
+          "verse": 26,
+          "joinedText": "past—capable",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 34,
+          "verse": 3,
+          "joinedText": "itself—some",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 35,
+          "verse": 3,
+          "joinedText": "inherited—no",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 38,
+          "verse": 12,
+          "joinedText": "again—ignorance",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 38,
+          "verse": 13,
+          "joinedText": "taboos—what",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 38,
+          "verse": 19,
+          "joinedText": "something—sometimes",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "society",
+          "chapter": 38,
+          "verse": 26,
+          "joinedText": "nature—wisdom",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "identity",
+          "chapter": 1,
+          "verse": 8,
+          "joinedText": "them—conquest",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "identity",
+          "chapter": 1,
+          "verse": 12,
+          "joinedText": "work—some",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "identity",
+          "chapter": 7,
+          "verse": 8,
+          "joinedText": "doors—education,",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "relationships",
+          "chapter": 32,
+          "verse": 7,
+          "joinedText": "reality—many",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "relationships",
+          "chapter": 37,
+          "verse": 7,
+          "joinedText": "failing—and",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 2,
+          "verse": 11,
+          "joinedText": "discipline—acknowledges",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 3,
+          "verse": 1,
+          "joinedText": "passes—permanence",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 3,
+          "verse": 12,
+          "joinedText": "knowing—but",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 3,
+          "verse": 20,
+          "joinedText": "monuments—because",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 3,
+          "verse": 21,
+          "joinedText": "dead—the",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "existence",
+          "chapter": 3,
+          "verse": 24,
+          "joinedText": "forward—and",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "belief",
+          "chapter": 2,
+          "verse": 8,
+          "joinedText": "drought—to",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "belief",
+          "chapter": 3,
+          "verse": 3,
+          "joinedText": "belief—however",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "belief",
+          "chapter": 3,
+          "verse": 3,
+          "joinedText": "intense—does",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "belief",
+          "chapter": 16,
+          "verse": 24,
+          "joinedText": "salvation—some",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "belief",
+          "chapter": 16,
+          "verse": 24,
+          "joinedText": "ideas—and",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "purpose",
+          "chapter": 1,
+          "verse": 21,
+          "joinedText": "certainty—few",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "purpose",
+          "chapter": 1,
+          "verse": 24,
+          "joinedText": "triumph—both",
+          "reportSection": "6.5"
+        }
+      },
+      {
+        "category": "source",
+        "code": "INFERRED_SOURCE_LINE_JOIN",
+        "message": "The clean edition reports an inferred em-dash join; author review remains outstanding.",
+        "reviewRequired": true,
+        "detail": {
+          "bookSlug": "purpose",
+          "chapter": 1,
+          "verse": 26,
+          "joinedText": "pursuit—no",
+          "reportSection": "6.5"
+        }
+      }
+    ],
+    "limitations": [
+      "Original PDF comparison removes whitespace; intended dash spacing remains unverified.",
+      "PDF character-layer checks cover verses, notes, book titles/subtitles, and preserved front/back sections including glossary and index. They exclude running headers, layout whitespace, and table-of-contents dot leaders; no page-image review or independent second extractor was available.",
+      "No approved Human Testament edition or signed editorial acceptance record is present."
+    ]
+  },
+  "files": [
+    {
+      "path": "data/The-Human-Testament-Clean-Ingestion-Edition.txt",
+      "format": "TXT",
+      "role": "working_ingestion_edition",
+      "sha256": "5471d6e58948a2427cac6ca2f5f1288422f0b6f5be15b429007653ef415460c8",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament--Complete-Manuscript.pdf"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "format": "Markdown",
+      "role": "validation_evidence",
+      "sha256": "a67e078b8f477e7ad95c1f263cb34bafe8975a02384c2b52766f60f4c15fa7ed",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament--Complete-Manuscript.pdf",
+        "data/The-Human-Testament-Clean-Ingestion-Edition.txt"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/The-Human-Testament--Complete-Manuscript.pdf",
+      "format": "PDF",
+      "role": "authoritative_manuscript",
+      "sha256": "bbdd152c8b870862b44214dbd56059fa2a85146e6f1ad1e4d48f1d5c7fa34c76",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/The-Human-Testament-Clean-Ingestion-Edition.docx",
+      "format": "DOCX",
+      "role": "working_ingestion_edition",
+      "sha256": "b594c94c58ceb040bdddb9f5c7f8303a3fa53d172b6d6897642d846d007d6cf2",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament--Complete-Manuscript.pdf"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/canonical-content.json",
+      "format": "JSON",
+      "role": "unapproved_import_scaffold",
+      "sha256": "44c73a7421cf082ce50ee9d1df972167d8e67cb6f5b82c3a929afed73671a746",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/manuscript-extracted-original-pdf.txt",
+      "format": "TXT",
+      "role": "historical_extraction_backup",
+      "sha256": "9d696769b8fedafe23159de927c2f7b5f3a83c4f42c4b3db25ed3156e1986af0",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament--Complete-Manuscript.pdf"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/manuscript-extracted.txt",
+      "format": "TXT",
+      "role": "historical_working_extraction",
+      "sha256": "1840376156b697eb940377bc171642609820debd646145eb02b5885b429abe20",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/canonical-content.draft.json",
+      "format": "JSON",
+      "role": "unapproved_canonical_draft",
+      "sha256": "3e1b9620ce9f3fca9a7c6ecef9baa06f497465eaaa1631a94d28184e2af39bb1",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament-Clean-Ingestion-Edition.txt",
+        "data/The-Human-Testament-Ingestion-Validation-Report.md"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/supporting-material.draft.json",
+      "format": "JSON",
+      "role": "unapproved_supporting_draft",
+      "sha256": "1e57d015b16a0c8502cae6666b1909b268aec85dac4745df268807044968cb3f",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament-Clean-Ingestion-Edition.txt",
+        "data/The-Human-Testament-Ingestion-Validation-Report.md"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    },
+    {
+      "path": "data/ingestion-report.json",
+      "format": "JSON",
+      "role": "generated_validation_evidence",
+      "sha256": "f0e93310e1a446888ee10427ef759f72665e033bc88ee7b6c4fc48012b80dc00",
+      "editionIdentifier": "2024-07-09",
+      "derivedFrom": [
+        "data/The-Human-Testament-Clean-Ingestion-Edition.txt",
+        "data/The-Human-Testament-Ingestion-Validation-Report.md"
+      ],
+      "derivationBasis": "Existing project scripts and validation report; historical extractions have not been independently revalidated.",
+      "validationReport": "data/The-Human-Testament-Ingestion-Validation-Report.md",
+      "approvalStatus": "NOT_APPROVED_FOR_IMPORT"
+    }
+  ],
+  "passed": true,
+  "databaseModified": false
+}

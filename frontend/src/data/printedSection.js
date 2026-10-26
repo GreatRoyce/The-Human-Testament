@@ -1,3 +1,5 @@
+import { manuscriptCounts } from '../services/manuscriptContent.js';
+
 const printedSection = {
   eyebrow: "THE PRINTED BOOK",
   headline: "The Printed Testament",
@@ -18,10 +20,10 @@ const printedSection = {
     publisher: "Mount Scene Publishing",
   },
   stats: [
-    { value: "10", label: "BOOKS" },
-    { value: "231", label: "CHAPTERS" },
-    { value: "3,906", label: "VERSES" },
-    { value: "1,470", label: "NOTES" },
+    { value: String(manuscriptCounts.books), label: "BOOKS" },
+    { value: String(manuscriptCounts.chapters), label: "CHAPTERS" },
+    { value: manuscriptCounts.references.toLocaleString('en-US'), label: "VERSE REFERENCES" },
+    { value: manuscriptCounts.notes.toLocaleString('en-US'), label: "NOTES" },
   ],
 };
 

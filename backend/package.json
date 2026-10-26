@@ -4,11 +4,28 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
+    "admin:init": "node scripts/initialize-administration-storage.js",
+    "admin:access": "node scripts/provision-administration-access.js",
+    "analytics:init": "node scripts/initialize-analytics-storage.js",
+    "analytics:role": "node scripts/provision-analytics-role.js",
+    "notifications:init": "node scripts/initialize-notification-storage.js",
+    "articles:init": "node scripts/initialize-article-storage.js",
+    "community:init": "node scripts/initialize-community-storage.js",
+    "community:moderator": "node scripts/provision-community-moderator.js",
+    "auth:init": "node scripts/initialize-auth-storage.js",
+    "content:sync": "node scripts/sync-pdf-content.js",
+    "content:check": "node scripts/sync-pdf-content.js --check",
     "import:check": "node scripts/import-canonical.js",
     "ingestion:check": "node scripts/parse-clean-manuscript.js --check",
     "ingestion:draft": "node scripts/parse-clean-manuscript.js",
     "api:check": "node scripts/check-read-api.js",
     "source:review": "node scripts/review-source-warnings.js",
+    "editorial:prepare": "node scripts/prepare-editorial-review.js",
+    "editorial:check": "node scripts/prepare-editorial-review.js --check",
+    "candidate:freeze": "node scripts/freeze-candidate-edition.js",
+    "candidate:check": "node scripts/freeze-candidate-edition.js --check",
+    "fidelity:check": "node scripts/verify-content-fidelity.js",
+    "fidelity:report": "node scripts/verify-content-fidelity.js --report",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node --test"
@@ -29,6 +46,7 @@
     "pdf-parse": "^1.1.4"
   },
   "devDependencies": {
+    "mongodb-memory-server": "^11.3.0",
     "nodemon": "^3.1.14"
   }
 }

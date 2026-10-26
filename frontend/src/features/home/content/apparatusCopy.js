@@ -1,7 +1,5 @@
-// Editorial glossary preview; a future glossary feature will own full entries.
+import { manuscriptContentProvider } from '../../../services/manuscriptContent.js';
+
 export const apparatusCopy = {
-  "glossary": {
-    "term": "Self-Worth",
-    "definition": "A sense of value that does not depend on the opinions or presence of witnesses."
-  }
+  glossary: manuscriptContentProvider.getGlossary().find(entry => entry.term === 'Self-Worth'),
 };

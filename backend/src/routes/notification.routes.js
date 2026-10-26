@@ -1,0 +1,15 @@
+const { Router } = require('express');
+const { authReady, authenticate, protectMutation, createAuthRateLimiter } = require('../middleware/auth.middleware');
+const { assertNotificationStorage } = require('../services/notificationStorage');
+const service = require('../services/notification.service');
+const router = Router();
+router.use(authReady, authenticate, async (req, res, next) => { try { await assertNotificationStorage(); next(); } catch (error) { next(error); } });
+router.use(createAuthRateLimiter({ limit: 180 }));
+const writeLimit = createAuthRateLimiter({ limit: 60, key: req => String(req.auth.user._id) });
+router.use((req, res, next) => ['POST', 'PATCH'].includes(req.method) ? protectMutation(req, res, error => error ? next(error) : writeLimit(req, res, next)) : next());
+const route = work => async (req, res, next) => { try { res.json({ success: true, data: await work(req) }); } catch (error) { next(error); } };
+router.get('/', route(req => service.list(req.auth, req.query)));
+router.get('/unread-count', route(req => service.unreadCount(req.auth, req.query)));
+router.patch('/:id/read', route(req => service.markRead(req.auth, req.params.id, req.body, req.query)));
+router.post('/read-all', route(req => service.readAll(req.auth, req.body, req.query)));
+module.exports = router;

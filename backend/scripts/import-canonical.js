@@ -1,13 +1,6 @@
 
-require("dotenv").config();
-
 const fs = require("node:fs");
 const path = require("node:path");
-const mongoose = require("mongoose");
-
-const Book = require("../src/models/Book");
-const Chapter = require("../src/models/Chapter");
-const Verse = require("../src/models/Verse");
 
 const inputPath = path.join(
   __dirname,
@@ -97,6 +90,9 @@ function validateContent(content) {
 }
 
 async function main() {
+  if (process.argv.includes('--write')) {
+    throw new Error('Canonical writes remain disabled. Explicit editorial approval, validated versioned artifacts, and a separately reviewed transactional importer are required. No database connection was opened.');
+  }
   const content = JSON.parse(fs.readFileSync(inputPath, "utf8"));
   const errors = validateContent(content);
 
@@ -126,31 +122,13 @@ async function main() {
   console.log(`Books: ${books.length}`);
   console.log(`Chapters: ${chapters}`);
   console.log(`Verses: ${verses}`);
+  console.log('Import approval: NOT APPROVED. Structural validation alone does not approve this input.');
 
-  if (!process.argv.includes("--write")) {
-    console.log("DRY RUN: MongoDB was not modified.");
-    console.log("Use --write only after reviewing the validated content.");
-    return;
-  }
-
-  if (books.length === 0) {
-    throw new Error("Refusing to import an empty canonical dataset.");
-  }
-
-  await mongoose.connect(process.env.MONGODB_URI);
-
-  try {
-    // This starter intentionally refuses to write until we add
-    // transactional, version-aware import and conflict handling.
-    throw new Error(
-      "Write mode is not implemented yet. No canonical data was changed."
-    );
-  } finally {
-    await mongoose.disconnect();
-  }
+  console.log('DRY RUN: MongoDB was not connected or modified. Write mode is disabled.');
 }
 
-main().catch((error) => {
+if (require.main === module) main().catch((error) => {
   console.error(error.message);
   process.exitCode = 1;
 });
+module.exports = { validateContent, main };

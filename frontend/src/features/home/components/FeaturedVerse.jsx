@@ -6,6 +6,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { useChapter } from "../../testament/hooks/useChapter.js";
 import ResourceState from "../../../components/shared/ResourceState.jsx";
 import { apparatusCopy } from "../content/apparatusCopy.js";
+import { Link } from "react-router-dom";
 
 const buttonStyle =
   "inline-flex min-h-11 items-center justify-center gap-3 rounded-sm border border-forest/20 px-4 py-3 text-[11px] font-semibold tracking-wide transition-colors enabled:hover:border-forest enabled:hover:bg-parchment focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transform-none motion-reduce:transition-none";
@@ -24,7 +25,12 @@ const FeaturedVerse = () => {
   const tabId = useId();
   const resource = useChapter("freedom", 9);
   const verse = resource.data?.verses.find((entry) => entry.number === 7);
-  const note = verse?.commentary;
+  const sourceNote = verse?.notes?.[0];
+  const target = verse?.crossReferences?.[0]?.targets?.[0];
+  const referenceChapter = useChapter(target?.bookSlug ?? 'inquiry', target?.chapter ?? 14);
+  const referenceVerse = referenceChapter.data?.verses.find(entry => entry.number === target?.verse);
+  const note = sourceNote ? { number: sourceNote.noteNumber, type: sourceNote.type, text: sourceNote.text,
+    seeAlso: { text: referenceVerse?.text } } : verse?.commentary;
 
   const handleTabKeyDown = (event, index) => {
     let nextIndex;
@@ -84,7 +90,7 @@ const FeaturedVerse = () => {
             <GoDotFill className="shrink-0 text-bronze" aria-hidden="true" />
             <p>FREEDOM · CHAPTER 9 · VERSE 7</p>
           </div>
-          <p className="text-muted">FREEDOM 9:7 · PAGE 83</p>
+          <p className="text-muted">FREEDOM 9:7{verse?.source?.pdfPage && ` · PDF PAGE ${verse.source.pdfPage}`}</p>
         </div>
         <div className="px-5 py-10 text-center sm:px-12 sm:py-14">
           <p className="mx-auto max-w-lg text-[10px] font-medium uppercase leading-relaxed tracking-[0.15em] text-muted">
@@ -197,15 +203,13 @@ const FeaturedVerse = () => {
           <aside className="flex flex-col items-start gap-4 border-t border-bronze/20 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
             <p className={labelStyle}>THE VERSE IN ITS CHAPTER</p>
             <p className="font-serif text-3xl">Freedom 9</p>
-            <p className="-mt-2 text-xs text-muted">Verse 7 · Page 83</p>
-            <button
-              type="button"
-              disabled
-              title="Chapter reading is coming soon"
+            <p className="-mt-2 text-xs text-muted">Verse 7{verse?.source?.pdfPage && ` · PDF page ${verse.source.pdfPage}`}</p>
+            <Link
+              to="/testament/freedom/9/7"
               className={`${buttonStyle} mt-2 w-full bg-forest text-ivory`}
             >
               READ FREEDOM 9 <FaArrowRightLong aria-hidden="true" />
-            </button>
+            </Link>
             <button
               type="button"
               disabled

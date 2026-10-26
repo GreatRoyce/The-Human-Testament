@@ -1,3 +1,5 @@
+import { manuscriptVerse } from '../services/manuscriptContent.js';
+
 export const dialogueCards = [
   {
     id: 1,
@@ -6,7 +8,7 @@ export const dialogueCards = [
     meta: "FREEDOM 10 · 18 VERSES",
     title: "“Can freedom exist without responsibility?”",
     body: "The chapter answers in its own words:",
-    verse: "“Responsibility is the shadow cast by freedom.”",
+    verse: `“${manuscriptVerse('freedom', 10, 14)}”`,
     verseRef: "Freedom 10:14",
     bodyAfter: "Bring your reading of Freedom 10, and where you think its verses hold or fail.",
     cta: "JOIN DISCUSSION →",
@@ -20,7 +22,7 @@ export const dialogueCards = [
     meta: "BELIEF 6:16",
     title: "“What makes a belief worth keeping?”",
     body: "",
-    verse: "“Any belief that cannot endure questions becomes fragile.”",
+    verse: `“${manuscriptVerse('belief', 6, 16)}”`,
     verseRef: "Belief 6:16",
     bodyAfter: "Test one belief you hold against it, and share what survived.",
     cta: "EXPLORE QUESTION →",

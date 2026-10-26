@@ -1,29 +1,25 @@
 # Read-only API verification
 
-The configured MongoDB connection and a `ping` command succeeded. The existing Express app was exercised over HTTP on a temporary loopback port. No draft was imported, no test fixture was inserted, and no database mutation endpoint was called. Automatic Mongoose collection and index creation were disabled before importing the models or connecting.
+Latest observed run: 2026-10-11, following the [canonical-content fidelity changes](CANONICAL_CONTENT_PIPELINE.md). The configured MongoDB connection and ping pass. All 13 HTTP checks pass. Status remains **PARTIAL** because there are no approved published books; positive Human Testament reads require approved content, not a draft import to satisfy a smoke test.
 
-| GET route / check | Observed result |
+| GET check | Result |
 | --- | --- |
-| `/api/health` | 200, successful response and valid timestamp |
-| `/api/books` | 200, empty published-book list |
-| `/api/books/__read_only_check_missing_book__` | 404, Book not found |
-| `/api/books/__read_only_check_missing_book__/chapters/1` | 404, Book not found |
-| `/api/books/inquiry/chapters/0` | 400, invalid chapter number |
-| `/api/books/inquiry/chapters/1/verses` | 404, API endpoint not found; route is absent |
-| `/api/books/inquiry/chapters/1/verses/1` | 404, API endpoint not found; route is absent |
+| `/api/health` | 200; valid success/timestamp |
+| `/api/books/inquiry/chapters/0` | 400; invalid chapter number |
+| `/api/books` | 200; empty published list |
+| `/api/books/read-only-check-missing-book` | 404; Book not found |
+| Missing book's chapter list/detail, verse list/detail, supporting material | Five 404 responses; Book not found, not absent-route responses |
+| `/api/glossary` | 200; empty list |
+| `/api/cross-references` | 200; empty list |
+| `/api/cross-references/index` | 200; empty list |
+| `/api/sections` | 200; empty list |
 
-There are no published books available through the API. Therefore successful book-detail, chapter-detail, and verse reads could not be verified against live published content. The current chapter endpoint returns its verses in the chapter response; dedicated verse-list and single-verse routes are not implemented. The overall live verification status is **PARTIAL**, even though all available checks passed. An API health response alone does not establish database health; the separate connection and ping are the evidence for that.
+Dedicated verse/supporting routes are implemented. Edition approval and publication filters now apply to every content read. Health alone does not prove database health; the separate connection and ping supply that evidence.
 
-## Automated HTTP coverage
+Run `npm run api:check` from `backend/`. It loads the existing `.env` without printing credentials, disables automatic collection/index creation before loading models, starts the actual app on a temporary loopback port, connects through the existing helper, pings, and performs only GET/read queries. It closes the server/connection afterward. It never invokes the importer or `src/server.js`.
 
-`tests/read-api.test.js` adds seven tests around the actual mounted app using isolated Mongoose query doubles, without connecting to a database. They cover health and unknown routes, published-book list/detail responses, empty and missing results, chapter responses containing verses, publication filters, query ordering, invalid chapter numbers, early returns on missing content, exact verse-text preservation, and safe public error responses.
+Exit 0 means available checks and ping passed; inspect `verificationStatus`, `positivePublishedReads`, and `limitations` for gaps. Errors are sanitized. Sandbox DNS restrictions may require an authorized rerun outside the sandbox.
 
-All 22 tests pass: the original 15 ingestion tests plus these seven API tests. Query doubles establish route/controller behavior and query intent; they do not establish positive live-data behavior or editorial correctness.
+The seven original query-double HTTP tests remain, with assertions extended for edition/publication scope and public DTOs. The full backend suite passes 38 tests, including real disposable MongoDB persistence and seven HTTP/fidelity subtests using synthetic content. This proves the tested storage/API behavior, not approved manuscript fidelity in the configured database. The synthetic tests never load `.env` or use `MONGODB_URI`.
 
-## Repeat safely
-
-Run `npm run api:check` from `backend/`. The check loads the existing backend `.env` without printing the URI or credentials, disables automatic schema writes, starts the existing app on a temporary port, connects through the existing database helper, pings MongoDB, and issues only GET requests and read queries. It closes its server and connection afterward. It does not call `src/server.js` or the importer.
-
-Exit code 0 means the available HTTP checks and database ping passed; inspect `verificationStatus`, `positivePublishedReads`, and `limitations` for coverage gaps. Connection or check failures return exit code 1 with sanitized diagnostics. If approved published data is already present in a future run, the checker will inspect an existing book and chapter without creating fixtures. Missing verse routes remain a reported capability gap.
-
-The application server, routes, controllers, models, database configuration, importer, and frontend were not modified. Adding dedicated read-only verse routes and aligning backend responses with the frontend API contract can be a separate scoped change. Positive live-content verification must wait for approved content; the draft must not be imported merely to make a smoke test pass.
+No configured database records, collections, indexes, or source files were modified. No unapproved content was imported. For the exact source-fidelity scope, changed-file inventory, unresolved issues, and controlled import requirements, read the linked handoff.

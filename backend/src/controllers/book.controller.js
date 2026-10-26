@@ -1,119 +1,28 @@
-
-const Book = require("../models/Book");
-const Chapter = require("../models/Chapter");
-const Verse = require("../models/Verse");
-
-// GET /api/books
-const getBooks = async (req, res, next) => {
-  try {
-    const books = await Book.find({ isPublished: true })
-      .select("title slug order description")
-      .sort({ order: 1 })
-      .lean();
-
-    res.status(200).json({
-      success: true,
-      count: books.length,
-      data: books,
-    });
-  } catch (error) {
-    next(error);
-  }
+const content = require('../services/readContent.service');
+const respond = handler => async (req, res, next) => {
+  try { const data = await handler(req); res.status(200).json({ success: true, ...(Array.isArray(data) ? { count: data.length } : {}), data }); }
+  catch (error) { next(error); }
 };
-
-// GET /api/books/:slug
-const getBookBySlug = async (req, res, next) => {
-  try {
-    const book = await Book.findOne({
-      slug: req.params.slug,
-      isPublished: true,
-    })
-      .select("title slug order description")
-      .lean();
-
-    if (!book) {
-      return res.status(404).json({
-        success: false,
-        message: "Book not found.",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      data: book,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// GET /api/books/:slug/chapters/:chapterNumber
-const getChapter = async (req, res, next) => {
-  try {
-    const chapterNumber = Number(req.params.chapterNumber);
-
-    if (
-      !Number.isSafeInteger(chapterNumber) ||
-      chapterNumber < 1
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "Chapter number must be a positive integer.",
-      });
-    }
-
-    const book = await Book.findOne({
-      slug: req.params.slug,
-      isPublished: true,
-    }).select("_id title slug");
-
-    if (!book) {
-      return res.status(404).json({
-        success: false,
-        message: "Book not found.",
-      });
-    }
-
-    const chapter = await Chapter.findOne({
-      book: book._id,
-      number: chapterNumber,
-      isPublished: true,
-    }).lean();
-
-    if (!chapter) {
-      return res.status(404).json({
-        success: false,
-        message: "Chapter not found.",
-      });
-    }
-
-    const verses = await Verse.find({
-      chapter: chapter._id,
-      book: book._id,
-      isPublished: true,
-    })
-      .select("canonicalId number text sourceVersion")
-      .sort({ number: 1 })
-      .lean();
-
-    res.status(200).json({
-      success: true,
-      data: {
-        book,
-        chapter: {
-          number: chapter.number,
-          title: chapter.title,
-        },
-        verses,
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 module.exports = {
-  getBooks,
-  getBookBySlug,
-  getChapter,
+  getBooks: respond(() => content.getBooks()),
+  getBookBySlug: respond(req => content.getBook(req.params.slug)),
+  getChapters: respond(req => content.getChapters(req.params.slug)),
+  getChapter: respond(req => content.getChapter(req.params.slug, req.params.chapterNumber)),
+  getVerses: respond(req => content.getVerses(req.params.slug, req.params.chapterNumber)),
+  getVerse: respond(req => content.getVerse(req.params.slug, req.params.chapterNumber, req.params.verseNumber)),
+  getSupporting: respond(req => content.getSupporting(req.params.slug, req.params.chapterNumber, req.params.verseNumber)),
+  getVerseById: respond(req => content.getVerseById(req.params.canonicalId)),
+  getCrossReferences: respond(() => content.getCrossReferences()),
+  getIndex: respond(() => content.getIndex()),
+  getGlossary: respond(() => content.getGlossary()),
+  getSections: respond(req => content.getSections(req.query.kind)),
+  search: async (req, res, next) => {
+    try {
+      if (Object.keys(req.query).some(key => !['q', 'book', 'chapter', 'type', 'page', 'limit'].includes(key)))
+        throw Object.assign(new Error('Unknown search parameter.'), { status: 400 });
+      const { q, ...filters } = req.query;
+      const result = await content.searchPage(q, { ...filters, type: filters.type ?? 'verse' });
+      res.json({ success: true, count: result.items.length, data: result.items, pagination: result.pagination });
+    } catch (error) { next(error); }
+  },
 };

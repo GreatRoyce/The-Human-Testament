@@ -1,16 +1,10 @@
-
-const express = require("express");
-
-const {
-  getBooks,
-  getBookBySlug,
-  getChapter,
-} = require("../controllers/book.controller");
-
-const router = express.Router();
-
-router.get("/", getBooks);
-router.get("/:slug", getBookBySlug);
-router.get("/:slug/chapters/:chapterNumber", getChapter);
-
+const router = require('express').Router();
+const controller = require('../controllers/book.controller');
+router.get('/', controller.getBooks);
+router.get('/:slug', controller.getBookBySlug);
+router.get('/:slug/chapters', controller.getChapters);
+router.get('/:slug/chapters/:chapterNumber', controller.getChapter);
+router.get('/:slug/chapters/:chapterNumber/verses', controller.getVerses);
+router.get('/:slug/chapters/:chapterNumber/verses/:verseNumber', controller.getVerse);
+router.get('/:slug/chapters/:chapterNumber/verses/:verseNumber/supporting-material', controller.getSupporting);
 module.exports = router;

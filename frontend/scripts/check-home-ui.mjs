@@ -40,7 +40,7 @@ try {
     }
   }
 
-  assert.equal((html.match(/<section\b/g) || []).length, 12, "Current home sections, including community, print and footer");
+  assert.equal((html.match(/<section\b/g) || []).length, 13, "Home sections, including the manuscript note in the reader preview");
   assert.ok(idSet.has("sanctuary"), "Reading preview section present");
   const sanctuary = html.match(/<section[^>]*id="sanctuary"[\s\S]*?<\/section>/)?.[0];
   assert.ok(sanctuary, "Sanctuary renders inside its section");
@@ -60,8 +60,8 @@ try {
     const notePanel = preview.match(/<aside\b[\s\S]*?<\/aside>/)?.[0];
     assert.ok(preview.match(/<button[^>]*aria-pressed="true"[\s\S]*?<\/button>/)?.[0].includes(`10:${number}`));
     assert.ok(notePanel.includes(noteNumber === null ? "This verse carries no note." : `Note ${noteNumber} · Context`));
-    if (noteNumber !== null) assert.ok(notePanel.includes(selectedVerse.commentary.text));
-    assert.equal(notePanel.includes("SEE ALSO"), number === 14);
+    if (noteNumber !== null) assert.ok(notePanel.includes(selectedVerse.notes[0].text));
+    assert.equal(notePanel.includes("See also:"), number === 14);
   }
   assert.equal((html.match(/<article\b/g) || []).length, books.length + questions.length + paths.length + dialogueCards.length + essaysSection.essays.length);
   const essays = html.match(/<section[^>]*id="essays"[\s\S]*?<\/section>/)?.[0];

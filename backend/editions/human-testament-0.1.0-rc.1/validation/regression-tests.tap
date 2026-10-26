@@ -1,0 +1,196 @@
+TAP version 13
+# Subtest: candidate freezes exact bytes, verifies independently of mutable sources, and refuses to overwrite an existing version
+ok 1 - candidate freezes exact bytes, verifies independently of mutable sources, and refuses to overwrite an existing version
+  ---
+  duration_ms: 72.2902
+  type: 'test'
+  ...
+# Subtest: candidate verification detects edited, missing and unexpected artifacts plus changed manifest seals
+ok 2 - candidate verification detects edited, missing and unexpected artifacts plus changed manifest seals
+  ---
+  duration_ms: 93.9603
+  type: 'test'
+  ...
+# Subtest: external manifest identity rejects a resealed change; candidate versions and snapshot paths cannot escape their directories
+ok 3 - external manifest identity rejects a resealed change; candidate versions and snapshot paths cannot escape their directories
+  ---
+  duration_ms: 70.2313
+  type: 'test'
+  ...
+# Subtest: editorial review classifies every original finding without converting evidence, suggestions or source repetitions into approval
+ok 4 - editorial review classifies every original finding without converting evidence, suggestions or source repetitions into approval
+  ---
+  duration_ms: 106.5322
+  type: 'test'
+  ...
+# Subtest: author decisions cannot be lost, rebound to different source/finding hashes, or accepted without identity and a recorded response
+ok 5 - author decisions cannot be lost, rebound to different source/finding hashes, or accepted without identity and a recorded response
+  ---
+  duration_ms: 102.8435
+  type: 'test'
+  ...
+# Subtest: missing wording and inferred anchors remain separate decisions; preservation acceptance alone never proves intentional repetition
+ok 6 - missing wording and inferred anchors remain separate decisions; preservation acceptance alone never proves intentional repetition
+  ---
+  duration_ms: 62.8368
+  type: 'test'
+  ...
+# Subtest: author acceptance of printed broken citations preserves missing-target flags and never selects a thematic replacement
+ok 7 - author acceptance of printed broken citations preserves missing-target flags and never selects a thematic replacement
+  ---
+  duration_ms: 153.9077
+  type: 'test'
+  ...
+# Subtest: all findings may be reviewed without resolving source uncertainty or approving canonical imports
+ok 8 - all findings may be reviewed without resolving source uncertainty or approving canonical imports
+  ---
+  duration_ms: 40.7032
+  type: 'test'
+  ...
+# Subtest: PDF supporting comparison detects punctuation and Unicode changes while explicitly excluding layout whitespace
+ok 9 - PDF supporting comparison detects punctuation and Unicode changes while explicitly excluding layout whitespace
+  ---
+  duration_ms: 3.8661
+  type: 'test'
+  ...
+# Subtest: models preserve decoded strings exactly, including surrounding spaces and paragraph boundaries
+ok 10 - models preserve decoded strings exactly, including surrounding spaces and paragraph boundaries
+  ---
+  duration_ms: 44.2122
+  type: 'test'
+  ...
+# Subtest: repeated import write attempts fail before loading database code and preserve all source artifacts
+ok 11 - repeated import write attempts fail before loading database code and preserve all source artifacts
+  ---
+  duration_ms: 530.4366
+  type: 'test'
+  ...
+# Subtest: models reject editorial verse text, wrong stable identities, invented unresolved text, and implicit string casting
+ok 12 - models reject editorial verse text, wrong stable identities, invented unresolved text, and implicit string casting
+  ---
+  duration_ms: 41.2101
+  type: 'test'
+  ...
+# Subtest: inferred anchors cannot be stored as confirmed source markers
+ok 13 - inferred anchors cannot be stored as confirmed source markers
+  ---
+  duration_ms: 12.6806
+  type: 'test'
+  ...
+# Subtest: publication requires explicit edition approval, manifest, fidelity checks, and review of every issue
+ok 14 - publication requires explicit edition approval, manifest, fidelity checks, and review of every issue
+  ---
+  duration_ms: 35.4602
+  type: 'test'
+  ...
+# Subtest: full draft comparison detects a one-character text change, lost supporting material, and changed anchor uncertainty
+ok 15 - full draft comparison detects a one-character text change, lost supporting material, and changed anchor uncertainty
+  ---
+  duration_ms: 1928.1846
+  type: 'test'
+  ...
+# Subtest: complete artifact verification detects changed source hashes, edition metadata and hidden review findings
+ok 16 - complete artifact verification detects changed source hashes, edition metadata and hidden review findings
+  ---
+  duration_ms: 501.7647
+  type: 'test'
+  ...
+# Subtest: reconciles the full manuscript against the Markdown report while retaining review status
+ok 17 - reconciles the full manuscript against the Markdown report while retaining review status
+  ---
+  duration_ms: 7.7735
+  type: 'test'
+  ...
+# Subtest: all 31 empty references and flags reconcile by identity; Purpose 3:16 is not a fake verse
+ok 18 - all 31 empty references and flags reconcile by identity; Purpose 3:16 is not a fake verse
+  ---
+  duration_ms: 3.3939
+  type: 'test'
+  ...
+# Subtest: every authored verse exactly matches its original clean TXT lines, including punctuation and repetition
+ok 19 - every authored verse exactly matches its original clean TXT lines, including punctuation and repetition
+  ---
+  duration_ms: 126.439
+  type: 'test'
+  ...
+# Subtest: all notes preserve their original marker, prose, citation lines and anchor uncertainty
+ok 20 - all notes preserve their original marker, prose, citation lines and anchor uncertainty
+  ---
+  duration_ms: 27.3649
+  type: 'test'
+  ...
+# Subtest: cross-references and all index entries agree while the three invalid targets stay invalid
+ok 21 - cross-references and all index entries agree while the three invalid targets stay invalid
+  ---
+  duration_ms: 4.482
+  type: 'test'
+  ...
+# Subtest: glossary and front/back matter retain source text outside canonical verses
+ok 22 - glossary and front/back matter retain source text outside canonical verses
+  ---
+  duration_ms: 11.8268
+  type: 'test'
+  ...
+# Subtest: only actual old-title citations count as legacy notes; ordinary Responsibility prose is preserved
+ok 23 - only actual old-title citations count as legacy notes; ordinary Responsibility prose is preserved
+  ---
+  duration_ms: 1.9607
+  type: 'test'
+  ...
+# Subtest: Relationships chapter 1 stays at 14 authored references; a report contradiction remains detectable
+ok 24 - Relationships chapter 1 stays at 14 authored references; a report contradiction remains detectable
+  ---
+  duration_ms: 287.5059
+  type: 'test'
+  ...
+# Subtest: editorial flags and other bracketed markers cannot become canonical verse text
+ok 25 - editorial flags and other bracketed markers cannot become canonical verse text
+  ---
+  duration_ms: 2.3762
+  type: 'test'
+  ...
+# Subtest: an empty reference without a flag stays unresolved and never gains invented text
+ok 26 - an empty reference without a flag stays unresolved and never gains invented text
+  ---
+  duration_ms: 1.8131
+  type: 'test'
+  ...
+# Subtest: a thirty-flag input fails reconciliation even though it still has 31 empty references
+ok 27 - a thirty-flag input fails reconciliation even though it still has 31 empty references
+  ---
+  duration_ms: 254.4063
+  type: 'test'
+  ...
+# Subtest: existing-reference checks cannot approve an incorrectly inferred anchor
+ok 28 - existing-reference checks cannot approve an incorrectly inferred anchor
+  ---
+  duration_ms: 183.0352
+  type: 'test'
+  ...
+# Subtest: duplicate references, lost notes, broken index pairs and glossary omissions are detected
+ok 29 - duplicate references, lost notes, broken index pairs and glossary omissions are detected
+  ---
+  duration_ms: 798.4063
+  type: 'test'
+  ...
+# Subtest: read-only CLI is independent of cwd and leaves all ten existing data files byte-identical
+ok 30 - read-only CLI is independent of cwd and leaves all ten existing data files byte-identical
+  ---
+  duration_ms: 859.1666
+  type: 'test'
+  ...
+# Subtest: malformed boundaries and report conventions fail instead of silently dropping data
+ok 31 - malformed boundaries and report conventions fail instead of silently dropping data
+  ---
+  duration_ms: 7.9318
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5908.3187

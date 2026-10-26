@@ -9,7 +9,9 @@ This is the website content layer.
 Canonical text must remain exact.
 Editorial prompts must never be presented as Testament verses.
 
-Testament fixtures now live in `mock/testament/`. The mock provider adapts the preserved book summaries and supplied excerpts to the public content contracts. It does not contain the full corpus.
+The default content source is `pdf`. `shared/manuscript.json` contains the complete verified transcription of `backend/data/The-Human-Testament--Complete-Manuscript.pdf`. Reader, search, quotations, and manuscript materials use this same dataset. The former `mock/testament/` exports are compatibility adapters to it; book descriptions remain editorial summaries.
+
+Run `npm.cmd run content:check` from `backend/` to verify the bundle against the PDF and structured transcription. Frontend builds run that check automatically. See `shared/README.md` for regeneration and fidelity limits.
 
 Reader components consume feature hooks and services rather than importing fixtures. New canonical content should come through the Testament domain provider. Other files here remain editorial/home copy; do not automatically treat their prompts as canonical verses.
 
