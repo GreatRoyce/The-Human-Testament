@@ -10,7 +10,10 @@ import EssayReflections from '../../features/home/components/EssayReflections';
 import CommunitySection from '../../features/home/components/CommunitySection';
 import PhysicalBookSection from '../../features/home/components/PhysicalBookSection';
 import Footer from '../../components/layout/Footer';
-const Home = () => {
+import ReaderDashboard from './ReaderDashboard.jsx';
+import { useAuth } from '../../hooks/useAuth.js';
+
+export function PublicHome() {
   return (
     <main id="main-content" tabIndex={-1} className="bg-ivory">
       <Hero />
@@ -20,14 +23,18 @@ const Home = () => {
       <LivingInquiry />
       <PathOfInquiry />
       <Dialogue />
-      <Sanctuary/>
+      <Sanctuary />
       <EssayReflections />
       <CommunitySection />
       <PhysicalBookSection />
       <Footer />
-
     </main>
   );
+}
+
+const Home = () => {
+  const { user } = useAuth();
+  return user ? <ReaderDashboard user={user} /> : <PublicHome />;
 };
 
 export default Home;

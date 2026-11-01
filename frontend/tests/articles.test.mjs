@@ -78,9 +78,11 @@ test('article editor, previews, cards and routes safely render reader content wi
     assert.ok(!editor.includes('name="status"')); assert.ok(!editor.includes('name="author"')); assert.ok(!editor.includes('<script>'));
     const publicCard = render(Card, { article: summary(article) }); assert.ok(publicCard.includes('/articles/' + article.slug));
     const ownerCard = render(Card, { article: summary(article), management: true }); assert.ok(ownerCard.includes('/articles/mine/' + article.id));
-    for (const path of ['/articles', '/articles/' + article.slug, '/articles/mine', '/articles/write', '/articles/mine/' + article.id, '/articles/moderation', '/articles/moderation/' + article.id]) {
+    for (const path of ['/articles', '/articles/' + article.slug]) {
       const page = render(Routes, {}, path); assert.equal((page.match(/<main\b/g) || []).length, 1, path); assert.equal((page.match(/<h1\b/g) || []).length, 1, path);
       assert.ok(page.includes('Article navigation'), path); assert.ok(!page.includes('Record publication decision'), 'Unfetched or unauthorized review data must not show moderation controls.');
     }
+    for (const path of ['/articles/mine', '/articles/write', '/articles/mine/' + article.id, '/articles/moderation', '/articles/moderation/' + article.id])
+      assert.equal(render(Routes, {}, path), '', `Protected article route ${path} must not render before authentication.`);
   } finally { await server.close(); }
 });

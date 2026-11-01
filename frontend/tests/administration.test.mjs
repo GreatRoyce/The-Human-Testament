@@ -72,6 +72,7 @@ test('admin screens follow existing page structure, guard child screens, show de
   try {
     const render = (Component, props = {}, path = '/admin') => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: [path] }, createElement(Component, props)));
     const { default: AppRoutes } = await server.ssrLoadModule('/src/routes/AppRoutes.jsx');
+    const { default: AdminLayout } = await server.ssrLoadModule('/src/components/admin/AdminLayout.jsx');
     const { default: Overview } = await server.ssrLoadModule('/src/components/admin/AdminOverview.jsx');
     const { AuditEntries } = await server.ssrLoadModule('/src/components/admin/AdminAudit.jsx');
     const { default: StatusForm } = await server.ssrLoadModule('/src/components/admin/AccountStatusForm.jsx');
@@ -81,7 +82,8 @@ test('admin screens follow existing page structure, guard child screens, show de
     const { default: Queue } = await server.ssrLoadModule('/src/components/community/ModerationQueue.jsx');
     const { default: ArticleReview } = await server.ssrLoadModule('/src/components/articles/ArticleReview.jsx');
     for (const path of ['/admin', '/admin/users', '/admin/users/' + userId, '/admin/articles', '/admin/articles/' + userId, '/admin/community', '/admin/reports', '/admin/audit']) {
-      const html = render(AppRoutes, {}, path); assert.equal((html.match(/<main\b/g) || []).length, 1); assert.equal((html.match(/<h1\b/g) || []).length, 1);
+      assert.equal(render(AppRoutes, {}, path), '', 'Unauthenticated server renders must not expose administration routes.');
+      const html = render(AdminLayout, {}, path); assert.equal((html.match(/<main\b/g) || []).length, 1); assert.equal((html.match(/<h1\b/g) || []).length, 1);
       assert.ok(html.includes('Administration')); assert.ok(html.includes('Loading content')); assert.ok(!html.includes('Find users'), 'Protected children must not mount until capability check succeeds.');
     }
     const absent = render(Overview, { data: overview() }); assert.ok(absent.includes('Analytics unavailable')); assert.ok(absent.includes('No prepublication queue')); assert.ok(absent.includes('No accessible actions'));

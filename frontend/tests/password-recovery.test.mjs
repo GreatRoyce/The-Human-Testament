@@ -59,11 +59,12 @@ test('recovery pages preserve page structure and never render the reset token in
     const { default: Routes } = await server.ssrLoadModule('/src/routes/AppRoutes.jsx');
     const render = route => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: [route] }, createElement(Routes)));
     for (const [path, expected] of [['/login', 'Forgot your password?'], ['/forgot-password', 'Request reset link'],
-      ['/reset-password', 'Request a new reset link'], ['/account/change-password', 'Loading content']]) {
+      ['/reset-password', 'Request a new reset link']]) {
       const html = render(path);
       assert.ok(html.includes(expected));
       assert.equal((html.match(/<main\b/g) ?? []).length, 1); assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
     }
+    assert.equal(render('/account/change-password'), '', 'Password changes require an authenticated session.');
     const previous = globalThis.window;
     const token = 'a'.repeat(43);
     // SSR fixture exercises initial fragment parsing only; browser effects are

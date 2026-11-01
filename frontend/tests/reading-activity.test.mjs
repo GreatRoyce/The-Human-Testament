@@ -178,8 +178,7 @@ test('continue/history/checkpoint screens preserve layout, resume addresses, emp
     const historyHtml = render(History, { items: [history], pagination, onPage: () => {} });
     assert.ok(historyHtml.includes('/testament/freedom/10/14')); assert.ok(historyHtml.includes('2026-10-24 12:00:00 UTC')); assert.ok(historyHtml.includes('1 visits'));
     const emptyHistory = render(History, { items: [], pagination: { ...pagination, total: 0, pages: 0 }, onPage: () => {} }); assert.ok(emptyHistory.includes('No reading history here yet'));
-    const route = render(Routes, {}); assert.ok(route.includes('Reading history')); assert.ok(route.includes('Loading content'));
-    assert.equal((route.match(/<main\b/g) ?? []).length, 1); assert.equal((route.match(/<h1\b/g) ?? []).length, 1);
+    const route = render(Routes, {}); assert.equal(route, '', 'Reading history must not render before authentication.');
     const chapter = render(Routes, {}, '/testament/freedom/10/14'); assert.ok(chapter.includes('Responsibility is the shadow cast by freedom.'));
     assert.match(chapter, /<li[^>]+id="[^"]+-verse-14"><button[^>]+aria-pressed="true"/);
     const saving = render(Progress, { location }); assert.ok(saving.includes('Saving reading position after navigation settles'));

@@ -78,8 +78,7 @@ test('settings route and form retain page structure, safe read-only fields and a
     const { default: Routes } = await server.ssrLoadModule('/src/routes/AppRoutes.jsx');
     const { default: Form } = await server.ssrLoadModule('/src/features/account/AccountSettingsForm.jsx');
     const render = element => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: ['/account/settings'] }, element));
-    const route = render(createElement(Routes)); assert.ok(route.includes('Account settings')); assert.ok(route.includes('Loading content'));
-    assert.equal((route.match(/<main\b/g) ?? []).length, 1); assert.equal((route.match(/<h1\b/g) ?? []).length, 1);
+    const route = render(createElement(Routes)); assert.equal(route, '', 'Account settings must not render before authentication.');
     for (const verified of [false, true]) {
       const html = render(createElement(Form, { profile: { ...profile, emailVerified: verified }, onSave: async () => profile, onLogout: async () => {} }));
       assert.ok(html.includes('value="Synthetic Reader"')); assert.ok(html.includes(profile.email)); assert.ok(html.includes('2026-10-22'));

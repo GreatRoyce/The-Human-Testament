@@ -71,8 +71,7 @@ test('notification list escapes actors/messages, distinguishes read state and ne
     assert.ok(html.includes('Unread')); assert.ok(html.includes('Mark as read')); assert.ok(html.includes(item.targetUrl));
     const read = render(List, { items: [{ ...item, readAt: '2026-10-26T13:00:00.000Z' }], onRead() {} }); assert.ok(read.includes('Read')); assert.ok(!read.includes('Mark as read'));
     const hidden = render(List, { items: [{ ...item, actor: null, type: 'unavailable', resourceId: null, resourceType: null, targetUrl: null }], onRead() {} }); assert.ok(!hidden.includes('href=')); assert.ok(hidden.includes('no longer have access'));
-    const page = render(Routes, {}); assert.equal((page.match(/<main\b/g) || []).length, 1); assert.equal((page.match(/<h1\b/g) || []).length, 1);
-    assert.ok(page.includes('Notifications')); assert.ok(page.includes('Refresh notifications')); assert.ok(page.includes('does not poll')); assert.ok(page.includes('Loading content'));
+    const page = render(Routes, {}); assert.equal(page, '', 'Private notifications must not render before authentication.');
     assert.ok(render(Link, {}, '/testament').includes('href="/notifications"'));
   } finally { await server.close(); }
 });

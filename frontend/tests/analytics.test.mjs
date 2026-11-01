@@ -99,6 +99,7 @@ test('Owner/Admin routes and summary render real empty/partial states, safe link
     const render = (Component, props, path = '/') => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: [path] }, createElement(Component, props)));
     const { default: Summary } = await server.ssrLoadModule('/src/components/analytics/AnalyticsSummary.jsx');
     const { default: Routes } = await server.ssrLoadModule('/src/routes/AppRoutes.jsx');
+    const { default: Dashboard } = await server.ssrLoadModule('/src/pages/Analytics/AnalyticsDashboard.jsx');
     const { default: Tracking } = await server.ssrLoadModule('/src/components/analytics/AnalyticsTracking.jsx');
     const empty = render(Summary, { data: emptyData() });
     for (const text of ['No analytics data', 'Partial data', 'Comparison unavailable', 'not exact people', 'Authenticated activity', '2026-10-20', 'Not enough traffic']) assert.ok(empty.includes(text), text);
@@ -107,8 +108,10 @@ test('Owner/Admin routes and summary render real empty/partial states, safe link
     const html = render(Summary, { data }); assert.ok(html.includes('<svg')); assert.ok(html.includes('Collection operations')); assert.ok(html.includes('&lt;script&gt;')); assert.ok(!html.includes('href="javascript:')); assert.ok(html.includes('href="/testament"'));
     for (const scope of ['owner', 'admin']) {
       const route = render(Routes, {}, `/${scope}/analytics`);
-      assert.equal((route.match(/<main\b/g) || []).length, 1); assert.equal((route.match(/<h1\b/g) || []).length, 1);
-      assert.ok(route.includes(scope === 'owner' ? 'Owner analytics' : 'Admin analytics')); assert.ok(route.includes('Last 90 days')); assert.ok(route.includes('Loading content'));
+      assert.equal(route, '', 'Analytics routes require an authenticated session.');
+      const page = render(Dashboard, { scope });
+      assert.equal((page.match(/<main\b/g) || []).length, 1); assert.equal((page.match(/<h1\b/g) || []).length, 1);
+      assert.ok(page.includes(scope === 'owner' ? 'Owner analytics' : 'Admin analytics')); assert.ok(page.includes('Last 90 days')); assert.ok(page.includes('Loading content'));
     }
     assert.equal(render(Tracking), '', 'Collection and controls are absent by default.');
   } finally { await server.close(); }

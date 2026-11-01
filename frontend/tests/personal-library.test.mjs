@@ -127,10 +127,8 @@ test('reader, library routes, private cards and editor render existing structure
     const Controls = await load('/src/features/reader/components/ReaderControls.jsx');
     const Prompt = await load('/src/features/reader/components/LibraryLoginPrompt.jsx');
     const render = (Component, props, path = '/reading/notes') => renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: [path] }, createElement(Component, props)));
-    for (const [path, title] of [['/reading/notes', 'Private notes'], ['/reading/saved-verses', 'Saved verses']]) {
-      const html = render(Routes, {}, path); assert.ok(html.includes(title)); assert.ok(html.includes('Loading content'));
-      assert.equal((html.match(/<main\b/g) ?? []).length, 1); assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-    }
+    for (const path of ['/reading/notes', '/reading/saved-verses'])
+      assert.equal(render(Routes, {}, path), '', `Private library route ${path} must not render before authentication.`);
     const editor = render(Editor, { initialContent: note.content, onSave: async () => {} });
     assert.ok(editor.includes('maxLength="5000"')); assert.ok(editor.includes('Only you can see this note'));
     assert.ok(editor.includes('&lt;script&gt;')); assert.ok(!editor.includes('<script>')); assert.ok(editor.includes('name="content"'));

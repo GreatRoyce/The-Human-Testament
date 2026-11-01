@@ -5,11 +5,12 @@ import { MdArrowForwardIos, MdMenu } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const navigationItems = [
-  { label: "The Testament", href: "/#books" },
-  { label: "Questions", href: "/#questions" },
-  { label: "Path", href: "/#paths" },
-  { label: "Community", href: "/#community" },
-  { label: "About", href: "/#about" },
+  { label: "Home", href: "/welcome" },
+  { label: "The Testament", href: "/welcome#books" },
+  { label: "Articles", href: "/articles" },
+  { label: "Questions", href: "/welcome#questions" },
+  { label: "Community", href: "/community" },
+  { label: "About", href: "/welcome#about" },
 ];
 
 const linkStyles =
@@ -32,7 +33,7 @@ const Navbar = () => {
         Skip to main content
       </a>
       <nav aria-label="Main navigation" className="mx-auto flex min-h-16 max-w-content items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
-        <a href="/" aria-label="The Human Testament home" className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2">
+        <a href="/welcome" aria-label="The Human Testament home" className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2">
           <Logo type="horizontal" alt="The Human Testament" width={150} imageClassName="h-auto max-w-full" />
         </a>
 
@@ -52,7 +53,10 @@ const Navbar = () => {
           <Button className="h-11 font-serif uppercase text-xs" variant="ghost" title="Sign in" onClick={() => navigate('/login')}>
             Sign In
           </Button>
-          <a href="/#books" className={enterStyles}>
+          <Button className="h-11 font-serif uppercase text-xs" variant="ghost" title="Create an account" onClick={() => navigate('/register')}>
+            Create account
+          </Button>
+          <a href="/testament" className={enterStyles}>
             Enter the Testament
             <MdArrowForwardIos size={16} aria-hidden="true" />
           </a>
@@ -85,7 +89,8 @@ const Navbar = () => {
                 Search
               </Button>
               <Button variant="ghost" className="h-11" title="Sign in" onClick={(event) => { closeMenu(event); navigate('/login'); }}>Sign In</Button>
-              <a href="/#books" onClick={closeMenu} className={enterStyles}>
+              <Button variant="ghost" className="h-11" title="Create an account" onClick={(event) => { closeMenu(event); navigate('/register'); }}>Create account</Button>
+              <a href="/testament" onClick={closeMenu} className={enterStyles}>
                 Enter the Testament
                 <MdArrowForwardIos size={16} aria-hidden="true" />
               </a>

@@ -4,6 +4,7 @@ import { ApiError } from './api/ApiError.js';
 
 const userSchema = z.object({ id: z.string().regex(/^[a-f0-9]{24}$/), email: z.string(), displayName: z.string(),
   role: z.string(), emailVerified: z.boolean(), isActive: z.boolean() }).strict();
+const signedOutSession = Object.freeze({ user: null });
 const profileSchema = z.object({ user: userSchema }).strict();
 const loginSchema = profileSchema.extend({ accessToken: z.string().min(1), expiresIn: z.number().int().positive() });
 const messageSchema = z.object({ message: z.string() }).strict();
@@ -19,8 +20,21 @@ function decode(schema, envelope) {
 // by the browser's HttpOnly cookie jar; no token is written to browser storage.
 export function createAuthService(client = apiClient) {
   let accessToken, expiresAt = 0, epoch = 0;
+  let session = Object.freeze({ user: null });
+  const listeners = new Set();
+  let expiryTimer;
+  const publish = user => {
+    session = Object.freeze({ user });
+    for (const listener of listeners) listener();
+  };
   const mutation = signal => ({ signal, credentials: 'include', headers: { 'X-CSRF-Protection': '1' } });
-  const clear = () => { accessToken = undefined; expiresAt = 0; epoch++; };
+  const clear = () => {
+    accessToken = undefined; expiresAt = 0; epoch++;
+    globalThis.clearTimeout(expiryTimer);
+    expiryTimer = undefined;
+    publish(null);
+  };
+  const establish = user => publish(user);
   async function profileRequest(method, body, signal) {
     if (!accessToken || expiresAt <= Date.now()) { if (accessToken || expiresAt) clear(); throw new ApiError('Please log in.', { code: 'HTTP_ERROR', status: 401 }); }
     const started = epoch;
@@ -33,6 +47,10 @@ export function createAuthService(client = apiClient) {
   }
   return {
     getSessionVersion: () => epoch,
+    subscribe(listener) { listeners.add(listener); return () => listeners.delete(listener); },
+    getSessionSnapshot() {
+      return accessToken && expiresAt <= Date.now() ? signedOutSession : session;
+    },
     async administrationRequest(method, path, body, { signal, query } = {}) {
       const read = method === 'get' && /^\/api\/admin\/(?:capabilities|overview|audit|users(?:\/[a-f0-9]{24})?)$/.test(path);
       const write = method === 'patch' && /^\/api\/admin\/users\/[a-f0-9]{24}\/status$/.test(path);
@@ -101,6 +119,12 @@ export function createAuthService(client = apiClient) {
       if (started !== epoch) throw new ApiError('Your session has changed. Please try again.', { status: 401 });
       accessToken = data.accessToken; expiresAt = Date.now() + data.expiresIn * 1000;
       epoch++;
+      establish(data.user);
+      globalThis.clearTimeout(expiryTimer);
+      expiryTimer = globalThis.setTimeout(() => {
+        if (expiresAt <= Date.now()) clear();
+      }, data.expiresIn * 1000);
+      expiryTimer?.unref?.();
       return { user: data.user, expiresIn: data.expiresIn };
     },
     async getCurrentUser({ signal } = {}) {
@@ -112,7 +136,9 @@ export function createAuthService(client = apiClient) {
       try {
         const response = await client.get('/api/auth/me', { signal, credentials: 'include', headers: { Authorization: `Bearer ${accessToken}` } });
         if (started !== epoch) throw new ApiError('Your session has changed. Please reload.', { status: 401 });
-        return decode(profileSchema, response).user;
+        const user = decode(profileSchema, response).user;
+        establish(user);
+        return user;
       } catch (error) { if (error.status === 401 && started === epoch) clear(); throw error; }
     },
     async logout({ signal } = {}) {

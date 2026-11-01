@@ -59,3 +59,22 @@ test('unauthorized profile reads clear the in-memory access token', async () => 
   await assert.rejects(auth.getCurrentUser(), { status: 401 });
   assert.equal(reads, 1);
 });
+
+test('session snapshots notify navigation on login and logout without persisting credentials', async () => {
+  const client = {
+    post: async path => path.endsWith('/login')
+      ? { success: true, data: { user, accessToken: 'synthetic-only', expiresIn: 900 } }
+      : { success: true, data: { message: 'Logged out.' } },
+  };
+  const auth = createAuthService(client);
+  let notifications = 0;
+  const unsubscribe = auth.subscribe(() => notifications++);
+  assert.equal(auth.getSessionSnapshot().user, null);
+  await auth.login({ email: user.email, password: 'synthetic' });
+  assert.deepEqual(auth.getSessionSnapshot().user, user);
+  assert.equal(notifications, 1);
+  await auth.logout();
+  assert.equal(auth.getSessionSnapshot().user, null);
+  assert.equal(notifications, 2);
+  unsubscribe();
+});

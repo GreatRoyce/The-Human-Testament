@@ -121,9 +121,10 @@ test('community cards, comments, forms and states escape UGC and conceal moderat
     const empty = render(ui.Resource, { resource: { loading: false, data: { items: [] } }, empty: 'No discussions yet.', children: () => 'Should not display' }); assert.ok(empty.includes('No discussions yet.')); assert.ok(!empty.includes('Should not display'));
     const error = render(ui.Resource, { resource: { loading: false, error: { message: 'Community unavailable.' }, retry() {} }, children: () => '' }); assert.ok(error.includes('Community unavailable.'));
     const { default: Routes } = await server.ssrLoadModule('/src/routes/AppRoutes.jsx');
-    for (const path of ['/community', '/community/discussions', '/community/discussions/' + discussion.id, '/community/reading-circles', '/community/reading-circles/' + circle.id, '/community/moderation']) {
+    for (const path of ['/community', '/community/discussions', '/community/discussions/' + discussion.id, '/community/reading-circles', '/community/reading-circles/' + circle.id]) {
       const html = render(Routes, {}, path); assert.equal((html.match(/<main\b/g) ?? []).length, 1, path); assert.equal((html.match(/<h1\b/g) ?? []).length, 1, path); assert.ok(!html.includes('not available yet'), path);
     }
+    assert.equal(render(Routes, {}, '/community/moderation'), '', 'Moderator routes require an authenticated session.');
     const { default: Controls } = await server.ssrLoadModule('/src/features/reader/components/ReaderControls.jsx');
     const reader = render(Controls, { selectedVerse: { canonicalId: discussion.verseId, bookSlug: 'freedom', chapterNumber: 10, number: 14 } });
     assert.ok(reader.includes('/community/discussions?verseId=freedom%3A10%3A14')); assert.ok(reader.includes('/reading/notes'));

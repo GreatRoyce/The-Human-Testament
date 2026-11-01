@@ -1,6 +1,91 @@
 {
   "auditDate": "2026-10-26",
   "recordedAt": "2026-10-26T16:47:54.039Z",
+  "latestRevalidation": {
+    "date": "2026-11-01",
+    "runtime": {
+      "tested": "v22.23.4",
+      "systemDefaultRemains": "v22.16.0",
+      "minimumProduction": "22.23.4",
+      "productionEligible": true,
+      "install": "Session-local portable official Node distribution",
+      "archiveSha256": "cbc74b5e0982c9dbb41525fd8fb5dcd32fbee237863f7829072f4639a1ce5f20"
+    },
+    "backendTests": {
+      "retryCommand": "npm.cmd test -- --test-concurrency=1",
+      "exitCode": 0,
+      "tests": 275,
+      "pass": 275,
+      "fail": 0,
+      "firstAttemptOnSystemDefault": {
+        "exitCode": 1,
+        "pass": 250,
+        "fail": 2,
+        "reason": "MongoMemoryServer startup timed out after 10 seconds"
+      }
+    },
+    "frontend": {
+      "tests": {
+        "command": "npm.cmd test -- --test-concurrency=1",
+        "exitCode": 0,
+        "tests": 82,
+        "pass": 82,
+        "fail": 0
+      },
+      "lintExitCode": 0,
+      "buildExitCode": 0,
+      "routeCheck": {
+        "exitCode": 0,
+        "renderedRoutes": 745,
+        "relativeImports": 502,
+        "directUrlRequests": 9,
+        "transformedModules": 3
+      }
+    },
+    "dependencyAudits": {
+      "backendAll": {
+        "high": 1,
+        "moderate": 2,
+        "total": 3,
+        "devOnly": true
+      },
+      "frontendAll": {
+        "moderate": 6,
+        "total": 6,
+        "devOnly": true
+      },
+      "backendProduction": {
+        "total": 0
+      },
+      "frontendProduction": {
+        "total": 0
+      }
+    },
+    "browser": {
+      "cssViewportWidths": [
+        375,
+        768,
+        1440
+      ],
+      "horizontalOverflow": false,
+      "skipLinkKeyboardFocus": true,
+      "mobileMenuKeyboardOperable": true
+    },
+    "manuscript": {
+      "fidelityPassed": true,
+      "fidelityChecks": 32,
+      "protectedDataFilesUnchanged": 10,
+      "contentSyncCheckPassed": true,
+      "ingestionCheckPassed": true,
+      "editorialCheckPassed": true,
+      "candidateHashCheckPassed": true,
+      "legacyImportDryRunPassed": true,
+      "databaseModified": false,
+      "importApproved": false
+    },
+    "apiCheckAgainstAtlas": "not run; would require live deployment credentials",
+    "releaseRecommendation": "NOT_READY"
+  },
   "releaseRecommendation": "NOT_READY",
   "runtime": {
     "tested": "v22.16.0",

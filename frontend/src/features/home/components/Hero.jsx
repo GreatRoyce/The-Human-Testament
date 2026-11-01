@@ -1,5 +1,6 @@
 import { GoDotFill } from "react-icons/go";
 import { manuscriptCounts, manuscriptSource, manuscriptVerse } from '../../../services/manuscriptContent.js';
+import { Link } from 'react-router-dom';
 
 const HeroFooter = [
   `${manuscriptCounts.books} books`,
@@ -32,16 +33,17 @@ const Hero = () => {
       </p>
 
       <div className="flex w-full flex-col sm:w-auto sm:flex-row gap-4 sm:pb-6">
-        <a
-          href="#books"
+        <Link
+          to="/testament"
           className="inline-flex min-h-18 items-center justify-center rounded-soft bg-forest px-8 py-4 text-center text-sm font-semibold uppercase text-white transition-colors hover:bg-forest-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none sm:px-12"
         >
-          Enter the <br /> Testament
-        </a>
-        <a href="#questions" className="inline-flex min-h-18 items-center justify-center rounded-soft border border-forest px-8 py-4 text-center text-sm font-semibold uppercase text-forest transition-colors hover:bg-parchment focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none sm:px-12">
-          explore the <br /> Questions{" "}
-        </a>
+          Start reading
+        </Link>
+        <Link to="/register" className="inline-flex min-h-18 items-center justify-center rounded-soft border border-forest px-8 py-4 text-center text-sm font-semibold uppercase text-forest transition-colors hover:bg-parchment focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none sm:px-12">
+          Create an account
+        </Link>
       </div>
+      <a href="#questions" className="text-sm text-forest underline underline-offset-4">Explore the questions</a>
       <blockquote className="max-w-2xl text-center text-charcoal text-base italic font-serif">
         “{manuscriptVerse('freedom', 18, 15)}” - Freedom 18:15
       </blockquote>

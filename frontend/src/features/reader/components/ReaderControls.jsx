@@ -14,8 +14,8 @@ export default function ReaderControls({ selectedVerse }) {
       <Link className="underline underline-offset-4" to="/reading/history">Reading history</Link>
       <NotificationLink />
     </nav>
-    {selectedVerse?.canonicalId && <ReadingProgress key={selectedVerse.canonicalId} location={{ bookId: selectedVerse.bookSlug, chapterNumber: selectedVerse.chapterNumber, verseNumber: selectedVerse.number }} />}
-    {selectedVerse?.canonicalId ? <VerseLibraryActions key={selectedVerse.canonicalId} verseId={selectedVerse.canonicalId} /> :
+    {selectedVerse?.canonicalId && <ReadingProgress key={`progress:${selectedVerse.canonicalId}`} location={{ bookId: selectedVerse.bookSlug, chapterNumber: selectedVerse.chapterNumber, verseNumber: selectedVerse.number }} />}
+    {selectedVerse?.canonicalId ? <VerseLibraryActions key={`library:${selectedVerse.canonicalId}`} verseId={selectedVerse.canonicalId} /> :
       <p className="text-xs text-muted">Select a verse to save it or write a private note.</p>}
   </div>;
 }

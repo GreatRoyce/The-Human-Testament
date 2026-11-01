@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home/Home.jsx';
+import Home, { PublicHome } from '../pages/Home/Home.jsx';
 import Contact from '../pages/Legal/Contact.jsx';
 import Privacy from '../pages/Legal/Privacy.jsx';
 import Terms from '../pages/Legal/Terms.jsx';
@@ -32,6 +32,9 @@ import ArticlePage from '../pages/Articles/ArticlePage.jsx';
 import MyArticles from '../pages/Articles/MyArticles.jsx';
 import ArticleEditorPage from '../pages/Articles/ArticleEditorPage.jsx';
 import ArticleModeration from '../pages/Articles/ArticleModeration.jsx';
+import Register from '../pages/Auth/Register.jsx';
+import AuthenticatedRoute from './AuthenticatedRoute.jsx';
+import { Navigate } from 'react-router-dom';
 import Notifications from '../pages/Account/Notifications.jsx';
 import AnalyticsDashboard from '../pages/Analytics/AnalyticsDashboard.jsx';
 import AdminLayout from '../components/admin/AdminLayout.jsx';
@@ -45,6 +48,10 @@ import AdminAudit from '../components/admin/AdminAudit.jsx';
 export default function AppRoutes() {
   return <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/welcome" element={<PublicHome />} />
+    <Route path="/dashboard" element={<AuthenticatedRoute><Home /></AuthenticatedRoute>} />
+    <Route path="/read" element={<Navigate to="/testament" replace />} />
+    <Route path="/explore" element={<Navigate to="/testament" replace />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/privacy" element={<Privacy />} />
     <Route path="/terms" element={<Terms />} />
@@ -56,14 +63,15 @@ export default function AppRoutes() {
     <Route path="/books/:bookId" element={<LegacyBookRedirect />} />
     <Route path="/search" element={<Search />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/reset-password" element={<ResetPassword />} />
-    <Route path="/account/change-password" element={<ChangePassword />} />
-    <Route path="/account/settings" element={<Settings />} />
-    <Route path="/notifications" element={<Notifications />} />
-    <Route path="/owner/analytics" element={<AnalyticsDashboard scope="owner" />} />
-    <Route path="/admin/analytics" element={<AnalyticsDashboard scope="admin" />} />
-    <Route path="/admin" element={<AdminLayout />}>
+    <Route path="/account/change-password" element={<AuthenticatedRoute><ChangePassword /></AuthenticatedRoute>} />
+    <Route path="/account/settings" element={<AuthenticatedRoute><Settings /></AuthenticatedRoute>} />
+    <Route path="/notifications" element={<AuthenticatedRoute><Notifications /></AuthenticatedRoute>} />
+    <Route path="/owner/analytics" element={<AuthenticatedRoute><AnalyticsDashboard scope="owner" /></AuthenticatedRoute>} />
+    <Route path="/admin/analytics" element={<AuthenticatedRoute><AnalyticsDashboard scope="admin" /></AuthenticatedRoute>} />
+    <Route path="/admin" element={<AuthenticatedRoute><AdminLayout /></AuthenticatedRoute>}>
       <Route index element={<AdminOverview />} />
       <Route path="users" element={<AdminUsers />} />
       <Route path="users/:id" element={<AdminUserDetails />} />
@@ -73,21 +81,21 @@ export default function AppRoutes() {
       <Route path="reports" element={<AdminCommunity reports />} />
       <Route path="audit" element={<AdminAudit />} />
     </Route>
-    <Route path="/reading/saved-verses" element={<SavedVerses />} />
-    <Route path="/reading/notes" element={<Notes />} />
-    <Route path="/reading/history" element={<ReadingHistory />} />
+    <Route path="/reading/saved-verses" element={<AuthenticatedRoute><SavedVerses /></AuthenticatedRoute>} />
+    <Route path="/reading/notes" element={<AuthenticatedRoute><Notes /></AuthenticatedRoute>} />
+    <Route path="/reading/history" element={<AuthenticatedRoute><ReadingHistory /></AuthenticatedRoute>} />
     <Route path="/community" element={<Community />} />
     <Route path="/community/discussions" element={<Discussions />} />
     <Route path="/community/discussions/:id" element={<DiscussionPage />} />
     <Route path="/community/reading-circles" element={<ReadingCircles />} />
     <Route path="/community/reading-circles/:id" element={<ReadingCirclePage />} />
-    <Route path="/community/moderation" element={<Moderation />} />
+    <Route path="/community/moderation" element={<AuthenticatedRoute><Moderation /></AuthenticatedRoute>} />
     <Route path="/articles" element={<Articles />} />
-    <Route path="/articles/mine" element={<MyArticles />} />
-    <Route path="/articles/write" element={<ArticleEditorPage />} />
-    <Route path="/articles/mine/:id" element={<ArticleEditorPage />} />
-    <Route path="/articles/moderation" element={<ArticleModeration />} />
-    <Route path="/articles/moderation/:id" element={<ArticleModeration />} />
+    <Route path="/articles/mine" element={<AuthenticatedRoute><MyArticles /></AuthenticatedRoute>} />
+    <Route path="/articles/write" element={<AuthenticatedRoute><ArticleEditorPage /></AuthenticatedRoute>} />
+    <Route path="/articles/mine/:id" element={<AuthenticatedRoute><ArticleEditorPage /></AuthenticatedRoute>} />
+    <Route path="/articles/moderation" element={<AuthenticatedRoute><ArticleModeration /></AuthenticatedRoute>} />
+    <Route path="/articles/moderation/:id" element={<AuthenticatedRoute><ArticleModeration /></AuthenticatedRoute>} />
     <Route path="/articles/:slug" element={<ArticlePage />} />
     <Route path="/verify-email" element={<VerifyEmail />} />
     <Route path="/verification-pending" element={<VerificationPending />} />
