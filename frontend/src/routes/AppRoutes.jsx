@@ -44,6 +44,9 @@ import AdminUserDetails from '../pages/Admin/UserDetails.jsx';
 import AdminArticles from '../pages/Admin/Articles.jsx';
 import AdminCommunity from '../pages/Admin/Community.jsx';
 import AdminAudit from '../components/admin/AdminAudit.jsx';
+import Questions from '../pages/Questions/Questions.jsx';
+import QuestionPage from '../pages/Questions/QuestionPage.jsx';
+import About from '../pages/About/About.jsx';
 
 export default function AppRoutes() {
   return <Routes>
@@ -55,6 +58,7 @@ export default function AppRoutes() {
     <Route path="/contact" element={<Contact />} />
     <Route path="/privacy" element={<Privacy />} />
     <Route path="/terms" element={<Terms />} />
+    <Route path="/about" element={<About />} />
     <Route path="/testament" element={<Testament />} />
     <Route path="/testament/materials" element={<ManuscriptMaterials />} />
     <Route path="/testament/:bookSlug" element={<BookPage />} />
@@ -62,6 +66,8 @@ export default function AppRoutes() {
     <Route path="/testament/:bookSlug/:chapterNumber/:verseNumber" element={<VersePage />} />
     <Route path="/books/:bookId" element={<LegacyBookRedirect />} />
     <Route path="/search" element={<Search />} />
+    <Route path="/questions" element={<Questions />} />
+    <Route path="/questions/:questionSlug" element={<QuestionPage />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />

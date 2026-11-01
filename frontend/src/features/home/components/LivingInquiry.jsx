@@ -3,6 +3,7 @@ import { GoDash } from "react-icons/go";
 import { questions } from "../../../data/questions";
 import { FaArrowRight } from "react-icons/fa";
 import { manuscriptVerse } from '../../../services/manuscriptContent.js';
+import { Link } from "react-router-dom";
 
 const LivingInquiry = () => {
   return (
@@ -35,10 +36,10 @@ const LivingInquiry = () => {
             <p className="text-[10px] font-semibold font-mono tracking-wider text-bronze-ink">
               {q.ref}
             </p>
-            <button type="button" disabled title="Question pages are coming soon" className="mt-auto inline-flex min-h-11 items-center gap-2 text-left text-xs text-muted disabled:cursor-not-allowed">
+            <Link to={`/questions/${q.slug}`} className="mt-auto inline-flex min-h-11 items-center gap-2 text-left text-xs text-forest underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest">
               {q.Link}
               <FaArrowRight className="shrink-0" aria-hidden="true" />
-            </button>
+            </Link>
           </article>
         ))}
       </div>

@@ -13,7 +13,7 @@ export const dialogueCards = [
     bodyAfter: "Bring your reading of Freedom 10, and where you think its verses hold or fail.",
     cta: "JOIN DISCUSSION →",
     ctaStyle: "primary",
-    href: "/discussions/freedom-10",
+    href: "/community/discussions?verseId=freedom%3A10%3A14",
   },
   {
     id: 2,
@@ -41,6 +41,6 @@ export const dialogueCards = [
     bodyAfter: "",
     cta: "JOIN CIRCLE →",
     ctaStyle: "secondary",
-    href: "/circles/belief-3",
+    href: "/community/reading-circles",
   },
 ];

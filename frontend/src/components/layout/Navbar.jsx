@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const navigationItems = [
   { label: "Home", href: "/welcome" },
-  { label: "The Testament", href: "/welcome#books" },
+  { label: "The Testament", href: "/testament" },
   { label: "Articles", href: "/articles" },
-  { label: "Questions", href: "/welcome#questions" },
+  { label: "Questions", href: "/questions" },
   { label: "Community", href: "/community" },
-  { label: "About", href: "/welcome#about" },
+  { label: "About", href: "/about" },
 ];
 
 const linkStyles =
@@ -53,9 +53,6 @@ const Navbar = () => {
           <Button className="h-11 font-serif uppercase text-xs" variant="ghost" title="Sign in" onClick={() => navigate('/login')}>
             Sign In
           </Button>
-          <Button className="h-11 font-serif uppercase text-xs" variant="ghost" title="Create an account" onClick={() => navigate('/register')}>
-            Create account
-          </Button>
           <a href="/testament" className={enterStyles}>
             Enter the Testament
             <MdArrowForwardIos size={16} aria-hidden="true" />
@@ -89,8 +86,7 @@ const Navbar = () => {
                 Search
               </Button>
               <Button variant="ghost" className="h-11" title="Sign in" onClick={(event) => { closeMenu(event); navigate('/login'); }}>Sign In</Button>
-              <Button variant="ghost" className="h-11" title="Create an account" onClick={(event) => { closeMenu(event); navigate('/register'); }}>Create account</Button>
-              <a href="/testament" onClick={closeMenu} className={enterStyles}>
+              <a href="/register" onClick={closeMenu} className={enterStyles}>
                 Enter the Testament
                 <MdArrowForwardIos size={16} aria-hidden="true" />
               </a>
