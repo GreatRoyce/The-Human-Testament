@@ -289,17 +289,22 @@ test('password recovery and changes are single-use, transactional and isolated b
 });
 
 test('the email adapter requires explicit configuration, handles provider errors, and supports isolated test transports', async () => {
-  const env = { NODE_ENV: 'test', MAIL_PROVIDER: 'resend', MAIL_DELIVERY_ENABLED: 'true',
-    MAIL_FROM: 'Human Testament <sender@example.test>', RESEND_API_KEY: randomBytes(32).toString('hex') };
+  const env = { NODE_ENV: 'test', MAIL_PROVIDER: 'gmail', MAIL_DELIVERY_ENABLED: 'true',
+    MAIL_FROM: 'Human Testament <sender@example.test>', GMAIL_CLIENT_ID: 'synthetic-client',
+    GMAIL_CLIENT_SECRET: randomBytes(32).toString('hex'), GMAIL_REFRESH_TOKEN: randomBytes(32).toString('hex') };
   const input = { to: 'synthetic@example.test', link: 'https://reader.example.test/reset-password#token=synthetic', minutes: 30 };
   const calls = [];
   const service = email.createEmailService({ env, fetchImpl: async (url, init) => {
-    calls.push({ url, init }); return new Response(JSON.stringify({ id: 'synthetic-provider-id' }), { status: 200 });
+    calls.push({ url, init }); return Response.json(url === 'https://oauth2.googleapis.com/token'
+      ? { access_token: 'synthetic-access-token', token_type: 'Bearer', expires_in: 3600 }
+      : { id: 'synthetic-provider-id' });
   } });
   assert.deepEqual(await service.sendPasswordReset(input), { status: 'accepted' });
-  assert.equal(calls[0].url, 'https://api.resend.com/emails');
-  const body = JSON.parse(calls[0].init.body); assert.deepEqual(body.to, [input.to]); assert.ok(body.text.includes(input.link));
-  assert.equal(body.from, env.MAIL_FROM);
+  assert.equal(calls[1].url, 'https://gmail.googleapis.com/gmail/v1/users/me/messages/send');
+  const mime = Buffer.from(JSON.parse(calls[1].init.body).raw, 'base64url').toString('utf8');
+  const [headers, encoded] = mime.split('\r\n\r\n');
+  assert.ok(headers.includes('To: ' + input.to)); assert.ok(headers.includes('From: ' + env.MAIL_FROM));
+  assert.ok(Buffer.from(encoded, 'base64').toString('utf8').includes(input.link));
   for (const response of [new Response('private provider error', { status: 403 }), new Response('{}', { status: 200 })]) {
     const rejected = email.createEmailService({ env, fetchImpl: async () => response });
     assert.deepEqual(await rejected.sendPasswordReset(input), { status: 'failed' });

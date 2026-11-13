@@ -37,10 +37,18 @@ test('production configuration rejects unsafe runtime, secrets, feature dependen
     AUTH_ALLOWED_ORIGINS: 'https://reader.example.test', MONGODB_URI: 'mongodb://127.0.0.1/accounts' };
   assert.throws(() => validateRuntime(account, patchedNode), { code: 'ACCOUNT_MAIL_REQUIRED' });
   assert.throws(() => validateRuntime({ ...account, AUTH_ACCESS_TOKEN_SECRET: 'development-secret-'.repeat(4) }, patchedNode), { code: 'AUTH_SECRET_INVALID' });
-  const complete = { ...account, MAIL_DELIVERY_ENABLED: 'true', MAIL_PROVIDER: 'resend', RESEND_API_KEY: randomBytes(32).toString('hex'),
+  const complete = { ...account, MAIL_DELIVERY_ENABLED: 'true', MAIL_PROVIDER: 'gmail',
+    GMAIL_CLIENT_ID: randomBytes(16).toString('hex') + '.apps.googleusercontent.com',
+    GMAIL_CLIENT_SECRET: randomBytes(32).toString('hex'), GMAIL_REFRESH_TOKEN: randomBytes(32).toString('hex'),
     MAIL_FROM: 'Synthetic <noreply@example.test>', PASSWORD_RESET_FRONTEND_URL: account.AUTH_ALLOWED_ORIGINS,
     EMAIL_VERIFICATION_FRONTEND_URL: account.AUTH_ALLOWED_ORIGINS };
   assert.equal(validateRuntime(complete, patchedNode).auth, true);
+  for (const key of ['GMAIL_CLIENT_ID', 'GMAIL_CLIENT_SECRET', 'GMAIL_REFRESH_TOKEN', 'MAIL_FROM']) {
+    for (const value of ['', 'invalid\r\nvalue'])
+      assert.throws(() => validateRuntime({ ...complete, [key]: value }, patchedNode), { code: 'MAIL_CONFIGURATION_INVALID' });
+  }
+  assert.throws(() => validateRuntime({ ...complete, GMAIL_REFRESH_TOKEN: '<replace-me>' }, patchedNode), { code: 'MAIL_CONFIGURATION_INVALID' });
+  assert.throws(() => validateRuntime({ ...complete, MAIL_PROVIDER: 'resend' }, patchedNode), { code: 'MAIL_CONFIGURATION_INVALID' });
   assert.throws(() => validateRuntime({ ...complete, PASSWORD_RESET_FRONTEND_URL: 'https://foreign.example.test' }, patchedNode), { code: 'ACCOUNT_LINK_INVALID' });
   assert.throws(() => validateRuntime({ ...complete, AUTH_ALLOW_INSECURE_LOCALHOST: 'true' }, patchedNode));
   const analytics = validateRuntime({ ...base, ANALYTICS_ENABLED: 'true', MONGODB_URI: account.MONGODB_URI, ANALYTICS_ALLOWED_ORIGINS: account.AUTH_ALLOWED_ORIGINS }, patchedNode);

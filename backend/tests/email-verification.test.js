@@ -316,17 +316,22 @@ test('email ownership and account lifecycle preserve credential isolation and pu
 });
 
 test('verification uses the existing provider adapter and keeps real network delivery disabled under test', async () => {
-  const env = { NODE_ENV: 'test', MAIL_PROVIDER: 'resend', MAIL_DELIVERY_ENABLED: 'true',
-    MAIL_FROM: 'sender@example.test', RESEND_API_KEY: randomBytes(32).toString('hex') };
+  const env = { NODE_ENV: 'test', MAIL_PROVIDER: 'gmail', MAIL_DELIVERY_ENABLED: 'true',
+    MAIL_FROM: 'sender@example.test', GMAIL_CLIENT_ID: 'synthetic-client',
+    GMAIL_CLIENT_SECRET: randomBytes(32).toString('hex'), GMAIL_REFRESH_TOKEN: randomBytes(32).toString('hex') };
   const input = { to: 'synthetic@example.test', link: origin + '/verify-email#token=synthetic', minutes: 1440 };
   const calls = [];
   const sender = mail.createEmailService({ env, fetchImpl: async (url, init) => {
-    calls.push({ url, init }); return new Response(JSON.stringify({ id: 'fake-provider-id' }), { status: 200 });
+    calls.push({ url, init }); return Response.json(url === 'https://oauth2.googleapis.com/token'
+      ? { access_token: 'synthetic-access-token', token_type: 'Bearer', expires_in: 3600 }
+      : { id: 'fake-provider-id' });
   } });
   assert.deepEqual(await sender.sendEmailVerification(input), { status: 'accepted' });
-  const message = JSON.parse(calls[0].init.body);
-  assert.deepEqual(message.to, [input.to]); assert.ok(message.text.includes(input.link)); assert.match(message.subject, /Verify/);
-  assert.equal(calls[0].url, 'https://api.resend.com/emails');
+  const mime = Buffer.from(JSON.parse(calls[1].init.body).raw, 'base64url').toString('utf8');
+  const [headers, encoded] = mime.split('\r\n\r\n');
+  assert.ok(headers.includes('To: ' + input.to)); assert.match(headers, /Subject: Verify/);
+  assert.ok(Buffer.from(encoded, 'base64').toString('utf8').includes(input.link));
+  assert.equal(calls[1].url, 'https://gmail.googleapis.com/gmail/v1/users/me/messages/send');
   assert.deepEqual(await mail.createEmailService({ env }).sendEmailVerification(input), { status: 'disabled' });
   const rejected = mail.createEmailService({ env, fetchImpl: async () => new Response('private', { status: 403 }) });
   assert.deepEqual(await rejected.sendEmailVerification(input), { status: 'failed' });

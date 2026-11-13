@@ -42,7 +42,7 @@ Standalone MongoDB can still run the existing core registration/login. Password 
 
 ## Email provider and development strategy
 
-No existing provider/dependency was configured in the code. The small email service uses built-in fetch and a [Resend Send Email API adapter](https://resend.com/docs/api-reference/emails/send-email), with separate plain-text email content. It calls a fixed HTTPS provider endpoint, uses server-side credentials, and never accepts a destination/redirect/host URL from the request. Sender identity is configured separately. Provider bodies, keys, recipients and reset links are never logged.
+The email service uses built-in fetch and the [Gmail sending API](https://developers.google.com/workspace/gmail/api/guides/sending), with separate plain-text email content. It refreshes server-side OAuth credentials and sends through fixed HTTPS endpoints, without SMTP or Resend. See [Google email setup](GOOGLE_EMAIL.md). It never accepts a destination/redirect/host URL from the request. Sender identity is configured separately. Provider bodies, keys, recipients and reset links are never logged.
 
 Delivery is disabled unless both provider selection and explicit delivery enablement are configured. There is no console/token-preview transport. Under NODE_ENV=test, the default network transport stays disabled even if delivery variables are present; adapter tests must inject a fake transport, and endpoint tests replace the email service with an in-memory double. No real emails were sent during implementation or testing.
 
@@ -58,12 +58,12 @@ Keep all existing Task 3 auth variables and HTTPS/origin/CSRF/proxy requirements
 | --- | --- |
 | PASSWORD_RESET_FRONTEND_URL | Trusted frontend origin only, including scheme/port; must match an AUTH_ALLOWED_ORIGINS entry. No path, query, fragment or request Host is used. The application appends /reset-password. |
 | PASSWORD_RESET_TTL_MINUTES | Optional integer from 5 to 60; default 30. |
-| MAIL_PROVIDER | Select the Resend adapter explicitly. Unconfigured providers do not send mail. |
+| MAIL_PROVIDER | Set to gmail explicitly. Unconfigured providers do not send mail. |
 | MAIL_DELIVERY_ENABLED | Explicit delivery opt-in; keep disabled in ordinary development. |
-| MAIL_FROM | Verified sender mailbox/display name for the provider. |
-| RESEND_API_KEY | Server-only provider credential; never a VITE variable or a chat value. |
+| MAIL_FROM | Authorized Workspace mailbox or configured Gmail send-as alias, optionally with an ASCII display name. |
+| GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN | Server-only OAuth credentials for the sending mailbox; never VITE variables or chat values. |
 
-Configure and verify the sender/domain in the provider dashboard, use credentials scoped to sending, and configure the trusted frontend origin to point at the deployed reset route. Store secrets through local/server environment configuration; no environment file is edited by this task. Deploy frontend SPA rewrites for direct navigation to all four auth pages. HTTPS is required outside the existing explicit loopback-only development exception.
+Authorize the Workspace sender with the gmail.send scope using [Google email setup](GOOGLE_EMAIL.md), and configure the trusted frontend origin to point at the deployed reset route. Store secrets through local/server environment configuration. Deploy frontend SPA rewrites for direct navigation to all four auth pages. HTTPS is required outside the existing explicit loopback-only development exception.
 
 Run the existing explicit initialization command against the intended database after reviewing it:
 

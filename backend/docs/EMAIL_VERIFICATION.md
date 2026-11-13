@@ -49,16 +49,16 @@ There is no email-address-change endpoint. A future authorized email-change flow
 
 ## Email configuration and deployment
 
-Reuse the existing Resend adapter and explicit delivery switch. Email templates remain separate from provider/controller code. The fixed provider endpoint and acceptance semantics follow the [Resend Send Email API](https://resend.com/docs/api-reference/emails/send-email). Provider acceptance is not proof of inbox delivery. Logs contain only an event name and accepted/failed/disabled/unavailable/queue_full status, with no recipient, raw token, provider body, credentials or private error.
+Use the Gmail API adapter and explicit delivery switch. Follow [Google email setup](GOOGLE_EMAIL.md) to authorize the Workspace mailbox with sending-only access. Email templates remain separate from provider/controller code. The fixed provider endpoint and acceptance semantics follow the [Gmail sending API](https://developers.google.com/workspace/gmail/api/guides/sending). Provider acceptance is not proof of inbox delivery. Logs contain only an event name and accepted/failed/disabled/unavailable/queue_full status, with no recipient, raw token, provider body, credentials or private error.
 
 | Variable | Requirement |
 | --- | --- |
 | EMAIL_VERIFICATION_FRONTEND_URL | New required trusted frontend origin only, including scheme/port; must exactly match an AUTH_ALLOWED_ORIGINS entry. No path, query, fragment or caller redirect. |
 | EMAIL_VERIFICATION_TTL_MINUTES | New optional integer, 5–1440; default 1440. |
-| MAIL_PROVIDER | Existing provider selector: resend. |
+| MAIL_PROVIDER | Provider selector: gmail. |
 | MAIL_DELIVERY_ENABLED | Existing explicit true opt-in; otherwise no mail is sent. |
-| MAIL_FROM | Existing provider-verified sender. |
-| RESEND_API_KEY | Existing server-side sending credential; never a VITE variable or chat value. |
+| MAIL_FROM | Authorized Workspace mailbox or configured Gmail send-as alias, optionally with an ASCII display name. |
+| GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN | Server-side OAuth credentials for the sending mailbox; never VITE variables or chat values. |
 
 Retain existing authentication, recovery, HTTPS, origin/CSRF and proxy settings. Configure the new trusted verification origin, verified sender/domain and sending-scoped credential through deployment environment management. Deploy SPA rewrites for direct /verify-email and /verification-pending visits. Disable provider link/open tracking for credential mail and exclude auth URLs/request bodies from deployment logs and analytics. No environment file was edited.
 

@@ -1,4 +1,5 @@
 const { getAuthConfig } = require('./auth');
+const { getGmailConfig } = require('./gmail');
 const invalid = code => Object.assign(new Error('Invalid runtime configuration.'), { code });
 const placeholder = value => /(?:<[^>]+>|changeme|change[-_ ]?me|replace[-_ ]?me|your[-_ ](?:secret|password|key)|example|development|test[-_ ]?secret)/i.test(value);
 
@@ -34,7 +35,8 @@ function validateRuntime(env = process.env, version = process.versions.node) {
     // An account release must support verification and recovery.
     if (production && env.MAIL_DELIVERY_ENABLED !== 'true') throw invalid('ACCOUNT_MAIL_REQUIRED');
     if (production || env.MAIL_DELIVERY_ENABLED === 'true') {
-      if (env.MAIL_PROVIDER !== 'resend' || !env.RESEND_API_KEY || placeholder(env.RESEND_API_KEY) || !env.MAIL_FROM || /[\r\n]/.test(env.MAIL_FROM)) throw invalid('MAIL_CONFIGURATION_INVALID');
+      getGmailConfig(env);
+      if ([env.GMAIL_CLIENT_ID, env.GMAIL_CLIENT_SECRET, env.GMAIL_REFRESH_TOKEN].some(placeholder)) throw invalid('MAIL_CONFIGURATION_INVALID');
       for (const key of ['PASSWORD_RESET_FRONTEND_URL', 'EMAIL_VERIFICATION_FRONTEND_URL']) {
         let url; try { url = new URL(env[key]); } catch { throw invalid('ACCOUNT_LINK_INVALID'); }
         if (url.href !== url.origin + '/' || !config.origins.includes(url.origin)) throw invalid('ACCOUNT_LINK_INVALID');
