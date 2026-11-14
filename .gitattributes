@@ -1,0 +1,11 @@
+# Manuscript inputs, generated evidence and frozen editions are byte-hashed.
+# Prevent platform checkout defaults from rewriting their line endings.
+/backend/data/** -text
+/backend/docs/*.json -text
+/backend/editions/** -text
+/docs/*.json -text
+/shared/manuscript.json -text
+
+# This legacy scaffold was hashed with CRLF before Git stored its LF form.
+# Materialize the original bytes on Linux as well as Windows; keep its seal.
+/backend/data/canonical-content.json text eol=crlf
