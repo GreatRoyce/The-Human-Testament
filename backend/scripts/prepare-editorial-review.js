@@ -197,7 +197,9 @@ async function run({ check = false } = {}) {
   const decisionPath = path.join(root, 'docs/AUTHOR_DECISIONS.json');
   const decisions = fs.existsSync(decisionPath) ? read('docs/AUTHOR_DECISIONS.json') : pendingDecisions(evidence);
   const review = buildReview({ evidence, canonical: read('data/canonical-content.draft.json'), supporting: read('data/supporting-material.draft.json'), decisions });
-  const outputs = { 'EDITORIAL_REVIEW.json': JSON.stringify(review, null, 2) + '\n', 'EDITORIAL_REVIEW.md': renderReview(review), 'REPEATED_PASSAGES.md': renderRepetitions(review) };
+  // Readable documentation lives in the developer textbook. Keep the durable
+  // machine record here; candidate snapshots render their own readable evidence.
+  const outputs = { 'EDITORIAL_REVIEW.json': JSON.stringify(review, null, 2) + '\n' };
   for (const entry of evidence.sourceManifest) assert.equal(sha256(fs.readFileSync(path.join(root, 'data', entry.file))), entry.sha256, `Source modified: ${entry.file}`);
   if (check) {
     assert.ok(fs.existsSync(decisionPath), 'Author decision record has not been prepared.');

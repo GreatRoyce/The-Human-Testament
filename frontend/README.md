@@ -27,4 +27,7 @@ Content defaults to supplied mock excerpts. See `.env.example` for `VITE_CONTENT
 
 Validation: `npm run lint`, `npm run build`, `npm test`, `npm run check:home`, `npm run check:content`.
 
-See [frontend architecture and backend handoff](docs/FRONTEND_ARCHITECTURE.md) and [migration file inventory](docs/MIGRATION_FILES.md).
+Architecture, migration history and deployment instructions are consolidated in
+[The Human Testament Developer Textbook](../output/pdf/The-Human-Testament-Developer-Textbook.pdf).
+Use `frontend` as the Vercel Root Directory and include files outside that
+directory so the shared manuscript and existing prebuild verification remain available.

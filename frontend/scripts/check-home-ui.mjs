@@ -9,6 +9,7 @@ import { questions } from "../src/data/questions.js";
 import paths from "../src/data/paths.js";
 import { dialogueCards } from "../src/data/dialogueCards.js";
 import essaysSection from "../src/data/essaysSection.js";
+import circlesSection from "../src/data/circleSection.js";
 
 // Use the app's Vite transforms, including JSX and asset imports.
 const server = await createServer({
@@ -63,7 +64,7 @@ try {
     if (noteNumber !== null) assert.ok(notePanel.includes(selectedVerse.notes[0].text));
     assert.equal(notePanel.includes("See also:"), number === 14);
   }
-  assert.equal((html.match(/<article\b/g) || []).length, books.length + questions.length + paths.length + dialogueCards.length + essaysSection.essays.length);
+  assert.equal((html.match(/<article\b/g) || []).length, books.length + questions.length + paths.length + dialogueCards.length + essaysSection.essays.length + circlesSection.circles.length);
   const essays = html.match(/<section[^>]*id="essays"[\s\S]*?<\/section>/)?.[0];
   assert.ok(essays, "Essays render inside their labelled section");
   for (const essay of essaysSection.essays) {
@@ -93,7 +94,13 @@ try {
   assert.ok(html.includes('role="tablist"'), "Featured verse tabs present");
   assert.equal((html.match(/role="tab"/g) || []).length, 3);
 
-  for (const pathname of [...dialogueCards.map((card) => card.href), "/unknown-page"]) {
+  for (const pathname of dialogueCards.map((card) => card.href)) {
+    const destination = renderRoute(pathname);
+    assert.ok(!destination.includes("Page unavailable"), `Implemented dialogue destination: ${pathname}`);
+    assert.equal((destination.match(/<main\b/g) || []).length, 1);
+    assert.equal((destination.match(/<h1\b/g) || []).length, 1);
+  }
+  for (const pathname of ["/unknown-page"]) {
     const fallback = renderRoute(pathname);
     assert.ok(fallback.includes("Page unavailable"), `Fallback for ${pathname}`);
     assert.ok(fallback.includes("Return home"), `Recovery link for ${pathname}`);

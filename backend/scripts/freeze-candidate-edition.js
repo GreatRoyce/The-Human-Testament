@@ -4,6 +4,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
 const { sha256 } = require('./ingestion/read-validation-report');
+const { renderReview, renderRepetitions } = require('./prepare-editorial-review');
 const root = path.join(__dirname, '..');
 const json = value => JSON.stringify(value, null, 2) + '\n';
 
@@ -83,11 +84,16 @@ async function freeze(version) {
     ['data/The-Human-Testament-Ingestion-Validation-Report.md', 'validation/source-validation-report.md', 'source_validation_report'],
     ['docs/AUTHOR_DECISIONS.json', 'editorial/AUTHOR_DECISIONS.json', 'durable_author_decisions'],
     ['docs/EDITORIAL_REVIEW.json', 'editorial/EDITORIAL_REVIEW.json', 'classified_findings'],
-    ['docs/EDITORIAL_REVIEW.md', 'editorial/EDITORIAL_REVIEW.md', 'human_review'],
-    ['docs/REPEATED_PASSAGES.md', 'editorial/REPEATED_PASSAGES.md', 'intentional_repetitions'],
     ['docs/SOURCE_WARNING_REVIEW.json', 'editorial/SOURCE_WARNING_REVIEW.json', 'original_pdf_evidence'],
   ];
   const files = copies.map(([originalPath, destination, role]) => ({ path: destination, originalPath, role, bytes: read(originalPath) }));
+  // Generate readable snapshot evidence from the checked JSON instead of
+  // requiring loose documentation files in the application checkout.
+  const editorial = JSON.parse(read('docs/EDITORIAL_REVIEW.json'));
+  files.push(
+    { path: 'editorial/EDITORIAL_REVIEW.md', role: 'human_review', bytes: Buffer.from(renderReview(editorial)) },
+    { path: 'editorial/REPEATED_PASSAGES.md', role: 'intentional_repetitions', bytes: Buffer.from(renderRepetitions(editorial)) },
+  );
   const toolPaths = ['package.json', 'package-lock.json', 'scripts/freeze-candidate-edition.js',
     'scripts/parse-clean-manuscript.js', 'scripts/review-source-warnings.js', 'scripts/prepare-editorial-review.js',
     'scripts/verify-content-fidelity.js', ...fs.readdirSync(path.join(root, 'scripts/ingestion')).filter(file => file.endsWith('.js')).map(file => `scripts/ingestion/${file}`),
